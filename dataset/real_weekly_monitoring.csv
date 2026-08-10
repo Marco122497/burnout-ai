@@ -1,0 +1,13 @@
+source,student_id,term_id,week_number,stress_score,academic_workload_score,study_time_score,sleep_hours_score,mfbi_score,burnout_risk_level
+real,0638b08d-09c1-4fad-a3e7-d35a8f0e9474,1,1,22.0,6.25,3.5,6.48,0.4142,Moderate
+real,0638b08d-09c1-4fad-a3e7-d35a8f0e9474,1,2,18.0,5.0,1.5,6.25,0.3234,Low
+real,0638b08d-09c1-4fad-a3e7-d35a8f0e9474,1,3,17.0,3.75,1.5,80.0,0.4313,Moderate
+real,0638b08d-09c1-4fad-a3e7-d35a8f0e9474,1,4,16.0,6.25,3.5,40.0,0.4292,Moderate
+real,0d4ef2b3-2a66-4841-9584-9fd805e7c05e,1,2,27.0,8.13,1.5,80.0,0.6033,Moderate
+real,0d4ef2b3-2a66-4841-9584-9fd805e7c05e,1,4,24.0,10.0,7.5,20.0,0.6063,Moderate
+real,4a2f30ad-0965-43ea-885c-86532c7314fe,1,2,18.0,5.0,3.5,5.58,0.386,Low
+real,7ba95685-5b8a-44d2-8459-31acb956a44b,1,2,20.0,5.0,3.5,50.0,0.4479,Moderate
+real,7ba95685-5b8a-44d2-8459-31acb956a44b,1,4,22.0,3.75,1.5,55.0,0.4,Moderate
+real,839d2c1d-1875-4f44-94ed-880ac62a4374,1,2,27.0,8.13,1.5,5.35,0.4861,Moderate
+real,839d2c1d-1875-4f44-94ed-880ac62a4374,1,4,28.0,8.13,1.5,55.0,0.547,Moderate
+real,decba7f6-999f-48e3-b29e-71e8aeb3be6d,1,2,27.0,10.0,3.5,75.0,0.6792,Moderate

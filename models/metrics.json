@@ -1,0 +1,305 @@
+{
+  "generated_by": "burnout-ai/training/train.py",
+  "label": "burnout_risk_level",
+  "classes": [
+    "Low",
+    "Moderate",
+    "High"
+  ],
+  "same_week": {
+    "samples": 612,
+    "features": [
+      "stress_score",
+      "academic_workload_score",
+      "study_time_score",
+      "sleep_hours_score"
+    ],
+    "decision_tree": {
+      "accuracy": 0.813,
+      "precision": 0.8232,
+      "recall": 0.813,
+      "f1": 0.8152,
+      "confusion_matrix": {
+        "labels": [
+          "Low",
+          "Moderate",
+          "High"
+        ],
+        "matrix": [
+          [
+            26,
+            3,
+            0
+          ],
+          [
+            9,
+            67,
+            6
+          ],
+          [
+            0,
+            5,
+            7
+          ]
+        ]
+      },
+      "classification_report": {
+        "Low": {
+          "precision": 0.7428571428571429,
+          "recall": 0.896551724137931,
+          "f1-score": 0.8125,
+          "support": 29.0
+        },
+        "Moderate": {
+          "precision": 0.8933333333333333,
+          "recall": 0.8170731707317073,
+          "f1-score": 0.8535031847133758,
+          "support": 82.0
+        },
+        "High": {
+          "precision": 0.5384615384615384,
+          "recall": 0.5833333333333334,
+          "f1-score": 0.56,
+          "support": 12.0
+        },
+        "accuracy": 0.8130081300813008,
+        "macro avg": {
+          "precision": 0.724884004884005,
+          "recall": 0.7656527427343239,
+          "f1-score": 0.7420010615711252,
+          "support": 123.0
+        },
+        "weighted avg": {
+          "precision": 0.8232335685994223,
+          "recall": 0.8130081300813008,
+          "f1-score": 0.8152013101341204,
+          "support": 123.0
+        }
+      }
+    },
+    "random_forest": {
+      "accuracy": 0.8943,
+      "precision": 0.9,
+      "recall": 0.8943,
+      "f1": 0.8873,
+      "confusion_matrix": {
+        "labels": [
+          "Low",
+          "Moderate",
+          "High"
+        ],
+        "matrix": [
+          [
+            23,
+            6,
+            0
+          ],
+          [
+            0,
+            81,
+            1
+          ],
+          [
+            0,
+            6,
+            6
+          ]
+        ]
+      },
+      "classification_report": {
+        "Low": {
+          "precision": 1.0,
+          "recall": 0.7931034482758621,
+          "f1-score": 0.8846153846153846,
+          "support": 29.0
+        },
+        "Moderate": {
+          "precision": 0.8709677419354839,
+          "recall": 0.9878048780487805,
+          "f1-score": 0.9257142857142857,
+          "support": 82.0
+        },
+        "High": {
+          "precision": 0.8571428571428571,
+          "recall": 0.5,
+          "f1-score": 0.631578947368421,
+          "support": 12.0
+        },
+        "accuracy": 0.8943089430894309,
+        "macro avg": {
+          "precision": 0.9093701996927804,
+          "recall": 0.7603027754415476,
+          "f1-score": 0.8139695392326972,
+          "support": 123.0
+        },
+        "weighted avg": {
+          "precision": 0.9000412123936908,
+          "recall": 0.8943089430894309,
+          "f1-score": 0.8873281703320215,
+          "support": 123.0
+        }
+      },
+      "feature_importance": {
+        "stress_score": 0.2439,
+        "academic_workload_score": 0.2256,
+        "study_time_score": 0.2407,
+        "sleep_hours_score": 0.2897
+      }
+    }
+  },
+  "next_week": {
+    "samples": 506,
+    "features": [
+      "stress_score",
+      "academic_workload_score",
+      "study_time_score",
+      "sleep_hours_score",
+      "stress_trend",
+      "workload_trend",
+      "study_trend",
+      "sleep_trend",
+      "mfbi_score"
+    ],
+    "decision_tree": {
+      "accuracy": 0.902,
+      "precision": 0.9022,
+      "recall": 0.902,
+      "f1": 0.9009,
+      "confusion_matrix": {
+        "labels": [
+          "Low",
+          "Moderate",
+          "High"
+        ],
+        "matrix": [
+          [
+            18,
+            5,
+            0
+          ],
+          [
+            2,
+            63,
+            2
+          ],
+          [
+            0,
+            1,
+            11
+          ]
+        ]
+      },
+      "classification_report": {
+        "Low": {
+          "precision": 0.9,
+          "recall": 0.782608695652174,
+          "f1-score": 0.8372093023255814,
+          "support": 23.0
+        },
+        "Moderate": {
+          "precision": 0.9130434782608695,
+          "recall": 0.9402985074626866,
+          "f1-score": 0.9264705882352942,
+          "support": 67.0
+        },
+        "High": {
+          "precision": 0.8461538461538461,
+          "recall": 0.9166666666666666,
+          "f1-score": 0.88,
+          "support": 12.0
+        },
+        "accuracy": 0.9019607843137255,
+        "macro avg": {
+          "precision": 0.8863991081382386,
+          "recall": 0.8798579565938424,
+          "f1-score": 0.8812266301869585,
+          "support": 102.0
+        },
+        "weighted avg": {
+          "precision": 0.902232933307102,
+          "recall": 0.9019607843137255,
+          "f1-score": 0.9008759153456185,
+          "support": 102.0
+        }
+      }
+    },
+    "random_forest": {
+      "accuracy": 0.951,
+      "precision": 0.9529,
+      "recall": 0.951,
+      "f1": 0.9513,
+      "confusion_matrix": {
+        "labels": [
+          "Low",
+          "Moderate",
+          "High"
+        ],
+        "matrix": [
+          [
+            21,
+            2,
+            0
+          ],
+          [
+            0,
+            65,
+            2
+          ],
+          [
+            0,
+            1,
+            11
+          ]
+        ]
+      },
+      "classification_report": {
+        "Low": {
+          "precision": 1.0,
+          "recall": 0.9130434782608695,
+          "f1-score": 0.9545454545454546,
+          "support": 23.0
+        },
+        "Moderate": {
+          "precision": 0.9558823529411765,
+          "recall": 0.9701492537313433,
+          "f1-score": 0.9629629629629629,
+          "support": 67.0
+        },
+        "High": {
+          "precision": 0.8461538461538461,
+          "recall": 0.9166666666666666,
+          "f1-score": 0.88,
+          "support": 12.0
+        },
+        "accuracy": 0.9509803921568627,
+        "macro avg": {
+          "precision": 0.9340120663650077,
+          "recall": 0.9332864662196264,
+          "f1-score": 0.9325028058361391,
+          "support": 102.0
+        },
+        "weighted avg": {
+          "precision": 0.9529212137343624,
+          "recall": 0.9509803921568627,
+          "f1-score": 0.9513045487555292,
+          "support": 102.0
+        }
+      },
+      "feature_importance": {
+        "stress_score": 0.1001,
+        "academic_workload_score": 0.0749,
+        "study_time_score": 0.068,
+        "sleep_hours_score": 0.0728,
+        "stress_trend": 0.0314,
+        "workload_trend": 0.047,
+        "study_trend": 0.0388,
+        "sleep_trend": 0.0402,
+        "mfbi_score": 0.5268
+      }
+    }
+  },
+  "notes": {
+    "same_week": "Predicts current-week burnout risk from four questionnaire scores.",
+    "next_week": "Predicts next-week burnout risk from scores, week-over-week trends, and MFBI. Dataset contains next-week labels only \u2014 not two-week-ahead labels. Week-2 outlook in the API is a trend-based projection."
+  }
+}

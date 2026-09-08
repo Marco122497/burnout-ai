@@ -15,10 +15,10 @@
       "sleep_hours_score"
     ],
     "decision_tree": {
-      "accuracy": 0.9187,
-      "precision": 0.9188,
-      "recall": 0.9187,
-      "f1": 0.9186,
+      "accuracy": 0.9319,
+      "precision": 0.9331,
+      "recall": 0.9319,
+      "f1": 0.9322,
       "confusion_matrix": {
         "labels": [
           "Low",
@@ -27,61 +27,61 @@
         ],
         "matrix": [
           [
-            143,
-            9,
+            144,
+            8,
             0
           ],
           [
-            6,
-            132,
-            14
+            7,
+            140,
+            5
           ],
           [
             0,
-            8,
-            143
+            11,
+            140
           ]
         ]
       },
       "classification_report": {
         "Low": {
-          "precision": 0.959731543624161,
-          "recall": 0.9407894736842105,
-          "f1-score": 0.9501661129568106,
+          "precision": 0.9536423841059603,
+          "recall": 0.9473684210526315,
+          "f1-score": 0.9504950495049505,
           "support": 152.0
         },
         "Moderate": {
-          "precision": 0.8859060402684564,
-          "recall": 0.868421052631579,
-          "f1-score": 0.8770764119601329,
+          "precision": 0.8805031446540881,
+          "recall": 0.9210526315789473,
+          "f1-score": 0.9003215434083601,
           "support": 152.0
         },
         "High": {
-          "precision": 0.910828025477707,
-          "recall": 0.9470198675496688,
-          "f1-score": 0.9285714285714286,
+          "precision": 0.9655172413793104,
+          "recall": 0.9271523178807947,
+          "f1-score": 0.9459459459459459,
           "support": 151.0
         },
-        "accuracy": 0.9186813186813186,
+        "accuracy": 0.9318681318681319,
         "macro avg": {
-          "precision": 0.9188218697901082,
-          "recall": 0.9187434646218193,
-          "f1-score": 0.9186046511627907,
+          "precision": 0.9332209233797862,
+          "recall": 0.9318577901707911,
+          "f1-score": 0.9322541796197522,
           "support": 455.0
         },
         "weighted avg": {
-          "precision": 0.9188394386787068,
-          "recall": 0.9186813186813186,
-          "f1-score": 0.9185827461574969,
+          "precision": 0.9331499424611059,
+          "recall": 0.9318681318681319,
+          "f1-score": 0.9322240878256287,
           "support": 455.0
         }
       }
     },
     "random_forest": {
-      "accuracy": 0.9714,
-      "precision": 0.9719,
-      "recall": 0.9714,
-      "f1": 0.9713,
+      "accuracy": 0.956,
+      "precision": 0.9561,
+      "recall": 0.956,
+      "f1": 0.9557,
       "confusion_matrix": {
         "labels": [
           "Low",
@@ -95,55 +95,55 @@
             0
           ],
           [
-            2,
-            142,
-            8
+            7,
+            138,
+            7
           ],
           [
             0,
-            1,
-            150
+            4,
+            147
           ]
         ]
       },
       "classification_report": {
         "Low": {
-          "precision": 0.9868421052631579,
+          "precision": 0.9554140127388535,
           "recall": 0.9868421052631579,
-          "f1-score": 0.9868421052631579,
+          "f1-score": 0.970873786407767,
           "support": 152.0
         },
         "Moderate": {
-          "precision": 0.9793103448275862,
-          "recall": 0.9342105263157895,
-          "f1-score": 0.9562289562289562,
+          "precision": 0.9583333333333334,
+          "recall": 0.9078947368421053,
+          "f1-score": 0.9324324324324325,
           "support": 152.0
         },
         "High": {
-          "precision": 0.9493670886075949,
-          "recall": 0.9933774834437086,
-          "f1-score": 0.970873786407767,
+          "precision": 0.9545454545454546,
+          "recall": 0.9735099337748344,
+          "f1-score": 0.9639344262295082,
           "support": 151.0
         },
-        "accuracy": 0.9714285714285714,
+        "accuracy": 0.9560439560439561,
         "macro avg": {
-          "precision": 0.9718398462327796,
-          "recall": 0.9714767050075519,
-          "f1-score": 0.9713149492999603,
+          "precision": 0.9560976002058804,
+          "recall": 0.9560822586266992,
+          "f1-score": 0.9557468816899025,
           "support": 455.0
         },
         "weighted avg": {
-          "precision": 0.9718892369088789,
-          "recall": 0.9714285714285714,
-          "f1-score": 0.9713159188887345,
+          "precision": 0.9561010115150244,
+          "recall": 0.9560439560439561,
+          "f1-score": 0.9557288870865187,
           "support": 455.0
         }
       },
       "feature_importance": {
-        "stress_score": 0.3242,
-        "academic_workload_score": 0.2182,
+        "stress_score": 0.3308,
+        "academic_workload_score": 0.2128,
         "study_time_score": 0.1629,
-        "sleep_hours_score": 0.2947
+        "sleep_hours_score": 0.2934
       }
     }
   },
@@ -161,10 +161,10 @@
       "mfbi_score"
     ],
     "decision_tree": {
-      "accuracy": 0.75,
-      "precision": 0.7509,
-      "recall": 0.75,
-      "f1": 0.746,
+      "accuracy": 0.7333,
+      "precision": 0.7372,
+      "recall": 0.7333,
+      "f1": 0.7304,
       "confusion_matrix": {
         "labels": [
           "Low",
@@ -173,61 +173,61 @@
         ],
         "matrix": [
           [
-            84,
-            10,
-            6
+            77,
+            12,
+            11
           ],
           [
-            17,
+            14,
             60,
-            23
+            26
           ],
           [
-            10,
             9,
-            81
+            8,
+            83
           ]
         ]
       },
       "classification_report": {
         "Low": {
-          "precision": 0.7567567567567568,
-          "recall": 0.84,
-          "f1-score": 0.7962085308056872,
+          "precision": 0.77,
+          "recall": 0.77,
+          "f1-score": 0.77,
           "support": 100.0
         },
         "Moderate": {
-          "precision": 0.759493670886076,
+          "precision": 0.75,
           "recall": 0.6,
-          "f1-score": 0.6703910614525139,
+          "f1-score": 0.6666666666666666,
           "support": 100.0
         },
         "High": {
-          "precision": 0.7363636363636363,
-          "recall": 0.81,
-          "f1-score": 0.7714285714285715,
+          "precision": 0.6916666666666667,
+          "recall": 0.83,
+          "f1-score": 0.7545454545454545,
           "support": 100.0
         },
-        "accuracy": 0.75,
+        "accuracy": 0.7333333333333333,
         "macro avg": {
-          "precision": 0.7508713546688229,
-          "recall": 0.75,
-          "f1-score": 0.7460093878955908,
+          "precision": 0.7372222222222223,
+          "recall": 0.7333333333333334,
+          "f1-score": 0.7304040404040403,
           "support": 300.0
         },
         "weighted avg": {
-          "precision": 0.750871354668823,
-          "recall": 0.75,
-          "f1-score": 0.7460093878955909,
+          "precision": 0.7372222222222223,
+          "recall": 0.7333333333333333,
+          "f1-score": 0.7304040404040404,
           "support": 300.0
         }
       }
     },
     "random_forest": {
-      "accuracy": 0.7433,
-      "precision": 0.7464,
-      "recall": 0.7433,
-      "f1": 0.7408,
+      "accuracy": 0.7633,
+      "precision": 0.7623,
+      "recall": 0.7633,
+      "f1": 0.7624,
       "confusion_matrix": {
         "labels": [
           "Low",
@@ -236,65 +236,65 @@
         ],
         "matrix": [
           [
-            81,
-            9,
-            10
-          ],
-          [
+            79,
             16,
-            62,
-            22
+            5
           ],
           [
-            11,
-            9,
-            80
+            13,
+            68,
+            19
+          ],
+          [
+            8,
+            10,
+            82
           ]
         ]
       },
       "classification_report": {
         "Low": {
-          "precision": 0.75,
-          "recall": 0.81,
-          "f1-score": 0.7788461538461539,
+          "precision": 0.79,
+          "recall": 0.79,
+          "f1-score": 0.79,
           "support": 100.0
         },
         "Moderate": {
-          "precision": 0.775,
-          "recall": 0.62,
-          "f1-score": 0.6888888888888889,
+          "precision": 0.723404255319149,
+          "recall": 0.68,
+          "f1-score": 0.7010309278350515,
           "support": 100.0
         },
         "High": {
-          "precision": 0.7142857142857143,
-          "recall": 0.8,
-          "f1-score": 0.7547169811320755,
+          "precision": 0.7735849056603774,
+          "recall": 0.82,
+          "f1-score": 0.7961165048543689,
           "support": 100.0
         },
-        "accuracy": 0.7433333333333333,
+        "accuracy": 0.7633333333333333,
         "macro avg": {
-          "precision": 0.7464285714285714,
-          "recall": 0.7433333333333335,
-          "f1-score": 0.7408173412890395,
+          "precision": 0.7623297203265088,
+          "recall": 0.7633333333333333,
+          "f1-score": 0.7623824775631401,
           "support": 300.0
         },
         "weighted avg": {
-          "precision": 0.7464285714285714,
-          "recall": 0.7433333333333333,
-          "f1-score": 0.7408173412890394,
+          "precision": 0.7623297203265088,
+          "recall": 0.7633333333333333,
+          "f1-score": 0.76238247756314,
           "support": 300.0
         }
       },
       "feature_importance": {
-        "stress_score": 0.1317,
-        "academic_workload_score": 0.0851,
-        "study_time_score": 0.1274,
-        "sleep_hours_score": 0.0967,
-        "stress_trend": 0.0574,
-        "workload_trend": 0.0586,
-        "study_trend": 0.0596,
-        "sleep_trend": 0.0586,
-        "mfbi_score": 0.3249
+        "stress_score": 0.1364,
+        "academic_workload_score": 0.0861,
+        "study_time_score": 0.13,
+        "sleep_hours_score": 0.1001,
+        "stress_trend": 0.0564,
+        "workload_trend": 0.0588,
+        "study_trend": 0.0605,
+        "sleep_trend": 0.0578,
+        "mfbi_score": 0.3139
       }
     }
   },

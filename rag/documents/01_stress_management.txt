@@ -1,0 +1,80 @@
+TITLE: Stress Management for College Students
+CATEGORY: Stress
+PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+
+1. OVERVIEW
+Academic stress can arise when students perceive that academic demands exceed the time, resources, or coping capacity available to them. Stress can be associated with academic difficulties and reduced well-being. The system should treat stress as one contributing factor in the user's MFBI rather than as a diagnosis.
+
+Self-guided stress-management interventions have shown small average improvements in stress-related outcomes among college students. Evidence supports using stress-management resources as one component of a broader support system rather than presenting them as a guaranteed treatment.
+
+2. COMMON ACADEMIC STRESSORS
+Potential academic stressors include:
+- Multiple assignments with overlapping deadlines
+- Examinations and major projects
+- High perceived academic workload
+- Difficulty organizing tasks
+- Lack of recovery time
+- Extended study periods
+- Uncertainty about academic requirements
+- Difficulty balancing school with other responsibilities
+
+The system should not assume that any single stressor is the cause of a student's result. Recommendations should be based on the student's measured factors and verified information.
+
+3. PRACTICAL STRESS-MANAGEMENT STRATEGIES
+A. Identify the main source of pressure.
+Ask the student to identify which tasks, deadlines, or situations are currently creating the greatest academic pressure.
+
+B. Break large tasks into smaller steps.
+A large project can be divided into planning, research, drafting, revision, and submission. Smaller steps can make the workload easier to organize.
+
+C. Prioritize.
+Encourage students to identify urgent and important tasks first. Avoid recommending that students attempt all tasks simultaneously.
+
+D. Schedule recovery.
+Study schedules should include reasonable breaks and time for sleep, meals, and recovery.
+
+E. Use relaxation or mindfulness activities when appropriate.
+Simple breathing, mindfulness, or relaxation activities may be suggested as optional strategies. The system should not claim that these techniques work for everyone.
+
+F. Seek social and academic support.
+Students can consider talking with a trusted person, instructor, adviser, or guidance professional when academic stress becomes difficult to manage.
+
+4. PERSONALIZATION RULES
+If STRESS is high:
+- Prioritize stress-management guidance.
+- Look for other elevated MFBI factors before producing recommendations.
+- Do not automatically recommend counseling unless the student's situation indicates that human support may be useful.
+- Avoid overwhelming the student with a long list of interventions.
+
+If STRESS is moderate:
+- Provide preventive strategies such as planning, breaks, and coping techniques.
+- Encourage monitoring in subsequent weekly assessments.
+
+If STRESS is low:
+- Provide maintenance-oriented advice only when appropriate.
+- Do not imply that low stress means the student has no academic difficulty.
+
+5. SAFETY AND LIMITATIONS
+The RAG/LLM component must not diagnose anxiety, depression, burnout, or any other mental-health disorder. It must not claim to replace a guidance counselor, psychologist, physician, or other qualified professional.
+
+If a student communicates severe distress, inability to function, or a safety concern, the system should direct the student to verified human support and emergency resources. It should not attempt to manage an emergency through generated advice.
+
+6. SOURCE EVIDENCE
+Amanvermez et al. (2022), Effects of self-guided stress management interventions in college students: A systematic review and meta-analysis. The review included 26 studies involving 4,468 students in its general college-student analysis and found small statistically significant effects for self-guided stress-management interventions.
+Source: https://pubmed.ncbi.nlm.nih.gov/35242591/
+
+Worsley, Pennington, & Corcoran (2022), Supporting mental health and wellbeing of university and college students: A systematic review of review-level evidence of interventions. The review identified intervention types including mindfulness, psychological interventions, psychoeducation, relaxation, and stress-management/reduction approaches.
+Source: https://pubmed.ncbi.nlm.nih.gov/35905058/
+
+Hathaisaard et al. (2022), Mindfulness-based interventions reducing and preventing stress and burnout in medical students: A systematic review and meta-analysis.
+Source: https://pubmed.ncbi.nlm.nih.gov/34995839/
+
+7. STUDENT-FACING GUIDANCE
+Write to the student in a calm, human voice. Use "you." Do not diagnose.
+- If school feels tense, pause and name the one deadline or class that is weighing on you most this week.
+- Break that work into a small next step you can finish in under an hour.
+- Give yourself short breaks, a real meal, and a chance to rest. You do not have to solve everything tonight.
+- If the pressure still feels too heavy, talk with a friend, a teacher you trust, or the Guidance Office.
+
+8. RETRIEVAL KEYWORDS
+stress, academic stress, high stress, stress management, coping, relaxation, mindfulness, academic pressure, examination stress, assignment stress, stress reduction, student support

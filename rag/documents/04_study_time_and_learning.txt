@@ -1,0 +1,76 @@
+TITLE: Study Time and Effective Learning
+CATEGORY: Study Time
+PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+
+1. OVERVIEW
+Study time represents the amount of time a student spends studying or preparing for classes outside scheduled class hours. The system should not assume that more study hours automatically indicate better learning.
+
+Excessively long study periods may also reduce time available for sleep and recovery. The recommendation engine should therefore consider study time together with workload, sleep, and stress.
+
+2. EFFECTIVE STUDY STRATEGIES
+A. Retrieval practice.
+Students can test themselves on information rather than relying only on rereading. Retrieval practice has evidence supporting improved later recall.
+
+Examples:
+- Practice questions
+- Flashcards
+- Explaining a concept without looking at notes
+- Short self-tests
+
+B. Distributed practice.
+When practical, learning can be distributed across multiple sessions instead of placing all learning into one very long session.
+
+C. Define a session goal.
+Before studying, identify what should be completed or understood.
+
+D. Break large material into manageable units.
+This makes it easier to monitor progress.
+
+E. Use appropriate breaks.
+Breaks can help prevent excessively prolonged study sessions and support recovery.
+
+3. STUDY-TIME PERSONALIZATION
+If STUDY TIME is high and SLEEP is low:
+- Recommend reviewing the schedule and protecting sleep.
+- Focus on study efficiency rather than adding more hours.
+
+If STUDY TIME is high and STRESS is high:
+- Retrieve stress-management and study-efficiency guidance.
+- Encourage prioritization and active learning.
+
+If STUDY TIME is high and WORKLOAD is high:
+- Retrieve workload-management guidance.
+- Recommend prioritizing tasks and using effective study methods.
+
+If STUDY TIME is normal:
+- Do not assume additional study time is required.
+- Focus on other elevated factors.
+
+4. WHAT THE SYSTEM SHOULD NOT SAY
+Avoid:
+- "You need to study X hours every day."
+- "More study hours always produce better grades."
+- "You should study all night."
+- "Sleep less so you can study more."
+
+Study requirements vary by course, student, assessment, and institution.
+
+5. SOURCES
+McDermott (2021), Practicing Retrieval Facilitates Learning.
+Source: https://pubmed.ncbi.nlm.nih.gov/33006925/
+
+Toppino & Pagano (2021), research on metacognitive control and distribution of retrieval practice.
+Source: https://pubmed.ncbi.nlm.nih.gov/33006078/
+
+Liu, Ma, & Jia (2026), Systematic review and meta-analysis of the impact of time management on college students' learning outcomes.
+Source: https://pubmed.ncbi.nlm.nih.gov/41969889/
+
+6. STUDENT-FACING GUIDANCE
+Write to the student in a calm, human voice. Use "you." Do not diagnose.
+- Study in shorter focused blocks with a clear goal, then take a real break.
+- Test yourself with a few questions or by explaining an idea out loud instead of rereading for hours.
+- If long study nights are stealing sleep, shorten one session this week rather than adding more hours.
+- Progress can be a small finished piece, not an all-nighter.
+
+7. RETRIEVAL KEYWORDS
+study time, studying, study hours, study habits, effective studying, retrieval practice, active learning, spaced practice, study schedule, study breaks, learning strategies

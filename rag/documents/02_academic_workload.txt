@@ -1,0 +1,84 @@
+TITLE: Academic Workload Management
+CATEGORY: Academic Workload
+PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+
+1. OVERVIEW
+Academic workload refers to the amount and perceived demand of academic responsibilities a student must manage. In this system, workload may include the student's enrolled academic requirements, number of subjects or units where applicable, hours of academic activity, and perceived homework or assignment demand.
+
+Workload should not be interpreted solely by counting tasks. Two students can have the same number of subjects but experience different levels of perceived demand. The system should therefore use the student's measured workload information together with other MFBI factors.
+
+2. SIGNS OF WORKLOAD MANAGEMENT DIFFICULTY
+Possible indicators include:
+- Several deadlines occurring at the same time
+- Difficulty identifying which task to complete first
+- Repeated postponement of important tasks
+- Assignments accumulating
+- Long periods of academic work without sufficient recovery
+- Difficulty balancing academic requirements with sleep and personal responsibilities
+
+These indicators are not diagnoses. They are possible targets for supportive recommendations.
+
+3. WORKLOAD-MANAGEMENT STRATEGIES
+A. Create a complete task list.
+Record assignments, examinations, projects, deadlines, and other academic requirements.
+
+B. Prioritize.
+Rank tasks by deadline, importance, estimated effort, and consequences of delay.
+
+C. Break large assignments into milestones.
+For example:
+1. Understand requirements
+2. Gather information
+3. Create an outline
+4. Draft
+5. Review
+6. Submit
+
+D. Use a weekly schedule.
+Allocate realistic study periods and leave time for sleep, meals, breaks, and unexpected tasks.
+
+E. Review workload regularly.
+Because academic requirements change, the student should review and adjust the schedule.
+
+F. Communicate early.
+If the workload becomes difficult to manage, students can consider contacting an instructor, adviser, or appropriate academic support office.
+
+4. TIME MANAGEMENT AND LEARNING
+A 2026 systematic review and meta-analysis of 31 studies involving 13,506 participants found a significant moderate positive relationship between time management and college students' learning outcomes. This supports structured time-management strategies as a reasonable component of student support.
+
+Time management should not mean filling every available hour with schoolwork. The goal is to organize academic work effectively while maintaining adequate recovery.
+
+5. PERSONALIZATION RULES
+If WORKLOAD is high:
+- Recommend prioritization and task breakdown.
+- Consider whether SLEEP is also low.
+- Consider whether STUDY TIME is also high.
+- Avoid advising the student simply to increase study hours.
+
+If WORKLOAD is moderate:
+- Provide planning and monitoring strategies.
+- Encourage early organization of deadlines.
+
+If WORKLOAD is low:
+- Avoid assuming the student has no stress.
+- Recommendations should focus on the factors that are actually elevated.
+
+6. INSTITUTION-SPECIFIC POLICY
+If the student asks about a specific school rule, deadline, number of units, attendance requirement, or academic procedure, the LLM must retrieve the verified institutional policy from the system's institutional knowledge base. It must not invent or guess school policies.
+
+7. SOURCES
+Liu, Ma, & Jia (2026), Systematic review and meta-analysis of the impact of time management on college students' learning outcomes. The meta-analysis included 31 studies and 13,506 participants and reported a moderate positive association between time management and learning outcomes.
+Source: https://pubmed.ncbi.nlm.nih.gov/41969889/
+
+Wei et al. (2026), Relationship between time management disposition and academic procrastination among Chinese students: Systematic review and meta analysis.
+Source: https://pubmed.ncbi.nlm.nih.gov/42025615/
+
+8. STUDENT-FACING GUIDANCE
+Write to the student in a calm, human voice. Use "you." Do not diagnose.
+- Put this week's assignments and due dates in one simple list so your brain does not have to hold all of them.
+- Pick what is due soonest, then do a smaller piece of the biggest task instead of starting everything at once.
+- Leave space in your week for sleep, meals, and a little unplanned time.
+- If the load still feels unmanageable, tell a teacher or adviser early. Asking for help is a planning step, not a failure.
+
+9. RETRIEVAL KEYWORDS
+academic workload, workload, homework, assignments, deadlines, time management, task prioritization, academic planning, study schedule, academic pressure, procrastination, workload management

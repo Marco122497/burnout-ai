@@ -1,0 +1,66 @@
+TITLE: Sleep and Study-Rest Balance
+CATEGORY: Sleep
+PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+
+1. OVERVIEW
+Sleep is one of the four monitored factors in the system. The purpose of the sleep component is to identify students whose reported sleep duration may be associated with an increased need for supportive guidance.
+
+The system should treat sleep information as a wellness indicator, not as a medical diagnosis.
+
+2. GENERAL SLEEP GUIDANCE
+The CDC reports that most adults need at least 7 hours of sleep each night. Sleep needs can vary among individuals, but regularly obtaining enough sleep is an important part of health and daily functioning.
+
+General healthy sleep practices include:
+- Maintaining a regular sleep and wake schedule
+- Allowing sufficient time for sleep
+- Getting natural light during the day
+- Maintaining regular physical activity
+- Keeping the sleeping environment comfortable
+- Reducing factors that interfere with sleep
+- Avoiding caffeine close to bedtime when it disrupts sleep
+
+3. STUDY AND SLEEP BALANCE
+Students may be tempted to use sleep time for additional studying when academic workload is high. The system should not recommend sacrificing sleep as a normal solution to academic workload.
+
+When sleep is low and workload or study time is high, the recommendation should emphasize:
+- Reviewing the student's schedule
+- Prioritizing academic tasks
+- Reducing unnecessary or inefficient study time
+- Protecting adequate sleep opportunity
+- Seeking academic support when workload is difficult to manage
+
+4. PERSONALIZATION RULES
+If SLEEP is low:
+- Retrieve sleep-hygiene information.
+- Check whether workload and study time are also elevated.
+- Recommend schedule adjustment rather than simply telling the student to "sleep more."
+- If persistent sleep difficulty is reported, suggest consultation with an appropriate healthcare professional.
+
+If SLEEP is adequate:
+- Do not generate unnecessary sleep-related warnings.
+- Focus on other elevated MFBI factors.
+
+5. MEDICAL LIMITATIONS
+The system must not diagnose insomnia, sleep apnea, depression, anxiety, or another health condition.
+The system must not recommend prescription medicines, sleeping pills, supplements, or other medical treatments.
+Persistent or severe sleep problems should be referred to an appropriate healthcare professional.
+
+6. SOURCES
+Centers for Disease Control and Prevention (2024), About Sleep and Heart Health. The CDC states that most adults need at least 7 hours of sleep each night and provides general sleep-health recommendations.
+Source: https://www.cdc.gov/heart-disease/about/sleep-and-heart-health.html
+
+Ng et al. (2026), Short Sleep Duration and Sleep Difficulties Among Adults: United States, 2024. CDC National Center for Health Statistics.
+Source: https://www.cdc.gov/nchs/products/databriefs/db559.htm
+
+Gardani et al. (2022), A systematic review and meta-analysis of poor sleep, insomnia symptoms and stress in undergraduate students.
+Source: https://pubmed.ncbi.nlm.nih.gov/34922108/
+
+7. STUDENT-FACING GUIDANCE
+Write to the student in a calm, human voice. Use "you." Do not diagnose.
+- Try to give yourself about 7 hours of sleep and a regular sleep and wake time, even on busy school nights.
+- If you are tempted to study through the night, stop and protect rest instead. Tired studying usually costs more than it gives back.
+- Move one study block earlier in the day so bedtime can stay closer to normal.
+- Skip late caffeine if it keeps you awake, and keep your bed for sleep rather than unfinished homework.
+
+8. RETRIEVAL KEYWORDS
+sleep, low sleep, sleep hours, insufficient sleep, sleep hygiene, sleep schedule, study sleep balance, sleep deprivation, rest, bedtime, academic sleep

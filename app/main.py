@@ -1,11 +1,12 @@
 import json
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 
 from app.data_service import build_features_from_history, get_student_history
 from app.predictor import models_ready, predict_next_week, predict_same_week
-from app.schemas import EarlyWarningRequest, PredictionRequest
+from app.schemas import EarlyWarningRequest, PredictionRequest, RecommendationRequest
+from mfbi.calculator import compute_mfbi
 from services.early_warning import (
     build_warning_message,
     classify_trend,
@@ -89,6 +90,8 @@ def home():
             "health": "GET /health",
             "predict": "POST /predict",
             "early_warning": "POST /predict/early-warning",
+            "recommendation": "POST /api/burnout/recommendation",
+            "rag_search": "GET /api/rag/search",
             "metrics": "GET /metrics",
             "docs": "GET /docs",
         },
@@ -98,9 +101,20 @@ def home():
 @app.get("/health")
 def health():
     ready = models_ready()
+    openai_ok = False
+    llm_model = None
+    try:
+        from rag.embeddings import LLM_MODEL, openai_configured
+
+        openai_ok = openai_configured()
+        llm_model = LLM_MODEL if openai_ok else None
+    except Exception:
+        openai_ok = False
     return {
         "status": "ok" if ready else "degraded",
         "models_ready": ready,
+        "openai_configured": openai_ok,
+        "llm_model": llm_model,
         "service": "burnout-ai",
     }
 
@@ -238,4 +252,154 @@ def predict_early_warning(request: EarlyWarningRequest):
         "risk_score": same_week["risk_score"],
         "random_forest_prediction": same_week["random_forest_prediction"],
         "decision_tree_prediction": same_week["decision_tree_prediction"],
+    }
+
+
+@app.get("/api/rag/search")
+def rag_search(q: str = Query(..., min_length=3, description="Standalone RAG test query")):
+    """Test retrieval only. Does not call the LLM and does not predict burnout."""
+    try:
+        from rag.embeddings import openai_configured
+        from rag.retrieval import retrieve_for_test_query
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=f"RAG is not available: {exc}") from exc
+    if not openai_configured():
+        raise HTTPException(status_code=503, detail="OPENAI_API_KEY is not configured")
+    try:
+        results = retrieve_for_test_query(q)
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    return {
+        "query": q,
+        "matches": [
+            {
+                "title": row.get("title"),
+                "category": row.get("category"),
+                "source": row.get("source"),
+                "chunk_number": row.get("chunk_number"),
+                "similarity": row.get("similarity"),
+                "content": row.get("content"),
+            }
+            for row in results
+        ],
+    }
+
+
+@app.post("/api/burnout/recommendation")
+def burnout_recommendation(request: RecommendationRequest):
+    """
+    Recommendation layer: verify MFBI, optionally confirm ML, then RAG + LLM.
+
+    RAG never calculates burnout risk. The stored/requested ML prediction is kept.
+    """
+    try:
+        scores = request.resolved_scores()
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    mfbi = compute_mfbi(
+        scores["stress_score"],
+        scores["academic_workload_score"],
+        scores["study_time_score"],
+        scores["sleep_hours_score"],
+    )
+    mfbi_score = (
+        float(request.mfbi_score)
+        if request.mfbi_score is not None
+        else float(mfbi["mfbi_score"])
+    )
+
+    prediction = None
+    if models_ready():
+        try:
+            prediction = predict_same_week(
+                {
+                    **scores,
+                    "mfbi_score": mfbi_score,
+                    "stress_trend": 0.0,
+                    "workload_trend": 0.0,
+                    "study_trend": 0.0,
+                    "sleep_trend": 0.0,
+                }
+            )
+        except Exception:
+            prediction = None
+
+    # Official risk remains the ML result already computed for this student.
+    risk_level = (
+        request.risk_level
+        or (prediction.get("risk_level") if prediction else None)
+        or mfbi["burnout_risk_level"]
+    )
+    prediction_model = (
+        request.prediction_model
+        or request.selected_model
+        or (prediction.get("selected_model") if prediction else None)
+        or "Random Forest"
+    )
+
+    try:
+        from rag.pipeline import build_personalized_recommendation
+
+        generated = build_personalized_recommendation(
+            stress_score=scores["stress_score"],
+            academic_workload=scores["academic_workload_score"],
+            sleep_hours_score=scores["sleep_hours_score"],
+            study_time=scores["study_time_score"],
+            mfbi_score=mfbi_score,
+            risk_level=risk_level,
+            prediction_model=prediction_model,
+        )
+    except Exception as exc:
+        generated = {
+            "assessment_summary": (
+                "The personalized AI recommendation is temporarily unavailable. "
+                f"Your current MFBI score is {mfbi_score:.2f} with a predicted "
+                f"burnout-related risk of {risk_level}. This is an educational "
+                "early-warning result, not a medical diagnosis."
+            ),
+            "contributing_factors": [
+                "Current academic demands from weekly monitoring"
+            ],
+            "recommended_actions": [
+                "Based on your current results, consider prioritizing sleep, managing your workload, and taking regular study breaks.",
+                "Break large academic tasks into smaller steps and finish required work before optional extras.",
+                "Use shorter focused study sessions instead of one long late-night session.",
+            ],
+            "human_support": (
+                "Consider talking with your instructor, academic adviser, or guidance counselor "
+                "if these difficulties continue or become hard to manage. Please refer to your "
+                "institution's official guidance office or verified student support directory."
+            ),
+            "sources": [],
+            "llm_model": None,
+            "used_fallback": True,
+            "fallback_reason": f"rag_unavailable:{exc.__class__.__name__}",
+            "retrieved_categories": [],
+            "retrieved_chunks": [],
+            "factor_labels": {},
+        }
+
+    return {
+        "success": True,
+        "mfbi_score": round(mfbi_score, 2),
+        "mfbi_verified": mfbi,
+        "risk_level": risk_level,
+        "prediction_model": prediction_model,
+        "prediction": prediction,
+        "recommendation": {
+            "assessment_summary": generated["assessment_summary"],
+            "contributing_factors": generated["contributing_factors"],
+            "recommended_actions": generated["recommended_actions"],
+            "human_support": generated["human_support"],
+            "sources": generated["sources"],
+        },
+        "audit": {
+            "llm_model": generated.get("llm_model"),
+            "used_fallback": bool(generated.get("used_fallback")),
+            "fallback_reason": generated.get("fallback_reason"),
+            "retrieved_categories": generated.get("retrieved_categories") or [],
+            "retrieved_chunks": generated.get("retrieved_chunks") or [],
+            "factor_labels": generated.get("factor_labels") or {},
+        },
     }

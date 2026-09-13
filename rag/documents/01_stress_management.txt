@@ -1,80 +1,86 @@
 TITLE: Stress Management for College Students
 CATEGORY: Stress
-PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+PURPOSE: RAG knowledge tied to the weekly PSS-10 monitoring questions
 
 1. OVERVIEW
-Academic stress can arise when students perceive that academic demands exceed the time, resources, or coping capacity available to them. Stress can be associated with academic difficulties and reduced well-being. The system should treat stress as one contributing factor in the user's MFBI rather than as a diagnosis.
+Section 1 of weekly monitoring is the Perceived Stress Scale (PSS-10). Students rate how often they felt or thought a certain way. The form uses Never, Almost Never, Sometimes, Fairly Often, Very Often.
 
-Self-guided stress-management interventions have shown small average improvements in stress-related outcomes among college students. Evidence supports using stress-management resources as one component of a broader support system rather than presenting them as a guaranteed treatment.
+The system treats the PSS total as one MFBI factor, not as a diagnosis of anxiety, depression, or burnout. Higher scores mean the student reported more perceived stress. Items 4, 5, 7, and 8 are reverse-scored: feeling confident, that things were going their way, able to control irritations, or on top of things lowers the stress score.
 
-2. COMMON ACADEMIC STRESSORS
-Potential academic stressors include:
-- Multiple assignments with overlapping deadlines
-- Examinations and major projects
-- High perceived academic workload
-- Difficulty organizing tasks
-- Lack of recovery time
-- Extended study periods
-- Uncertainty about academic requirements
-- Difficulty balancing school with other responsibilities
+Score bands used by the system: 0–13 Low · 14–26 Moderate · 27–40 High.
 
-The system should not assume that any single stressor is the cause of a student's result. Recommendations should be based on the student's measured factors and verified information.
+Recommendations should answer the actual PSS themes the student just rated, not generic “manage stress” slogans.
 
-3. PRACTICAL STRESS-MANAGEMENT STRATEGIES
-A. Identify the main source of pressure.
-Ask the student to identify which tasks, deadlines, or situations are currently creating the greatest academic pressure.
+2. MONITORING QUESTIONS AND GUIDANCE
+Q1. In the last month, how often have you been upset because of something that happened unexpectedly?
+When this is elevated, help the student name one unexpected school event this week (a surprise quiz, a changed deadline, a group delay) and write the next small response. A short pause before reacting is enough. Do not tell them they should never feel upset.
 
-B. Break large tasks into smaller steps.
-A large project can be divided into planning, research, drafting, revision, and submission. Smaller steps can make the workload easier to organize.
+Q2. In the last month, how often have you felt that you were unable to control the important things in your life?
+When this is elevated, shrink the week to what they can control: one deadline, one class, one message to a teacher. Put the rest on a list so it is not all “in their head.”
 
-C. Prioritize.
-Encourage students to identify urgent and important tasks first. Avoid recommending that students attempt all tasks simultaneously.
+Q3. In the last month, how often have you felt nervous and stressed?
+When this is elevated, offer a body-and-task reset: two slow breaths, a real meal or short walk, then one under-one-hour next step. Do not diagnose a panic disorder.
 
-D. Schedule recovery.
-Study schedules should include reasonable breaks and time for sleep, meals, and recovery.
+Q4. In the last month, how often have you felt confident about your ability to handle your personal problems? (reverse)
+A low rating here (which raises stress) means confidence is thin. Suggest finishing one small required piece so they can see proof of handling something. Do not say “just be more confident.”
 
-E. Use relaxation or mindfulness activities when appropriate.
-Simple breathing, mindfulness, or relaxation activities may be suggested as optional strategies. The system should not claim that these techniques work for everyone.
+Q5. In the last month, how often have you felt that things were going your way? (reverse)
+A low rating means the week feels stacked against them. Help them pick the soonest due item so one thing can go their way today.
 
-F. Seek social and academic support.
-Students can consider talking with a trusted person, instructor, adviser, or guidance professional when academic stress becomes difficult to manage.
+Q6. In the last month, how often have you found that you could not cope with all the things that you had to do?
+When this is elevated, they do not need more hours. They need a shorter list: keep the required work, delay optional extras, and break “all the things” into named steps.
 
-4. PERSONALIZATION RULES
+Q7. In the last month, how often have you been able to control irritations in your life? (reverse)
+A low rating means small frictions are adding up. Suggest a stop-time for schoolwork and one break between classes so irritations are not carried into the next task.
+
+Q8. In the last month, how often have you felt that you were on top of things? (reverse)
+A low rating means they feel behind. A one-page list of this week’s due dates, then one file for the next hour, is the practical “on top of things” move.
+
+Q9. In the last month, how often have you been angered because of things that happened that were outside of your control?
+When this is elevated, acknowledge the feeling without diagnosing. Point them to what they can still do (clarify a requirement, send one group message, ask a teacher) and what they can park until later.
+
+Q10. In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?
+When this is elevated, the pile is the target. Write every due item down, circle the top one, and do a piece that can be finished in under an hour. If the pile still feels impossible, talking with a teacher, adviser, or the Guidance Office is appropriate.
+
+3. PERSONALIZATION RULES
 If STRESS is high:
-- Prioritize stress-management guidance.
-- Look for other elevated MFBI factors before producing recommendations.
-- Do not automatically recommend counseling unless the student's situation indicates that human support may be useful.
-- Avoid overwhelming the student with a long list of interventions.
+- Prioritize tips that match Q3, Q6, and Q10 (nervous/stressed, cannot cope with all the things, difficulties piling up).
+- Give two practical stress tips. Check sleep and workload next.
+- Do not auto-refer to counseling unless High or Severe overall risk, or the student asks.
 
 If STRESS is moderate:
-- Provide preventive strategies such as planning, breaks, and coping techniques.
-- Encourage monitoring in subsequent weekly assessments.
+- One or two tips from Q1–Q3 or Q8 (unexpected events, control, nervousness, not on top of things).
+- Encourage completing next week’s monitoring.
 
 If STRESS is low:
-- Provide maintenance-oriented advice only when appropriate.
-- Do not imply that low stress means the student has no academic difficulty.
+- One sentence only. Do not imply they have no school difficulty.
 
-5. SAFETY AND LIMITATIONS
-The RAG/LLM component must not diagnose anxiety, depression, burnout, or any other mental-health disorder. It must not claim to replace a guidance counselor, psychologist, physician, or other qualified professional.
+4. SAFETY AND LIMITATIONS
+Do not diagnose. Do not replace a counselor. If the student describes a safety concern, direct them to verified human help. Do not invent contacts.
 
-If a student communicates severe distress, inability to function, or a safety concern, the system should direct the student to verified human support and emergency resources. It should not attempt to manage an emergency through generated advice.
-
-6. SOURCE EVIDENCE
-Amanvermez et al. (2022), Effects of self-guided stress management interventions in college students: A systematic review and meta-analysis. The review included 26 studies involving 4,468 students in its general college-student analysis and found small statistically significant effects for self-guided stress-management interventions.
+5. SOURCE EVIDENCE
+Amanvermez et al. (2022), Effects of self-guided stress management interventions in college students.
 Source: https://pubmed.ncbi.nlm.nih.gov/35242591/
 
-Worsley, Pennington, & Corcoran (2022), Supporting mental health and wellbeing of university and college students: A systematic review of review-level evidence of interventions. The review identified intervention types including mindfulness, psychological interventions, psychoeducation, relaxation, and stress-management/reduction approaches.
+Worsley, Pennington, & Corcoran (2022), Supporting mental health and wellbeing of university and college students.
 Source: https://pubmed.ncbi.nlm.nih.gov/35905058/
 
-Hathaisaard et al. (2022), Mindfulness-based interventions reducing and preventing stress and burnout in medical students: A systematic review and meta-analysis.
+Hathaisaard et al. (2022), Mindfulness-based interventions reducing and preventing stress and burnout in medical students.
 Source: https://pubmed.ncbi.nlm.nih.gov/34995839/
 
-7. STUDENT-FACING GUIDANCE
-Write to the student in a calm, human voice. Use "you." Do not diagnose.
-- If school feels tense, pause and name the one deadline or class that is weighing on you most this week.
-- Break that work into a small next step you can finish in under an hour.
-- Give yourself short breaks, a real meal, and a chance to rest. You do not have to solve everything tonight.
-- If the pressure still feels too heavy, talk with a friend, a teacher you trust, or the Guidance Office.
+6. STUDENT-FACING GUIDANCE
+Write to the student in a calm, human voice. Use "you." Ground tips in the PSS questions they answered. Do not diagnose.
+- If unexpected things keep upsetting you, name the one surprise this week and the next small step you can take.
+- If important things feel out of your control, keep only this week’s deadlines on one list and start the soonest one.
+- If you have felt nervous and stressed, pause for two slow breaths, eat or walk, then do one task under an hour.
+- If you have not felt confident handling problems, finish one small required piece so you can see something actually done.
+- If things have not been going your way, pick the item due first so one thing can move today.
+- If you could not cope with all you had to do, drop optional extras and break the rest into named steps.
+- If irritations have been hard to control, set a stop time for schoolwork and take a real break between classes.
+- If you have not felt on top of things, write due dates on one page and open only one file for the next hour.
+- If things outside your control made you angry, send one clear message or ask one teacher, then park the rest.
+- If difficulties feel piled too high, circle the top item and finish a piece of it before you add more work.
+- If this still feels too heavy, talk with a friend, a teacher you trust, or the Guidance Office.
 
-8. RETRIEVAL KEYWORDS
-stress, academic stress, high stress, stress management, coping, relaxation, mindfulness, academic pressure, examination stress, assignment stress, stress reduction, student support
+7. RETRIEVAL KEYWORDS
+PSS, PSS-10, perceived stress, upset unexpectedly, unable to control, nervous and stressed, confident handling problems, things going your way, could not cope, control irritations, on top of things, angered, difficulties piling up, high stress, moderate stress, Never Almost Never Sometimes Fairly Often Very Often

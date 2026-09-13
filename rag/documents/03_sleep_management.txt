@@ -1,66 +1,64 @@
 TITLE: Sleep and Study-Rest Balance
 CATEGORY: Sleep
-PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+PURPOSE: RAG knowledge tied to the four weekly Sleep Hours monitoring questions
 
 1. OVERVIEW
-Sleep is one of the four monitored factors in the system. The purpose of the sleep component is to identify students whose reported sleep duration may be associated with an increased need for supportive guidance.
+Section 4 of weekly monitoring is Sleep Hours. Four items cover: hours slept per night, how consistent the sleep schedule was, how rested they felt upon waking, and how often lack of sleep affected academics this week.
 
-The system should treat sleep information as a wellness indicator, not as a medical diagnosis.
+The system stores a sleep-risk score (higher means poorer rest). The CDC states most adults need at least 7 hours of sleep. This is a wellness indicator, not a medical diagnosis of insomnia or any disorder.
 
-2. GENERAL SLEEP GUIDANCE
-The CDC reports that most adults need at least 7 hours of sleep each night. Sleep needs can vary among individuals, but regularly obtaining enough sleep is an important part of health and daily functioning.
+In the form, fewer hours, an inconsistent schedule, not feeling rested, and sleep affecting school all raise sleep-related risk. Recommendations should answer those four questions, not a generic “sleep more.”
 
-General healthy sleep practices include:
-- Maintaining a regular sleep and wake schedule
-- Allowing sufficient time for sleep
-- Getting natural light during the day
-- Maintaining regular physical activity
-- Keeping the sleeping environment comfortable
-- Reducing factors that interfere with sleep
-- Avoiding caffeine close to bedtime when it disrupts sleep
+2. MONITORING QUESTIONS AND GUIDANCE
+Q1. On average, how many hours did you sleep per night this week?
+Buckets used in the item: less than 5 hours, 5–6, 6–7, 7–8, more than 8. When hours are short, the first tip is to protect about 7 hours and a regular bedtime, even if one assignment is unfinished. Do not recommend an all-nighter to catch up. Tired studying usually costs more than it gives back.
+
+Q2. How consistent was your sleep schedule this week?
+When the schedule is inconsistent, keep a steadier sleep and wake time, including after a short night. A huge late sleep-in can make the next night worse. Move one study block earlier so bedtime can stay closer to normal.
+
+Q3. How rested did you feel upon waking?
+When they did not feel rested, look at late caffeine, working in bed, and screens near sleep. Keep the bed for rest. Set a stop time for schoolwork. A short wind-down beats another chapter after midnight.
+
+Q4. How often did lack of sleep affect your academics this week?
+When lack of sleep hurt classwork, treat rest as part of studying. Shorten the latest study session. Use a focused block earlier in the day. If sleep keeps harming school after they try this, a teacher, adviser, or appropriate health professional (not invented medicines) may be needed.
 
 3. STUDY AND SLEEP BALANCE
-Students may be tempted to use sleep time for additional studying when academic workload is high. The system should not recommend sacrificing sleep as a normal solution to academic workload.
-
-When sleep is low and workload or study time is high, the recommendation should emphasize:
-- Reviewing the student's schedule
-- Prioritizing academic tasks
-- Reducing unnecessary or inefficient study time
-- Protecting adequate sleep opportunity
-- Seeking academic support when workload is difficult to manage
+Never recommend sacrificing sleep as a normal way to finish workload or add study hours. If sleep risk is High, it is the priority: mention it first and give more than one sleep tip.
 
 4. PERSONALIZATION RULES
-If SLEEP is low:
-- Retrieve sleep-hygiene information.
-- Check whether workload and study time are also elevated.
-- Recommend schedule adjustment rather than simply telling the student to "sleep more."
-- If persistent sleep difficulty is reported, suggest consultation with an appropriate healthcare professional.
+If SLEEP is high (higher risk / poorer rest):
+- Lead with Q1 and Q2 (hours and schedule), then Q3–Q4 (not rested, academics affected).
+- Adjust the schedule. Do not only say “sleep more.”
 
-If SLEEP is adequate:
-- Do not generate unnecessary sleep-related warnings.
-- Focus on other elevated MFBI factors.
+If SLEEP is moderate:
+- One or two tips: hours or consistency.
+
+If SLEEP is low (rest looks more adequate):
+- One sentence only. Focus on other elevated factors.
 
 5. MEDICAL LIMITATIONS
-The system must not diagnose insomnia, sleep apnea, depression, anxiety, or another health condition.
-The system must not recommend prescription medicines, sleeping pills, supplements, or other medical treatments.
-Persistent or severe sleep problems should be referred to an appropriate healthcare professional.
+Do not diagnose insomnia, sleep apnea, depression, or anxiety. Do not recommend sleeping pills, supplements, or other medical treatments.
 
 6. SOURCES
-Centers for Disease Control and Prevention (2024), About Sleep and Heart Health. The CDC states that most adults need at least 7 hours of sleep each night and provides general sleep-health recommendations.
+CDC (2024), About Sleep and Heart Health. Most adults need at least 7 hours.
 Source: https://www.cdc.gov/heart-disease/about/sleep-and-heart-health.html
 
-Ng et al. (2026), Short Sleep Duration and Sleep Difficulties Among Adults: United States, 2024. CDC National Center for Health Statistics.
+Ng et al. (2026), Short Sleep Duration and Sleep Difficulties Among Adults.
 Source: https://www.cdc.gov/nchs/products/databriefs/db559.htm
 
-Gardani et al. (2022), A systematic review and meta-analysis of poor sleep, insomnia symptoms and stress in undergraduate students.
+Gardani et al. (2022), poor sleep, insomnia symptoms and stress in undergraduate students.
 Source: https://pubmed.ncbi.nlm.nih.gov/34922108/
 
 7. STUDENT-FACING GUIDANCE
-Write to the student in a calm, human voice. Use "you." Do not diagnose.
-- Try to give yourself about 7 hours of sleep and a regular sleep and wake time, even on busy school nights.
-- If you are tempted to study through the night, stop and protect rest instead. Tired studying usually costs more than it gives back.
-- Move one study block earlier in the day so bedtime can stay closer to normal.
-- Skip late caffeine if it keeps you awake, and keep your bed for sleep rather than unfinished homework.
+Write to the student in a calm, human voice. Use "you." Ground tips in the four sleep questions. Do not diagnose.
+- If you slept under about 7 hours, try for that amount and a regular bedtime, even if one task is unfinished.
+- If your sleep schedule was inconsistent, keep a steadier sleep and wake time, including after a short night.
+- If you did not feel rested when you woke, skip late caffeine and keep your bed for sleep, not homework.
+- If lack of sleep affected your academics, move one study block earlier and stop working in time to rest.
+- Do not study through the night to catch up. Tired studying usually takes longer and sticks less.
+- Write tomorrow’s first small task on paper, then close the laptop so your mind can stop looping.
+- Dim the phone before bed, or charge it away from the pillow.
+- Protecting sleep is part of doing well in class, not a break from responsibility.
 
 8. RETRIEVAL KEYWORDS
-sleep, low sleep, sleep hours, insufficient sleep, sleep hygiene, sleep schedule, study sleep balance, sleep deprivation, rest, bedtime, academic sleep
+sleep hours, how many hours did you sleep per night, consistent sleep schedule, rested upon waking, lack of sleep affect academics, insufficient sleep, bedtime, wake time, all-nighter, late caffeine, working in bed, 7 hours, 5–6 hours, sleep this week

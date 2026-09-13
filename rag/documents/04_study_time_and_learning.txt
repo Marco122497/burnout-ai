@@ -1,76 +1,64 @@
 TITLE: Study Time and Effective Learning
 CATEGORY: Study Time
-PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+PURPOSE: RAG knowledge tied to the four weekly Study Time monitoring questions
 
 1. OVERVIEW
-Study time represents the amount of time a student spends studying or preparing for classes outside scheduled class hours. The system should not assume that more study hours automatically indicate better learning.
+Section 3 of weekly monitoring asks how the student spent time outside class this week: overall study hours, hours on assignments and projects, hours reviewing lessons, and hours in focused study sessions.
 
-Excessively long study periods may also reduce time available for sleep and recovery. The recommendation engine should therefore consider study time together with workload, sleep, and stress.
+More hours do not automatically mean better learning. Very long study time can crowd sleep. The system should not tell every student to study more. Guidance should match the question: total time, assignment time, review time, or focused sessions.
 
-2. EFFECTIVE STUDY STRATEGIES
-A. Retrieval practice.
-Students can test themselves on information rather than relying only on rereading. Retrieval practice has evidence supporting improved later recall.
+2. MONITORING QUESTIONS AND GUIDANCE
+Q1. On average, how many hours per day did you study this week?
+When total study time is high, change method, not hours. Use shorter blocks with one written goal. Take a real break. If those hours stole sleep, shorten the latest session rather than adding another.
 
-Examples:
-- Practice questions
-- Flashcards
-- Explaining a concept without looking at notes
-- Short self-tests
+When total study time is not high, do not assume they must study more. One efficient block can be enough if workload is the real issue.
 
-B. Distributed practice.
-When practical, learning can be distributed across multiple sessions instead of placing all learning into one very long session.
+Q2. How many hours per day did you spend on assignments and projects this week?
+When assignment hours are high, they may be stuck in the middle of large tasks. Split outline, draft, check, submit. Finish a piece of the soonest project. Do not open every assignment at once.
 
-C. Define a session goal.
-Before studying, identify what should be completed or understood.
+Q3. How many hours per day did you spend reviewing lessons this week?
+When review hours are high, rereading is likely. Switch to retrieval: a few questions, flashcards, or explaining a point out loud. Distributed short reviews beat one long cram.
 
-D. Break large material into manageable units.
-This makes it easier to monitor progress.
+Q4. How many hours per day did you spend on focused study sessions this week?
+When focused-session hours are high, protect quality: one chapter or worksheet, phone away, 40–50 minutes, then stand up. If they sat a long time but felt unfocused, shorter true-focus blocks help more than extra hours.
 
-E. Use appropriate breaks.
-Breaks can help prevent excessively prolonged study sessions and support recovery.
+3. EFFECTIVE METHODS (FOR LONG STUDY TIME)
+Retrieval practice (self-testing) has evidence for better later recall than rereading alone. Distributed practice across days beats one exhausted block. Never recommend studying all night or sleeping less to study more.
 
-3. STUDY-TIME PERSONALIZATION
-If STUDY TIME is high and SLEEP is low:
-- Recommend reviewing the schedule and protecting sleep.
-- Focus on study efficiency rather than adding more hours.
+4. PERSONALIZATION RULES
+If STUDY TIME is high:
+- If SLEEP is also a concern, protect rest first and shorten a late session.
+- If STRESS or WORKLOAD is high, combine a task list with active learning.
+- Tips should mention assignments/projects, reviewing lessons, or focused sessions — the words from the form.
 
-If STUDY TIME is high and STRESS is high:
-- Retrieve stress-management and study-efficiency guidance.
-- Encourage prioritization and active learning.
+If STUDY TIME is moderate:
+- One efficiency tip and one break.
 
-If STUDY TIME is high and WORKLOAD is high:
-- Retrieve workload-management guidance.
-- Recommend prioritizing tasks and using effective study methods.
+If STUDY TIME is low:
+- One sentence only. Do not assume they are not trying.
 
-If STUDY TIME is normal:
-- Do not assume additional study time is required.
-- Focus on other elevated factors.
+5. WHAT THE SYSTEM SHOULD NOT SAY
+Avoid: “You need X hours every day.” “More hours always mean better grades.” “Study all night.” “Sleep less so you can study more.”
 
-4. WHAT THE SYSTEM SHOULD NOT SAY
-Avoid:
-- "You need to study X hours every day."
-- "More study hours always produce better grades."
-- "You should study all night."
-- "Sleep less so you can study more."
-
-Study requirements vary by course, student, assessment, and institution.
-
-5. SOURCES
+6. SOURCES
 McDermott (2021), Practicing Retrieval Facilitates Learning.
 Source: https://pubmed.ncbi.nlm.nih.gov/33006925/
 
-Toppino & Pagano (2021), research on metacognitive control and distribution of retrieval practice.
+Toppino & Pagano (2021), metacognitive control and distribution of retrieval practice.
 Source: https://pubmed.ncbi.nlm.nih.gov/33006078/
 
-Liu, Ma, & Jia (2026), Systematic review and meta-analysis of the impact of time management on college students' learning outcomes.
+Liu, Ma, & Jia (2026), time management and college learning outcomes.
 Source: https://pubmed.ncbi.nlm.nih.gov/41969889/
 
-6. STUDENT-FACING GUIDANCE
-Write to the student in a calm, human voice. Use "you." Do not diagnose.
-- Study in shorter focused blocks with a clear goal, then take a real break.
-- Test yourself with a few questions or by explaining an idea out loud instead of rereading for hours.
-- If long study nights are stealing sleep, shorten one session this week rather than adding more hours.
-- Progress can be a small finished piece, not an all-nighter.
+7. STUDENT-FACING GUIDANCE
+Write to the student in a calm, human voice. Use "you." Ground tips in the four study-time questions. Do not diagnose.
+- If your study hours this week were already long, do not add more. Use a shorter block with one clear goal.
+- If assignments and projects took most of your time, finish a small piece of the one due soonest instead of opening every file.
+- If you spent a long time reviewing lessons, test yourself with a few questions or explain one idea out loud. Stop rereading for hours.
+- If focused study sessions ran long, work 40 to 50 minutes on one worksheet or lecture, then take a real break.
+- Write one sentence before you sit: what will be done when this block ends.
+- Progress can be one finished piece, not an all-nighter.
+- If late study is stealing sleep, shorten tonight’s session and move one block earlier tomorrow.
 
-7. RETRIEVAL KEYWORDS
-study time, studying, study hours, study habits, effective studying, retrieval practice, active learning, spaced practice, study schedule, study breaks, learning strategies
+8. RETRIEVAL KEYWORDS
+study time, hours per day did you study, hours on assignments and projects, reviewing lessons, focused study sessions, study hours this week, rereading, retrieval practice, cramming, study breaks, self-testing, outside class

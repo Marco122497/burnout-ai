@@ -32,19 +32,15 @@ When available, the generation layer may receive:
 - Verified institution-specific resources
 
 4. RETRIEVAL STRATEGY
-Retrieval should prioritize information related to the student's elevated factors.
+Retrieval should prioritize knowledge that matches the weekly monitoring questions the student answered.
 
-Example:
-Stress = High
-Workload = High
-Sleep = Low
-Study Time = High
+Stress (PSS-10): unexpected upset, feeling unable to control important things, nervous and stressed, low confidence handling problems, things not going their way, could not cope with all they had to do, irritations, not on top of things, angered by what they cannot control, difficulties piling up.
 
-Retrieve:
-- Stress management
-- Academic workload management
-- Sleep guidance
-- Study-efficiency guidance
+Workload: how heavy this week’s load is, overlapping deadlines, assignments taking more time than expected, pressure from the volume of requirements, difficulty keeping up with quizzes, projects, and readings.
+
+Study time: hours studying, hours on assignments and projects, hours reviewing lessons, hours in focused study sessions.
+
+Sleep: hours slept per night, consistency of schedule, how rested they felt on waking, how often lack of sleep affected academics.
 
 Do not retrieve unrelated topics merely to make the answer longer.
 
@@ -106,6 +102,16 @@ Expected response structure:
 3. Try for about 7 hours of sleep, even if one assignment is still unfinished.
 4. Study in a shorter focused block, then take a real break.
 5. If this still feels too heavy, talk with a teacher you trust, your adviser, or the Guidance Office."
+
+Second example:
+Risk = Moderate
+Stress = Moderate
+Workload = Low
+Sleep = High
+Study Time = Low
+
+Expected emphasis:
+Sleep is the priority. Give two sleep tips first. Stress gets practical tips. Workload and study time get one sentence only, such as "Your classwork and study time look manageable this week."
 
 10. IMPORTANT DISTINCTION
 The LLM must not change the MFBI score or ML prediction. Its job is explanation and guidance only.

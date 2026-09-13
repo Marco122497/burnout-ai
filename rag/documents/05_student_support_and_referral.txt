@@ -1,81 +1,54 @@
 TITLE: Student Support, Guidance, and Referral
 CATEGORY: Student Support
-PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+PURPOSE: RAG knowledge for when weekly monitoring answers point to needing a person, not only a tip
 
 1. SYSTEM ROLE
-The burnout detection system is an early-warning and educational support tool. It is not a clinical diagnostic system and should not replace a guidance counselor, psychologist, physician, or other qualified professional.
+The burnout detection system is an early-warning tool. It is not a diagnosis and does not replace a guidance counselor, psychologist, physician, or other qualified professional.
 
-The RAG/LLM component should help students understand their results and identify reasonable next steps.
+Human support should be mentioned when the student’s own monitoring answers show a week that is still too heavy after practical tips: PSS items about not coping or difficulties piling up; workload items about not keeping up with quizzes, projects, and readings; sleep items about lack of sleep affecting academics.
 
-2. WHEN TO ENCOURAGE HUMAN SUPPORT
-The system should encourage a student to consider contacting an appropriate school support service when:
-- Academic stress remains high over time.
-- The student reports difficulty managing academic demands despite reasonable planning.
-- Sleep difficulties persist or substantially affect daily functioning.
-- Stress or other difficulties substantially interfere with school or daily life.
-- The student asks for counseling or human assistance.
-- The student reports serious emotional distress.
-- A safety concern is expressed.
+2. WHEN MONITORING ANSWERS SUGGEST A PERSON
+Encourage a teacher, adviser, or the Guidance Office when:
+- Stress stays High, especially “could not cope with all the things” or “difficulties were piling up.”
+- Workload stays High, especially overlapping deadlines or not keeping up with quizzes, projects, and readings.
+- Sleep stays High risk, especially lack of sleep affecting academics, even after protecting hours and schedule.
+- The student asks for counseling.
+- They describe serious distress or a safety concern.
 
-3. TYPES OF SUPPORT
-Depending on the institution, support may include:
-- Guidance counseling
-- Academic advising
-- Faculty consultation
-- Student affairs services
-- Peer-support programs
-- Health services
-- Other verified student-support programs
+For Moderate overall risk, mention support as an option if this continues. Do not put a strong referral in every weekly tip list unless overall risk is High or Severe.
 
-The system must only display actual school services after those services have been entered and verified by the institution.
+3. WHAT A STUDENT CAN SAY
+They do not need a perfect speech. Enough: “My weekly form showed heavy stress and short sleep. I am having trouble keeping up with quizzes and deadlines.”
+
+A subject teacher helps with a requirement or deadline. An adviser helps plan the load. Guidance helps when the week still feels too full after planning.
 
 4. REFERRAL LANGUAGE
-Use warm, everyday wording such as:
-"You do not have to handle a hard week alone. If this still feels too heavy, talk with a teacher you trust, your adviser, or the Guidance Office. Use the school's official information to find them."
+Use: “You do not have to handle a hard week alone. If this still feels too heavy, talk with a teacher you trust, your adviser, or the Guidance Office. Use the school’s official information to find them.”
 
-Avoid:
-"You have a mental-health disorder."
-"You need psychiatric treatment."
-"The AI knows what is wrong with you."
-"Your results suggest that additional support may be helpful if these difficulties continue."
-"Use your institution's official guidance office or verified student support directory for contact details."
+Do not invent a phone number, office hour, or staff name.
+Do not say they have a mental-health disorder or that the AI knows what is wrong.
 
 5. SAFETY
-If a student expresses imminent danger, self-harm, harm to others, or another emergency concern, the system should not attempt to solve the situation through generated advice. It should direct the student to immediate human assistance and the institution's verified emergency resources.
-
-The application must have verified emergency contact information before displaying emergency instructions.
+If the student expresses imminent danger, self-harm, harm to others, or another emergency, do not try to solve it with study tips. Direct them to immediate human help and verified school emergency contacts only if those contacts exist in the system.
 
 6. EVIDENCE
-A systematic review of review-level evidence for university and college students identified intervention categories including mindfulness-based interventions, psychological interventions, psychoeducation, relaxation, and stress-management/reduction interventions. The review also found evidence for some technology-delivered interventions, while noting variation in evidence quality.
-
-Source:
-Worsley, Pennington, & Corcoran (2022)
+Worsley, Pennington, & Corcoran (2022), student mental health and wellbeing interventions.
 https://pubmed.ncbi.nlm.nih.gov/35905058/
 
-A systematic review of peer-support interventions has also examined peer support for student mental health and well-being in higher education.
-
-Source:
-https://pmc.ncbi.nlm.nih.gov/articles/PMC10755562/
+Peer support in higher education: https://pmc.ncbi.nlm.nih.gov/articles/PMC10755562/
 
 7. INSTITUTION-SPECIFIC INFORMATION TO ADD
-Create a separate verified institutional file containing:
-- Guidance Office name
-- Guidance Office location
-- Office hours
-- Contact number
-- Email address
-- Counseling appointment process
-- Academic adviser process
-- Student affairs contact
-- Verified emergency contacts
-
-Do not invent any of these details.
+Verified file only: Guidance Office name, location, hours, number, email, how to book, adviser process, emergency contacts. Never invent these.
 
 8. STUDENT-FACING GUIDANCE
 Write to the student in a calm, human voice. Use "you." Do not diagnose.
 - You do not have to handle a hard week alone.
-- If stress, sleep, or schoolwork still feels too heavy, talk with a teacher you trust, your academic adviser, or the Guidance Office.
-- Use the school's official information to find them. This system will not invent a phone number, office hour, or staff name.
+- If you could not cope with all you had to do, or difficulties feel piled too high, a teacher or the Guidance Office can help you sort the list.
+- If overlapping deadlines or quizzes, projects, and readings are still impossible after a one-page plan, tell your teacher or adviser early.
+- If lack of sleep is affecting your academics even after you protect rest, ask a real person at school to help you adjust the week.
+- Use the school’s official information to find them. This app will not invent a phone number.
+- You can start with one sentence: what felt heaviest on this week’s form, and what you already tried.
+- Asking early is easier than waiting until the night before a due date.
 
 9. RETRIEVAL KEYWORDS
-guidance counselor, counseling, student support, academic adviser, referral, mental health support, school support, student affairs, human support, emergency support
+guidance office, academic adviser, teacher, counseling, student support, could not cope, difficulties piling up, keep up with quizzes projects readings, lack of sleep affect academics, ask for help, not alone, referral

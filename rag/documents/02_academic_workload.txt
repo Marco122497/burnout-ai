@@ -1,84 +1,64 @@
 TITLE: Academic Workload Management
 CATEGORY: Academic Workload
-PURPOSE: RAG knowledge for the Academic Burnout Detection and Early Warning System
+PURPOSE: RAG knowledge tied to the five weekly Academic Workload monitoring questions
 
 1. OVERVIEW
-Academic workload refers to the amount and perceived demand of academic responsibilities a student must manage. In this system, workload may include the student's enrolled academic requirements, number of subjects or units where applicable, hours of academic activity, and perceived homework or assignment demand.
+Section 2 of weekly monitoring asks five Likert questions about this week’s schoolwork. The student rates how heavy, overlapping, time-consuming, pressuring, and hard to keep up with their requirements felt.
 
-Workload should not be interpreted solely by counting tasks. Two students can have the same number of subjects but experience different levels of perceived demand. The system should therefore use the student's measured workload information together with other MFBI factors.
+The system converts those answers into a 0–10 workload score. Higher means a heavier perceived load. This is not a count of units and not a diagnosis.
 
-2. SIGNS OF WORKLOAD MANAGEMENT DIFFICULTY
-Possible indicators include:
-- Several deadlines occurring at the same time
-- Difficulty identifying which task to complete first
-- Repeated postponement of important tasks
-- Assignments accumulating
-- Long periods of academic work without sufficient recovery
-- Difficulty balancing academic requirements with sleep and personal responsibilities
+Recommendations should map to the question they endorsed, especially overlapping deadlines, assignments taking longer than expected, volume of requirements, and keeping up with quizzes, projects, and readings.
 
-These indicators are not diagnoses. They are possible targets for supportive recommendations.
+2. MONITORING QUESTIONS AND GUIDANCE
+Q1. How heavy is your current academic workload this week?
+When this is elevated, the student needs a full picture of the week, not more hours. Put assignments, quizzes, projects, and readings on one list. Rank by due date. Leave gaps for sleep and meals. Do not say “work harder.”
 
-3. WORKLOAD-MANAGEMENT STRATEGIES
-A. Create a complete task list.
-Record assignments, examinations, projects, deadlines, and other academic requirements.
+Q2. How often do overlapping deadlines make your workload hard to manage?
+When this is elevated, sequence the clash: finish what is due soonest, then a small piece of the larger project. A one-page deadline map prevents switching among five unfinished files. Contact a teacher early if two major items truly collide.
 
-B. Prioritize.
-Rank tasks by deadline, importance, estimated effort, and consequences of delay.
+Q3. How often do assignments require more time than you expected?
+When this is elevated, the first step was bigger than it looked. Split the assignment into outline, draft, check, submit. Time-box the next hour. Do not add an all-nighter as the default fix; that usually steals sleep without finishing the work.
 
-C. Break large assignments into milestones.
-For example:
-1. Understand requirements
-2. Gather information
-3. Create an outline
-4. Draft
-5. Review
-6. Submit
+Q4. How often do you feel pressured by the volume of academic requirements?
+When this is elevated, volume is the problem. Keep required items. Delay optional extras. Close extra tabs. One primary task per hour. Pressure eases when the list is visible and shorter.
 
-D. Use a weekly schedule.
-Allocate realistic study periods and leave time for sleep, meals, breaks, and unexpected tasks.
+Q5. How difficult is it to keep up with quizzes, projects, and readings this week?
+When this is elevated, mix the three types instead of pretending they are one pile. Quiz: short self-test. Project: one milestone. Reading: one chapter or one lecture. If they cannot keep up even after that, asking the teacher or adviser is a planning step.
 
-E. Review workload regularly.
-Because academic requirements change, the student should review and adjust the schedule.
+3. TIME MANAGEMENT AND LEARNING
+A 2026 meta-analysis of 31 studies (13,506 participants) found a moderate positive link between time management and college learning outcomes. Time management here means ordering quizzes, projects, and readings, not filling every hour.
 
-F. Communicate early.
-If the workload becomes difficult to manage, students can consider contacting an instructor, adviser, or appropriate academic support office.
-
-4. TIME MANAGEMENT AND LEARNING
-A 2026 systematic review and meta-analysis of 31 studies involving 13,506 participants found a significant moderate positive relationship between time management and college students' learning outcomes. This supports structured time-management strategies as a reasonable component of student support.
-
-Time management should not mean filling every available hour with schoolwork. The goal is to organize academic work effectively while maintaining adequate recovery.
-
-5. PERSONALIZATION RULES
+4. PERSONALIZATION RULES
 If WORKLOAD is high:
-- Recommend prioritization and task breakdown.
-- Consider whether SLEEP is also low.
-- Consider whether STUDY TIME is also high.
-- Avoid advising the student simply to increase study hours.
+- Lead with Q1–Q2 and Q5 (heavy week, overlapping deadlines, keeping up with quizzes/projects/readings).
+- Check sleep. Do not recommend more study hours.
 
 If WORKLOAD is moderate:
-- Provide planning and monitoring strategies.
-- Encourage early organization of deadlines.
+- One list plus one next piece of the soonest due item.
 
 If WORKLOAD is low:
-- Avoid assuming the student has no stress.
-- Recommendations should focus on the factors that are actually elevated.
+- One sentence only. Focus on other elevated factors.
 
-6. INSTITUTION-SPECIFIC POLICY
-If the student asks about a specific school rule, deadline, number of units, attendance requirement, or academic procedure, the LLM must retrieve the verified institutional policy from the system's institutional knowledge base. It must not invent or guess school policies.
+5. INSTITUTION-SPECIFIC POLICY
+Do not invent school rules, unit loads, or extension policies.
 
-7. SOURCES
-Liu, Ma, & Jia (2026), Systematic review and meta-analysis of the impact of time management on college students' learning outcomes. The meta-analysis included 31 studies and 13,506 participants and reported a moderate positive association between time management and learning outcomes.
+6. SOURCES
+Liu, Ma, & Jia (2026), time management and college learning outcomes.
 Source: https://pubmed.ncbi.nlm.nih.gov/41969889/
 
-Wei et al. (2026), Relationship between time management disposition and academic procrastination among Chinese students: Systematic review and meta analysis.
+Wei et al. (2026), time management disposition and academic procrastination.
 Source: https://pubmed.ncbi.nlm.nih.gov/42025615/
 
-8. STUDENT-FACING GUIDANCE
-Write to the student in a calm, human voice. Use "you." Do not diagnose.
-- Put this week's assignments and due dates in one simple list so your brain does not have to hold all of them.
-- Pick what is due soonest, then do a smaller piece of the biggest task instead of starting everything at once.
-- Leave space in your week for sleep, meals, and a little unplanned time.
-- If the load still feels unmanageable, tell a teacher or adviser early. Asking for help is a planning step, not a failure.
+7. STUDENT-FACING GUIDANCE
+Write to the student in a calm, human voice. Use "you." Ground tips in the five workload questions. Do not diagnose.
+- If this week’s workload feels heavy, put every quiz, project, and reading on one list with due dates.
+- If overlapping deadlines are hard to manage, do what is due soonest, then a small piece of the bigger project.
+- If assignments take more time than you expected, split them into outline, draft, check, and submit.
+- If the volume of requirements feels like pressure, keep only what is required this week and close the extra files.
+- If it is difficult to keep up with quizzes, projects, and readings, give each type its own short block instead of mixing them all night.
+- Choose one file for the next hour. Switching among everything is why the week feels heavier.
+- Leave space for sleep and a meal. A packed calendar makes ordinary delays feel like a crisis.
+- If you still cannot keep up, tell a teacher or adviser early. Asking is part of managing the load.
 
-9. RETRIEVAL KEYWORDS
-academic workload, workload, homework, assignments, deadlines, time management, task prioritization, academic planning, study schedule, academic pressure, procrastination, workload management
+8. RETRIEVAL KEYWORDS
+academic workload, how heavy is your current academic workload, overlapping deadlines, assignments require more time, volume of academic requirements, keep up with quizzes projects and readings, homework, workload this week, time management, procrastination

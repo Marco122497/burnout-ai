@@ -108,13 +108,22 @@ def health():
 
         openai_ok = openai_configured()
         llm_model = LLM_MODEL if openai_ok else None
+        llm_enabled_by_admin = True
+        try:
+            from rag.settings import openai_llm_enabled
+
+            llm_enabled_by_admin = openai_llm_enabled()
+        except Exception:
+            llm_enabled_by_admin = True
     except Exception:
         openai_ok = False
+        llm_enabled_by_admin = True
     return {
         "status": "ok" if ready else "degraded",
         "models_ready": ready,
         "openai_configured": openai_ok,
-        "llm_model": llm_model,
+        "openai_llm_enabled": llm_enabled_by_admin,
+        "llm_model": llm_model if openai_ok and llm_enabled_by_admin else None,
         "service": "burnout-ai",
     }
 

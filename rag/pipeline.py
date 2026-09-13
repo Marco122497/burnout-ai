@@ -9,6 +9,7 @@ from rag.retrieval import (
     load_system_rules,
     retrieve_chunks,
 )
+from rag.settings import openai_llm_enabled
 
 
 def build_personalized_recommendation(
@@ -46,6 +47,7 @@ def build_personalized_recommendation(
             labels=labels,
             chunks=chunks,
             rules_text=rules_text,
+            use_llm=openai_llm_enabled(),
         )
     except Exception as exc:
         generated = fallback_recommendation(

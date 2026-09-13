@@ -9,20 +9,40 @@ from typing import Any
 
 from rag.embeddings import LLM_MODEL, llm_client, openai_configured
 
-SYSTEM_PROMPT = """You are a warm academic support assistant talking to one college student.
+SYSTEM_PROMPT = """You are a caring college adviser sitting with one tired student.
 
-Write like a caring adviser: clear, kind, and practical. Use "you."
-Keep the student's MFBI score and machine-learning risk exactly as given.
-Use only retrieved knowledge. Do not diagnose. Do not invent contacts, medicines, or sources.
+Write the way a kind person talks: short, warm, specific. Use "you."
+Keep the MFBI score and machine-learning risk exactly as given.
+Ground every tip in retrieved STUDENT-FACING GUIDANCE / HOW THIS MAY FEEL.
+Do not diagnose. Do not invent contacts, medicines, or sources.
 
-Focus recommended actions on Moderate and High factors only.
-If a factor is High, it is the priority: mention it first and give it more than one tip.
-If a factor is Low, mention it in one sentence only. Do not give it a list of tips.
-Ground tips in the weekly monitoring questions the student answered (PSS-10, workload, study time, sleep hours).
+Focus tips on Moderate and High factors only.
+If a factor is High, mention it first and give it more than one tip.
+If a factor is Low, one sentence only — no tip list for it.
 
-Avoid robotic phrases such as "classified as," "factors included in your weekly assessment,"
-"official school channels," or "sleep-related risk."
-Say things a student would actually feel: tired, overloaded, tense, behind on rest.
+assessment_summary: 2–4 sentences. Name the week honestly, then what is weighing heaviest.
+contributing_factors: full sentences about how the week feels. Never labels.
+recommended_actions: 3 or 4 this-week steps. Sound like advice, not a flowchart.
+Do not start every tip with "If you...". Just tell them what to try.
+human_support: one kind paragraph, like a person, not a policy notice.
+
+Good contributing_factors:
+- "Quizzes, projects, and readings are stacking up, and the week feels overcrowded."
+- "Nights look too short, so you may be showing up to class already tired."
+
+Bad contributing_factors:
+- "Academic workload"
+- "Sleep/rest"
+- "Moderate stress"
+- "classified as High risk"
+
+Good actions:
+- "Protect about 7 hours of sleep and a bedtime you can keep, even if one assignment is still unfinished."
+- "Write this week's due dates on one page, then spend the next hour on the soonest one only."
+
+Bad actions:
+- "Consider implementing time-management strategies."
+- "If these feelings continue, consider reaching out."
 
 Return JSON only with this shape:
 {
@@ -37,18 +57,18 @@ Return JSON only with this shape:
 
 def contributing_factor_phrases(labels: dict[str, str]) -> list[str]:
     stories = {
-        ("stress", "Moderate"): "Stress is building, and school may feel heavier than usual.",
-        ("stress", "High"): "Stress is high, and things may feel hard to keep up with.",
-        ("stress", "Severe"): "Stress feels overwhelming right now.",
-        ("workload", "Moderate"): "Your classwork is starting to pile up.",
-        ("workload", "High"): "Your schoolwork load looks heavy this week.",
-        ("workload", "Severe"): "Your schoolwork load looks very hard to manage.",
-        ("sleep", "Moderate"): "Your rest is a bit off, and sleep may not be as steady as you need.",
-        ("sleep", "High"): "Sleep looks like the hardest part — you may not be getting enough rest.",
-        ("sleep", "Severe"): "Sleep looks seriously stretched, and recovery is getting squeezed.",
-        ("study", "Moderate"): "You are studying quite a bit, and it may be crowding the rest of your day.",
-        ("study", "High"): "Study hours look very long, and rest may be getting squeezed.",
-        ("study", "Severe"): "Study time looks excessive, with little room left to recover.",
+        ("stress", "Moderate"): "School has felt a bit heavier than usual, like you are bracing for the next thing.",
+        ("stress", "High"): "This week has felt tense and crowded in your head, like it is hard to catch up.",
+        ("stress", "Severe"): "The pressure feels very heavy right now, and it may be hard to catch your breath.",
+        ("workload", "Moderate"): "Your classwork is starting to pile up, with more due than feels comfortable.",
+        ("workload", "High"): "Quizzes, projects, and readings are stacking up, and the week feels overcrowded.",
+        ("workload", "Severe"): "The amount of schoolwork this week looks very hard to carry on your own.",
+        ("sleep", "Moderate"): "Your rest is a bit off, so days may start before you feel ready.",
+        ("sleep", "High"): "Nights look too short or too uneven, so you may be running on leftover energy.",
+        ("sleep", "Severe"): "Sleep looks seriously stretched, and your body is not getting a real reset.",
+        ("study", "Moderate"): "You have been studying quite a bit, and it may be crowding the rest of your day.",
+        ("study", "High"): "Long study hours are eating into rest, and more sitting may not be what you need.",
+        ("study", "Severe"): "Study time looks so long that there is little room left to recover.",
     }
     severity = {"Severe": 3, "High": 2, "Moderate": 1}
     scored: list[tuple[int, str]] = []
@@ -63,27 +83,27 @@ def contributing_factor_phrases(labels: dict[str, str]) -> list[str]:
 
 STUDENT_ACTIONS_BY_CATEGORY = {
     "Stress": [
-        "Pause and name the one deadline or class that feels heaviest this week.",
-        "Do one small next step on that task in under an hour instead of trying to finish everything tonight.",
-        "Give yourself a real break, a meal, and a chance to breathe between classes.",
+        "Name the one class or deadline sitting heaviest on you, so it is not just looping in your head.",
+        "Give that task one honest hour — a small next step — instead of trying to finish the whole week tonight.",
+        "Take a real break between classes: a meal, a short walk, or a few slow breaths before you open another file.",
     ],
     "Academic Workload": [
-        "Write this week's due dates in one simple list so you can see what actually needs you first.",
-        "Start the biggest assignment with a small piece rather than opening every task at once.",
-        "Leave a little unplanned time in your week. Packed days make everything feel worse.",
+        "Write this week's quizzes, projects, and readings on one page with due dates, then circle what is due first.",
+        "Open only the soonest file for the next hour. Switching among five unfinished tasks makes the pile feel bigger.",
+        "Leave a little unplanned time for sleep and a meal. A packed calendar turns ordinary delays into a crisis.",
     ],
     "Sleep": [
-        "Try for about 7 hours of sleep and a regular bedtime, even if one assignment is still unfinished.",
-        "Move one study block earlier in the day so you are not working in bed late at night.",
-        "Skip late caffeine if it keeps you awake, and keep your bed for rest rather than homework.",
+        "Protect about 7 hours of sleep and a bedtime you can keep, even if one assignment is still unfinished.",
+        "Move one study block earlier so you are not working in bed after midnight.",
+        "Skip late caffeine, dim the phone, and keep your bed for rest rather than homework.",
     ],
     "Study Time": [
-        "Study in a shorter focused block with one clear goal, then take a real break.",
-        "Test yourself with a few questions instead of rereading for hours.",
-        "If late-night studying is stealing sleep, shorten one session this week rather than adding more hours.",
+        "Sit for 40 to 50 minutes with one written goal, then stand up. More hours are not the fix this week.",
+        "Quiz yourself with a few questions or explain one idea out loud instead of rereading for hours.",
+        "Shorten tonight's last session if it is stealing sleep, and shift that work to earlier tomorrow.",
     ],
     "Student Support": [
-        "If this still feels too heavy, talk with a teacher you trust, your adviser, or the Guidance Office.",
+        "Tell a teacher you trust, your adviser, or someone in Guidance what felt heaviest this week. You do not have to sort it alone.",
     ],
 }
 
@@ -125,14 +145,15 @@ def fallback_recommendation(
         extra = f"{extra} {low_note}".rstrip()
 
     support = (
-        "You do not have to handle a hard week alone. If this still feels too heavy, "
-        "talk with a teacher you trust, your adviser, or the Guidance Office. "
-        "Use the school's official information to find them — this app will not invent a phone number."
+        "You do not have to carry a hard week by yourself. A teacher you already talk to, "
+        "your adviser, or someone in the Guidance Office can help you sort what is actually required. "
+        "Start with one honest sentence about what felt heaviest. Use the school's own pages or office "
+        "to find them — this app will not invent a phone number."
     )
     if risk_level in {"Low"}:
         support = (
-            "If you want extra support anyway, a teacher, adviser, or the Guidance Office "
-            "can still help you plan. Use the school's official information to reach them."
+            "This week looks more manageable, and you can still ask a teacher, adviser, or the Guidance "
+            "Office to help you plan if you want a second pair of eyes. Use the school's own information to reach them."
         )
 
     return {
@@ -255,6 +276,7 @@ def _student_actions_for_labels(
 def _extract_student_facing_by_category(chunks: list[dict]) -> dict[str, list[str]]:
     skip_starts = (
         "write to the student",
+        "write like a caring",
         "do not diagnose",
         "the system",
         "recommend ",
@@ -270,10 +292,20 @@ def _extract_student_facing_by_category(chunks: list[dict]) -> dict[str, list[st
         if idx == -1:
             continue
         body = content[idx + len(marker) :]
+        in_actions = True
         for raw in body.splitlines():
             line = raw.strip().lstrip("-*").strip()
-            if re.match(r"^\d+\.", line) or line.upper().startswith("RETRIEVAL KEYWORDS"):
+            heading = line.upper()
+            if re.match(r"^\d+\.", line) or heading.startswith("RETRIEVAL KEYWORDS"):
                 break
+            if heading.startswith("HOW THIS MAY FEEL"):
+                in_actions = False
+                continue
+            if heading.startswith("THINGS YOU CAN TRY") or heading.startswith("WHAT YOU CAN TRY"):
+                in_actions = True
+                continue
+            if not in_actions:
+                continue
             if len(line) < 28 or len(line) > 220:
                 continue
             if line.lower().startswith(skip_starts):
@@ -306,6 +338,20 @@ def _is_referral_line(line: str) -> bool:
     )
 
 
+def _looks_like_factor_label(text: str) -> bool:
+    compact = re.sub(r"[^a-z]+", " ", text.lower()).strip()
+    return compact in {
+        "stress",
+        "academic workload",
+        "workload",
+        "sleep",
+        "sleep rest",
+        "study time",
+        "study",
+        "rest",
+    }
+
+
 def _looks_robotic(text: str) -> bool:
     low = text.lower()
     return any(
@@ -316,6 +362,11 @@ def _looks_robotic(text: str) -> bool:
             "sleep-related risk",
             "official school channels",
             "weekly assessment",
+            "consider reaching out",
+            "feelings of being overwhelmed",
+            "if these difficulties",
+            "consider implementing",
+            "time-management strategies",
         )
     ) or bool(
         re.match(r"^(moderate|high|severe|low)\s+(stress|sleep|workload|study)", low)
@@ -362,7 +413,7 @@ def _apply_llm_output(
     factors = [
         item
         for item in _as_string_list(parsed.get("contributing_factors"))
-        if not _looks_robotic(item)
+        if not _looks_robotic(item) and not _looks_like_factor_label(item)
     ] or fallback["contributing_factors"]
 
     actions = [
@@ -371,7 +422,8 @@ def _apply_llm_output(
         if not _looks_robotic(item)
     ]
     actions = [item for item in actions if item]
-    if len(actions) < 2:
+    if_you_heavy = sum(1 for item in actions if re.match(r"^if you\b", item.strip(), re.I))
+    if len(actions) < 2 or (len(actions) >= 3 and if_you_heavy >= 2):
         actions = list(fallback["recommended_actions"])
 
     focused = _focused_factors(labels)
@@ -391,7 +443,7 @@ def _apply_llm_output(
                     actions = [priority_tip, *[item for item in actions if item != priority_tip]]
 
     support = str(parsed.get("human_support") or "").strip()
-    if not support or _looks_robotic(support):
+    if not support or _looks_robotic(support) or len(support) < 40:
         support = fallback["human_support"]
 
     sources = _as_string_list(parsed.get("sources")) or source_titles
@@ -428,9 +480,14 @@ def generate_recommendation(
     labels: dict[str, str],
     chunks: list[dict],
     rules_text: str,
+    use_llm: bool = True,
 ) -> dict[str, Any]:
     if not chunks:
         return fallback_recommendation(mfbi_score, risk_level, labels, "retrieval_empty")
+    if not use_llm:
+        return fallback_recommendation(
+            mfbi_score, risk_level, labels, "llm_disabled_by_admin", chunks
+        )
     if not openai_configured():
         return fallback_recommendation(
             mfbi_score, risk_level, labels, "openai_not_configured", chunks
@@ -470,10 +527,12 @@ System rules:
 Retrieved evidence-based knowledge:
 {chr(10).join(context_blocks)}
 
-Write personalized student recommendations grounded in the retrieved knowledge.
-Prefer STUDENT-FACING GUIDANCE bullets. Ignore personalization-rule lists and retrieval keywords.
-Focus tips on Moderate and High factors only. The highest-priority factor must come first, with more than one tip.
-If a factor is Low, mention it in one sentence only and do not give it a list of tips.
+Write to the student as a caring adviser using HOW THIS MAY FEEL and STUDENT-FACING GUIDANCE.
+contributing_factors must be full warm sentences about how the week feels.
+Never copy the labels "Academic workload", "Sleep/rest", "Study time", or "Stress".
+Each recommended_action should be one kind, specific thing they can do this week.
+Do not start tips with "If you...". Speak directly: "Protect about 7 hours..." / "Write the due dates..."
+human_support should sound like a person sitting with them, not a policy notice.
 Do not change the MFBI score or the predicted burnout-related risk.
 If a requested phone number or named person is not present above, do not invent one.
 """
@@ -482,7 +541,7 @@ If a requested phone number or named person is not present above, do not invent 
         client = llm_client()
         response = client.chat.completions.create(
             model=LLM_MODEL,
-            temperature=0.3,
+            temperature=0.65,
             response_format={"type": "json_object"},
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},

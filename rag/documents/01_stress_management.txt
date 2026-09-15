@@ -1,51 +1,65 @@
-TITLE: Stress Management for College Students
+TITLE: Psychological Stress Guidance for College Students
 CATEGORY: Stress
-PURPOSE: RAG knowledge tied to the weekly PSS-10 monitoring questions
+PURPOSE: RAG knowledge for PSS-10 as a psychological measure of perceived stress, not a workload or sleep tip sheet
 
 1. OVERVIEW
-Section 1 of weekly monitoring is the Perceived Stress Scale (PSS-10). Students rate how often they felt or thought a certain way. The form uses Never, Almost Never, Sometimes, Fairly Often, Very Often.
+Section 1 of weekly monitoring is the Perceived Stress Scale (PSS-10). It is a psychological instrument. Students rate how often they felt or thought a certain way. The form uses Never, Almost Never, Sometimes, Fairly Often, Very Often.
+
+Stress in this system is the student's inner response: how they appraise school demands, how much control they feel, how they cope, and how tense the week feels in mind and body. It is not the same as Academic Workload, Study Time, or Sleep. Those are outer conditions. Stress is psychological.
 
 The system treats the PSS total as one MFBI factor, not as a diagnosis of anxiety, depression, or burnout. Higher scores mean the student reported more perceived stress. Items 4, 5, 7, and 8 are reverse-scored: feeling confident, that things were going their way, able to control irritations, or on top of things lowers the stress score.
 
 Score bands used by the system: 0–13 Low · 14–26 Moderate · 27–40 High.
 
-Recommendations should answer the actual PSS themes the student just rated, not generic “manage stress” slogans.
+Recommendations should answer the PSS themes they rated — control, worry, confidence, and how heavy the week feels — not generic “manage stress” slogans and not a second copy of the workload list.
 
-2. MONITORING QUESTIONS AND GUIDANCE
+2. PSYCHOLOGICAL BASIS
+Perceived stress (Cohen): stress is how overloaded, unpredictable, and uncontrollable life feels, not an objective count of assignments.
+
+Appraisal (Lazarus and Folkman): a week feels stressful when demands look bigger than the student's resources. Primary appraisal is “does this matter / does this feel like a threat.” Secondary appraisal is “can I do anything useful.” Guidance should help them name the demand, then name one resource they still have (time today, a teacher, a smaller next step).
+
+Coping: problem-focused coping is a small action on the demand (one file, one message, one hour). Emotion-focused coping is settling the body and the looping thoughts first (a pause, a breath, a walk, writing the worry down). Both are psychological skills. Do not tell them to “just calm down” or to “just work harder.”
+
+Self-efficacy (Bandura): confidence grows from a finished piece of work, not from pep talk. Reverse PSS items about handling problems and being on top of things point here.
+
+Safety: this is school well-being guidance. Do not diagnose. Do not recommend medicine. Do not claim to know their mental-health status.
+
+3. MONITORING QUESTIONS AND GUIDANCE
 Q1. In the last month, how often have you been upset because of something that happened unexpectedly?
-When this is elevated, help the student name one unexpected school event this week (a surprise quiz, a changed deadline, a group delay) and write the next small response. A short pause before reacting is enough. Do not tell them they should never feel upset.
+Psychological theme: surprise appraisal. The nervous system treats an unexpected quiz, deadline change, or group delay as a threat. Help them name the event and the feeling, then choose one next response. A short pause before reacting is emotion-focused coping. Do not tell them they should never feel upset.
 
 Q2. In the last month, how often have you felt that you were unable to control the important things in your life?
-When this is elevated, shrink the week to what they can control: one deadline, one class, one message to a teacher. Put the rest on a list so it is not all “in their head.”
+Psychological theme: low perceived control. Shrink the week to what they can still choose: one deadline, one class, one message. Write the rest down so rumination is not doing the planning. Secondary appraisal: “what is mine to do today.”
 
 Q3. In the last month, how often have you felt nervous and stressed?
-When this is elevated, offer a body-and-task reset: two slow breaths, a real meal or short walk, then one under-one-hour next step. Do not diagnose a panic disorder.
+Psychological theme: arousal — tense body, restless thoughts. Offer a body reset (two slow breaths, a meal, a short walk) then one under-one-hour coping step. Do not diagnose a panic disorder or anxiety disorder.
 
 Q4. In the last month, how often have you felt confident about your ability to handle your personal problems? (reverse)
-A low rating here (which raises stress) means confidence is thin. Suggest finishing one small required piece so they can see proof of handling something. Do not say “just be more confident.”
+Psychological theme: low self-efficacy. A low rating raises stress. Suggest finishing one small required piece so they have proof they can handle something. Do not say “just be more confident.”
 
 Q5. In the last month, how often have you felt that things were going your way? (reverse)
-A low rating means the week feels stacked against them. Help them pick the soonest due item so one thing can go their way today.
+Psychological theme: the week feels stacked against them. Help them pick the soonest due item so one outcome can go their way today. That is a mastery experience, not positive thinking.
 
 Q6. In the last month, how often have you found that you could not cope with all the things that you had to do?
-When this is elevated, they do not need more hours. They need a shorter list: keep the required work, delay optional extras, and break “all the things” into named steps.
+Psychological theme: coping resources feel exhausted. They do not need more hours. They need a shorter demand list: keep required work, delay optional extras, break “all the things” into named steps. That restores a sense of coping.
 
 Q7. In the last month, how often have you been able to control irritations in your life? (reverse)
-A low rating means small frictions are adding up. Suggest a stop-time for schoolwork and one break between classes so irritations are not carried into the next task.
+Psychological theme: friction and irritability spilling across tasks. Suggest a stop-time for schoolwork and a real break between classes so one irritation is not carried into the next hour.
 
 Q8. In the last month, how often have you felt that you were on top of things? (reverse)
-A low rating means they feel behind. A one-page list of this week’s due dates, then one file for the next hour, is the practical “on top of things” move.
+Psychological theme: feeling behind, low control. A one-page list of this week’s due dates, then one file for the next hour, is a practical way to feel more on top of things.
 
 Q9. In the last month, how often have you been angered because of things that happened that were outside of your control?
-When this is elevated, acknowledge the feeling without diagnosing. Point them to what they can still do (clarify a requirement, send one group message, ask a teacher) and what they can park until later.
+Psychological theme: anger at uncontrollability. Acknowledge the feeling without diagnosing. Point them to what they can still do (clarify a requirement, send one group message, ask a teacher) and what they can park. Do not argue them out of the feeling.
 
 Q10. In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?
-When this is elevated, the pile is the target. Write every due item down, circle the top one, and do a piece that can be finished in under an hour. If the pile still feels impossible, talking with a teacher, adviser, or the Guidance Office is appropriate.
+Psychological theme: overwhelm — demands look unsurmountable. Write every due item down, circle the top one, and do a piece that can be finished in under an hour. If the pile still feels impossible, talking with a teacher, adviser, or the Guidance Office is appropriate psychological and academic support.
 
-3. PERSONALIZATION RULES
+4. PERSONALIZATION RULES
 If STRESS is high:
-- Prioritize tips that match Q3, Q6, and Q10 (nervous/stressed, cannot cope with all the things, difficulties piling up).
-- Give two practical stress tips. Check sleep and workload next.
+- Prioritize psychological tips that match Q3, Q6, and Q10 (nervous/stressed, cannot cope, difficulties piling up).
+- Give two stress tips: one that settles thoughts or the body, and one small coping action.
+- Check sleep and workload next, but do not replace stress advice with only a to-do list.
 - Do not auto-refer to counseling unless High or Severe overall risk, or the student asks.
 
 If STRESS is moderate:
@@ -55,39 +69,47 @@ If STRESS is moderate:
 If STRESS is low:
 - One sentence only. Do not imply they have no school difficulty.
 
-4. SAFETY AND LIMITATIONS
-Do not diagnose. Do not replace a counselor. If the student describes a safety concern, direct them to verified human help. Do not invent contacts.
+5. SAFETY AND LIMITATIONS
+Do not diagnose anxiety, depression, burnout, or any disorder. Do not replace a counselor, psychologist, or physician. If the student describes a safety concern, direct them to verified human help. Do not invent contacts.
 
-5. SOURCE EVIDENCE
+6. SOURCE EVIDENCE
+Cohen, Kamarck, and Mermelstein (1983), A global measure of perceived stress (PSS).
+Source: https://pubmed.ncbi.nlm.nih.gov/6668417/
+
+Lazarus and Folkman (1984), Stress, Appraisal, and Coping. Stress is the relationship between a person and demands they appraise as taxing or exceeding their resources.
+
 Amanvermez et al. (2022), Effects of self-guided stress management interventions in college students.
 Source: https://pubmed.ncbi.nlm.nih.gov/35242591/
 
-Worsley, Pennington, & Corcoran (2022), Supporting mental health and wellbeing of university and college students.
+Worsley, Pennington, and Corcoran (2022), Supporting mental health and wellbeing of university and college students.
 Source: https://pubmed.ncbi.nlm.nih.gov/35905058/
 
 Hathaisaard et al. (2022), Mindfulness-based interventions reducing and preventing stress and burnout in medical students.
 Source: https://pubmed.ncbi.nlm.nih.gov/34995839/
 
-6. STUDENT-FACING GUIDANCE
-Write like a caring adviser sitting with the student. Use "you." Do not diagnose. Do not start every tip with "If you."
+7. STUDENT-FACING GUIDANCE
+Write like a caring adviser. Use "you." Use simple, basic words. Short sentences. Do not diagnose.
+Do not start every tip with "If you." Do not turn stress advice into only a homework list.
+Do not use hard words such as overwhelmed, appraisal, coping resources, or self-efficacy.
 
 HOW THIS MAY FEEL
-- Unexpected surprises — a quiz, a changed deadline, a group delay — can leave you rattled even when you are trying.
-- Important things may feel out of your hands, as if the week is running you instead of the other way around.
-- Nervousness can sit in your body: tight chest, restless thoughts, a sense that you cannot catch up.
-- When confidence is thin, even ordinary tasks look bigger than they are.
-- Difficulties can feel piled so high that starting anywhere seems pointless.
+- Stress is the worry in your thoughts and body, not just how many homework items you have.
+- A surprise quiz, a changed due date, or a group delay can leave you upset even when you are trying.
+- Important things may feel out of your hands, as if the week is running you.
+- You may feel tense: tight chest, restless thoughts, a sense that you cannot catch up.
+- When you do not feel sure of yourself, even small tasks look bigger than they are.
+- Problems can feel piled so high that starting anywhere seems pointless.
 
 THINGS YOU CAN TRY THIS WEEK
-- Name the one surprise or deadline that is sitting heaviest, then write the next small step for it.
-- Keep only this week's required work on one list so the rest is not looping in your head.
-- Pause for two slow breaths, eat or take a short walk, then give one task an honest hour.
-- Finish one small required piece today so you have proof that something actually moved.
-- Pick the item due soonest so one thing can go your way before you add more.
-- Drop optional extras and break "everything" into named steps you can finish in under an hour.
-- Set a stop time for schoolwork and take a real break between classes so irritations do not pile into the next task.
-- Write due dates on one page and open only one file for the next hour — that is enough to feel a little more on top of things.
-- If the pile still feels impossible, tell a teacher you trust, your adviser, or someone in Guidance. You do not have to sort it alone.
+- Name the one worry sitting heaviest, so it is not going round and round in your head.
+- Pick one thing you can still do today: one deadline, one class, or one message. Write the rest on paper.
+- Take two slow breaths, eat or take a short walk, then give one task one honest hour. Calm down a little before you try to plan the whole week.
+- Finish one small required piece today so you have proof you can handle something.
+- Pick the item due first so one thing can go your way before you add more.
+- Drop extra work you do not have to do. Break the rest into small steps you can finish in under an hour.
+- Set a stop time for schoolwork and take a real break between classes so small annoyances do not pile into the next task.
+- Write due dates on one page and open only one file for the next hour. That is enough to feel a little more on top of things.
+- If the pile still feels too big, tell a teacher you trust, your adviser, or someone in Guidance. You do not have to sort a hard week alone.
 
-7. RETRIEVAL KEYWORDS
-PSS, PSS-10, perceived stress, upset unexpectedly, unable to control, nervous and stressed, confident handling problems, things going your way, could not cope, control irritations, on top of things, angered, difficulties piling up, high stress, moderate stress, Never Almost Never Sometimes Fairly Often Very Often
+8. RETRIEVAL KEYWORDS
+PSS, PSS-10, perceived stress, psychological stress, cognitive appraisal, coping, perceived control, self-efficacy, rumination, nervous and stressed, upset unexpectedly, unable to control, confident handling problems, things going your way, could not cope, control irritations, on top of things, angered, difficulties piling up, high stress, moderate stress, Never Almost Never Sometimes Fairly Often Very Often

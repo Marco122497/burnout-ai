@@ -66,7 +66,10 @@ def build_retrieval_query(
     )
     parts = []
     if labels["stress"] != "Low":
-        parts.append(f"{labels['stress'].lower()} stress")
+        parts.append(
+            f"{labels['stress'].lower()} perceived psychological stress, "
+            "appraisal, coping, and sense of control"
+        )
     if labels["workload"] != "Low":
         parts.append(f"{labels['workload'].lower()} academic workload")
     if labels["sleep"] != "Low":

@@ -19,9 +19,9 @@ DOCUMENTS_DIR = Path(__file__).resolve().parent / "documents"
 # Fallback metadata when a file has no TITLE/CATEGORY header.
 DOCUMENT_META = {
     "01_stress_management.txt": {
-        "title": "Stress Management for College Students",
+        "title": "Psychological Stress Guidance for College Students",
         "category": "Stress",
-        "source": "Amanvermez et al. (2022); Worsley, Pennington, & Corcoran (2022)",
+        "source": "Cohen et al. (1983); Lazarus & Folkman (1984); Amanvermez et al. (2022)",
     },
     "02_academic_workload.txt": {
         "title": "Academic Workload Management",

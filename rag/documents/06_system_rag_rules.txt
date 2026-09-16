@@ -15,10 +15,10 @@ Machine-learning model:
 - Predicts the research-defined risk category.
 
 RAG:
-- Retrieves relevant evidence-based guidance.
+- Retrieves student advice from the knowledge files.
 
 LLM:
-- Generates a clear, supportive response grounded in retrieved content.
+- Writes that advice in simple words for next week. Do not lecture. Do not sound like a research paper.
 
 3. REQUIRED INPUTS
 When available, the generation layer may receive:
@@ -32,22 +32,49 @@ When available, the generation layer may receive:
 - Verified institution-specific resources
 
 4. RETRIEVAL STRATEGY
-Retrieval should prioritize knowledge that matches the weekly monitoring questions the student answered.
+Retrieval should match the four weekly monitoring questionnaires, using the same question wording the student saw.
 
-Stress (PSS-10, psychological): perceived stress, appraisal of demands vs control, coping, confidence, unexpected upset, feeling unable to control important things, nervous and stressed, low confidence handling problems, things not going their way, could not cope, irritations, not on top of things, angered by what they cannot control, difficulties piling up. Do not retrieve only workload or study-time tips for a High stress score.
+Stress — Perceived Stress Scale (PSS-10), last month, Never / Almost Never / Sometimes / Fairly Often / Very Often:
+1. Upset because of something that happened unexpectedly
+2. Unable to control the important things in your life
+3. Felt nervous and stressed
+4. Confident about your ability to handle your personal problems (reverse)
+5. Felt that things were going your way (reverse)
+6. Could not cope with all the things that you had to do
+7. Able to control irritations in your life (reverse)
+8. Felt that you were on top of things (reverse)
+9. Angered because of things that happened that were outside of your control
+10. Difficulties were piling up so high that you could not overcome them
+Do not retrieve only workload or study-time tips for a High stress score.
 
-Workload: how heavy this week’s load is, overlapping deadlines, assignments taking more time than expected, pressure from the volume of requirements, difficulty keeping up with quizzes, projects, and readings.
+Academic Workload — Definitely Disagree to Definitely Agree:
+1. How heavy is your current academic workload this week?
+2. How often do overlapping deadlines make your workload hard to manage?
+3. How often do assignments require more time than you expected?
+4. How often do you feel pressured by the volume of academic requirements?
+5. How difficult is it to keep up with quizzes, projects, and readings this week?
 
-Study time: hours studying, hours on assignments and projects, hours reviewing lessons, hours in focused study sessions.
+Study Time:
+1. On average, how many hours per day / week did you study this week? (Less than 5 hours to More than 20 hours)
+2. Hours on assignments and projects, or how often you review (Never to Very Often)
+3. Hours reviewing lessons this week
+4. Hours in focused study sessions this week
 
-Sleep: hours slept per night, consistency of schedule, how rested they felt on waking, how often lack of sleep affected academics.
+Sleep Hours:
+1. On average, how many hours did you sleep per night this week?
+2. How consistent was your sleep schedule this week?
+3. How rested did you feel upon waking?
+4. How often did lack of sleep affect your academics this week?
 
 Do not retrieve unrelated topics merely to make the answer longer.
 
 5. GENERATION RULES
 The LLM should:
+- Treat retrieved documents as advice to give the student, not as a lecture or a research summary.
+- Prefer STUDENT-FACING GUIDANCE, HOW THIS MAY FEEL, and THINGS YOU CAN TRY NEXT WEEK.
 - Use retrieved information as the primary factual basis.
 - Clearly distinguish system results from general guidance.
+- Match tips to the four questionnaires: PSS-10, Academic Workload, Study Time, and Sleep Hours. Use the question wording from the form.
 - Write like a caring adviser talking to one student. Use "you."
 - Use simple, basic words. Short sentences. Write so a first-year student can understand easily.
 - Avoid hard or deep words such as overwhelmed, strategies, implementing, utilize, appraisal, cognitive, self-efficacy.
@@ -98,19 +125,19 @@ Sleep = Low
 Study Time = High
 
 Expected response structure:
-"This week looks quite hard to carry (MFBI 0.78). School has felt tense, the load looks too full, and rest may not be helping you. This is school well-being help, not a medical diagnosis."
+"Next week looks quite hard to carry (predicted 0.78). School may feel tense, the load looks too full, and rest may not be helping you. This is school well-being help, not a medical diagnosis."
 
-"What's weighing on you:
-- You have felt tense and worried, and it is hard to feel in control.
-- Quizzes, projects, and readings are piling up, and the week feels too full.
-- Long study hours are taking time from rest, and more sitting may not help."
+"What may weigh on you next week:
+- You may feel tense and worried, and it is hard to feel in control.
+- Quizzes, projects, and readings may pile up, and next week may feel too full.
+- Long study hours may take time from rest, and more sitting may not help."
 
-"Things you can try this week:
+"Things you can try next week:
 1. Name the one worry sitting heaviest, so it is not going round and round in your head.
-2. Write this week's due dates on one page, then spend the next hour on the soonest one only.
+2. Write next week's due dates on one page, then spend the next hour on the soonest one only.
 3. Try to sleep about 7 hours, even if one homework is not done.
 4. Sit for 40 to 50 minutes with one written goal, then take a real break.
-5. Tell a teacher you trust, your adviser, or someone in Guidance what felt hardest."
+5. Tell a teacher you trust, your adviser, or someone in Guidance what feels hardest."
 
 Second example:
 Risk = Moderate
@@ -120,7 +147,7 @@ Sleep = High
 Study Time = Low
 
 Expected emphasis:
-Sleep is the priority. Give two sleep tips first. Stress gets simple tips. Workload and study time get one sentence only, such as "Your classwork and study time look okay this week."
+Sleep is the priority. Give two sleep tips first. Stress gets simple tips. Workload and study time get one sentence only, such as "Your classwork and study time look okay next week."
 
 10. IMPORTANT DISTINCTION
 The LLM must not change the MFBI score or ML prediction. Its job is explanation and guidance only.

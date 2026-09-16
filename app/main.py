@@ -358,6 +358,8 @@ def burnout_recommendation(request: RecommendationRequest):
             mfbi_score=mfbi_score,
             risk_level=risk_level,
             prediction_model=prediction_model,
+            next_week_score=request.next_week_score,
+            next_week_risk=request.next_week_risk,
         )
     except Exception as exc:
         generated = {

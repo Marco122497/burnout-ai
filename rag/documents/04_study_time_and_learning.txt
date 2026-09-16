@@ -1,71 +1,61 @@
-TITLE: Study Time and Effective Learning
+TITLE: Advice for long study hours
 CATEGORY: Study Time
-PURPOSE: RAG knowledge tied to the four weekly Study Time monitoring questions
+PURPOSE: Advice tied to the Study Time questionnaire items in weekly monitoring
 
-1. OVERVIEW
-Section 3 of weekly monitoring asks how the student spent time outside class this week: overall study hours, hours on assignments and projects, hours reviewing lessons, and hours in focused study sessions.
+1. YOUR FORM
+Variable: Study Time
+Questionnaire: Study Time
+The form asks how you spent time outside class this week. More hours do not automatically mean better learning. Very long study time can crowd sleep. Do not tell every student to study more.
+Current scoring uses two kinds of items when they are on the form:
+- Question 1 (ST1): weekly study hours. Choices: Less than 5 hours, 5–10 hours, 11–15 hours, 16–20 hours, More than 20 hours.
+- Question 2 (ST2): how often you review. Choices: Never, Sometimes, Often, Very Often.
+Some forms still also ask hours per day on assignments, reviewing lessons, and focused study sessions.
 
-More hours do not automatically mean better learning. Very long study time can crowd sleep. The system should not tell every student to study more. Guidance should match the question: total time, assignment time, review time, or focused sessions.
+2. Q1. On average, how many hours per day did you study this week? / weekly study hours
+Weekly choices: Less than 5 hours, 5–10 hours, 11–15 hours, 16–20 hours, More than 20 hours.
+How this may feel: Long study hours can make it feel like you are working hard but still falling behind.
+Advice for next week: Do not add more hours. Sit for 40 to 50 minutes with one written goal, then take a real break. If those hours stole sleep, shorten the latest session rather than adding another. If hours are not high, do not assume they must study more.
 
-2. MONITORING QUESTIONS AND GUIDANCE
-Q1. On average, how many hours per day did you study this week?
-When total study time is high, change method, not hours. Use shorter blocks with one written goal. Take a real break. If those hours stole sleep, shorten the latest session rather than adding another.
+3. Q2. How many hours per day did you spend on assignments and projects this week?
+On some forms this second item is how often you review (Never, Sometimes, Often, Very Often).
+How this may feel: Assignments and projects can take the whole day, with several files open and none finished. Reviewing very often can blur together.
+Advice for next week: Finish a small piece of the assignment due soonest instead of opening every project at once. Split outline, draft, check, submit. If the question is about reviewing often, test yourself with a few questions instead of rereading.
 
-When total study time is not high, do not assume they must study more. One efficient block can be enough if workload is the real issue.
+4. Q3. How many hours per day did you spend reviewing lessons this week?
+How this may feel: Hours of reviewing can blur together when you keep rereading instead of testing yourself.
+Advice for next week: Test yourself with a few questions, cards, or say one idea out loud. Stop rereading for hours. Short reviews across days beat one long cram.
 
-Q2. How many hours per day did you spend on assignments and projects this week?
-When assignment hours are high, they may be stuck in the middle of large tasks. Split outline, draft, check, submit. Finish a piece of the soonest project. Do not open every assignment at once.
+5. Q4. How many hours per day did you spend on focused study sessions this week?
+How this may feel: Sitting a long time is not the same as real focus, and rest can get squeezed out.
+Advice for next week: One chapter or worksheet, phone away, 40 to 50 minutes, then stand up. Write one sentence before you sit: what will be done when this block ends.
 
-Q3. How many hours per day did you spend reviewing lessons this week?
-When review hours are high, rereading is likely. Switch to retrieval: a few questions, flashcards, or explaining a point out loud. Distributed short reviews beat one long cram.
+6. ADVICE WHEN STUDY TIME IS HIGH
+If sleep is also a concern, protect rest first and shorten a late session.
+Mention the words from the form: hours you studied, assignments and projects, reviewing lessons, focused study sessions, or how often you review.
+Never tell them to study all night or sleep less so they can study more.
 
-Q4. How many hours per day did you spend on focused study sessions this week?
-When focused-session hours are high, protect quality: one chapter or worksheet, phone away, 40–50 minutes, then stand up. If they sat a long time but felt unfocused, shorter true-focus blocks help more than extra hours.
+7. ADVICE WHEN STUDY TIME IS MODERATE
+One efficiency tip and one real break. Quality beats adding more hours.
 
-3. EFFECTIVE METHODS (FOR LONG STUDY TIME)
-Retrieval practice (self-testing) has evidence for better later recall than rereading alone. Distributed practice across days beats one exhausted block. Never recommend studying all night or sleeping less to study more.
+8. ADVICE WHEN STUDY TIME LOOKS OKAY
+One kind sentence only. Do not assume they are not trying.
 
-4. PERSONALIZATION RULES
-If STUDY TIME is high:
-- If SLEEP is also a concern, protect rest first and shorten a late session.
-- If STRESS or WORKLOAD is high, combine a task list with active learning.
-- Tips should mention assignments/projects, reviewing lessons, or focused sessions — the words from the form.
-
-If STUDY TIME is moderate:
-- One efficiency tip and one break.
-
-If STUDY TIME is low:
-- One sentence only. Do not assume they are not trying.
-
-5. WHAT THE SYSTEM SHOULD NOT SAY
-Avoid: “You need X hours every day.” “More hours always mean better grades.” “Study all night.” “Sleep less so you can study more.”
-
-6. SOURCES
-McDermott (2021), Practicing Retrieval Facilitates Learning.
-Source: https://pubmed.ncbi.nlm.nih.gov/33006925/
-
-Toppino & Pagano (2021), metacognitive control and distribution of retrieval practice.
-Source: https://pubmed.ncbi.nlm.nih.gov/33006078/
-
-Liu, Ma, & Jia (2026), time management and college learning outcomes.
-Source: https://pubmed.ncbi.nlm.nih.gov/41969889/
-
-7. STUDENT-FACING GUIDANCE
-Write like a caring adviser. Use "you." Use simple, basic words. Short sentences. Do not diagnose. Do not start every tip with "If you."
+9. STUDENT-FACING GUIDANCE
+Write like a caring adviser. Use "you." Use simple, basic words. Short sentences. Do not diagnose.
+Match advice to the Study Time questions the student answered. Do not start every tip with "If you."
 
 HOW THIS MAY FEEL
-- Long study hours can make it feel like you are working hard but still falling behind.
-- Assignments and projects can take the whole day, with several files open and none finished.
-- Hours of reviewing can blur together when you keep rereading instead of testing yourself.
-- Sitting a long time is not the same as real focus, and rest can get squeezed out.
+- Q1: Long weekly study hours can make it feel like you are working hard but still falling behind.
+- Q2: Hours on assignments and projects, or reviewing very often, can leave several files open and none finished.
+- Q3: Hours reviewing lessons can blur together when you keep rereading.
+- Q4: Long focused study sessions are not the same as real focus, and rest can get squeezed out.
 
-THINGS YOU CAN TRY THIS WEEK
-- Do not add more hours. Sit for 40 to 50 minutes with one written goal, then take a real break.
-- Finish a small piece of the assignment due soonest instead of opening every project at once.
-- Test yourself with a few questions or say one idea out loud. Stop rereading for hours.
-- Write one sentence before you sit: what will be done when this block ends.
+THINGS YOU CAN TRY NEXT WEEK
+- Q1: Do not add more hours. Sit for 40 to 50 minutes with one written goal, then take a real break. Make tonight's last study shorter if it is stealing sleep.
+- Q2: Finish a small piece of the assignment due soonest instead of opening every project at once.
+- Q3: Test yourself with a few questions or say one idea out loud. Stop rereading for hours.
+- Q4: Write one sentence before you sit: what will be done when this block ends. Phone away, then stand up after 40 to 50 minutes.
 - Progress can be one finished piece, not staying up all night.
-- Make tonight's last study shorter if it is stealing sleep, and do that work earlier tomorrow.
 
-8. RETRIEVAL KEYWORDS
-study time, hours per day did you study, hours on assignments and projects, reviewing lessons, focused study sessions, study hours this week, rereading, retrieval practice, cramming, study breaks, self-testing, outside class
+10. RETRIEVAL KEYWORDS
+Study Time, on average how many hours per day did you study this week, weekly study hours, less than 5 hours, 5–10 hours, 11–15 hours, 16–20 hours, more than 20 hours, how many hours per day did you spend on assignments and projects this week, how often you review, Never Sometimes Often Very Often, reviewing lessons this week, focused study sessions this week, rereading, study breaks, self-testing, advice

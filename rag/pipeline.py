@@ -21,10 +21,14 @@ def build_personalized_recommendation(
     mfbi_score: float,
     risk_level: str,
     prediction_model: str,
+    next_week_score: float | None = None,
+    next_week_risk: str | None = None,
 ) -> dict:
     labels = factor_labels(
         stress_score, academic_workload, sleep_hours_score, study_time
     )
+    outlook_score = float(next_week_score) if next_week_score is not None else mfbi_score
+    outlook_risk = next_week_risk or risk_level
     chunks: list[dict] = []
     try:
         chunks = retrieve_chunks(
@@ -32,8 +36,8 @@ def build_personalized_recommendation(
             academic_workload,
             sleep_hours_score,
             study_time,
-            mfbi_score,
-            risk_level,
+            outlook_score,
+            outlook_risk,
         )
         rules_text = load_system_rules()
         generated = generate_recommendation(
@@ -48,6 +52,8 @@ def build_personalized_recommendation(
             chunks=chunks,
             rules_text=rules_text,
             use_llm=openai_llm_enabled(),
+            outlook_score=outlook_score,
+            outlook_risk=outlook_risk,
         )
     except Exception as exc:
         generated = fallback_recommendation(
@@ -56,6 +62,8 @@ def build_personalized_recommendation(
             labels,
             f"rag_error:{exc.__class__.__name__}",
             chunks,
+            outlook_score=outlook_score,
+            outlook_risk=outlook_risk,
         )
 
     retrieved = [

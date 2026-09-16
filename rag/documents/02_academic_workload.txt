@@ -1,71 +1,60 @@
-TITLE: Academic Workload Management
+TITLE: Advice for a heavy classwork week
 CATEGORY: Academic Workload
-PURPOSE: RAG knowledge tied to the five weekly Academic Workload monitoring questions
+PURPOSE: Advice tied to the five Academic Workload questionnaire items in weekly monitoring
 
-1. OVERVIEW
-Section 2 of weekly monitoring asks five Likert questions about this week’s schoolwork. The student rates how heavy, overlapping, time-consuming, pressuring, and hard to keep up with their requirements felt.
+1. YOUR FORM
+Variable: Academic Workload
+Questionnaire: Academic Workload
+Answer choices: Definitely Disagree, Disagree, Neutral, Agree, Definitely Agree
+The form asks how this week's schoolwork felt. Higher agreement means a heavier load. This is not a count of units and not a diagnosis.
 
-The system converts those answers into a 0–10 workload score. Higher means a heavier perceived load. This is not a count of units and not a diagnosis.
+2. Q1. How heavy is your current academic workload this week?
+How this may feel: Next week's schoolwork can feel heavier than the hours you actually have.
+Advice for next week: Put assignments, quizzes, projects, and readings on one list. Rank by due date. Leave gaps for sleep and meals. Do not say "work harder."
 
-Recommendations should map to the question they endorsed, especially overlapping deadlines, assignments taking longer than expected, volume of requirements, and keeping up with quizzes, projects, and readings.
+3. Q2. How often do overlapping deadlines make your workload hard to manage?
+How this may feel: When due dates pile up on the same days, it can feel like five unfinished files are open at once.
+Advice for next week: Finish what is due soonest, then a small piece of the larger project. One page of due dates stops you jumping between five files. Ask a teacher early if two big items truly clash.
 
-2. MONITORING QUESTIONS AND GUIDANCE
-Q1. How heavy is your current academic workload this week?
-When this is elevated, the student needs a full picture of the week, not more hours. Put assignments, quizzes, projects, and readings on one list. Rank by due date. Leave gaps for sleep and meals. Do not say “work harder.”
+4. Q3. How often do assignments require more time than you expected?
+How this may feel: Homework that takes longer than you thought can make you feel behind even when you are working.
+Advice for next week: Split the assignment into outline, draft, check, and submit. Use the next hour for only one of those steps. Do not make an all-nighter the default fix.
 
-Q2. How often do overlapping deadlines make your workload hard to manage?
-When this is elevated, sequence the clash: finish what is due soonest, then a small piece of the larger project. A one-page deadline map prevents switching among five unfinished files. Contact a teacher early if two major items truly collide.
+5. Q4. How often do you feel pressured by the volume of academic requirements?
+How this may feel: There can be so many requirements that the list never looks smaller.
+Advice for next week: Keep required items. Delay extra work. Close extra tabs. One main task per hour. Pressure eases when the list is visible and shorter.
 
-Q3. How often do assignments require more time than you expected?
-When this is elevated, the first step was bigger than it looked. Split the assignment into outline, draft, check, submit. Time-box the next hour. Do not add an all-nighter as the default fix; that usually steals sleep without finishing the work.
+6. Q5. How difficult is it to keep up with quizzes, projects, and readings this week?
+How this may feel: Quizzes, projects, and readings can blend into one pile that never gets smaller.
+Advice for next week: Give each type its own short block. Quiz: a few questions. Project: one small milestone. Reading: one chapter or one lecture. If you still cannot keep up, asking the teacher or adviser is a planning step.
 
-Q4. How often do you feel pressured by the volume of academic requirements?
-When this is elevated, volume is the problem. Keep required items. Delay optional extras. Close extra tabs. One primary task per hour. Pressure eases when the list is visible and shorter.
+7. ADVICE WHEN WORKLOAD IS HIGH
+Lead with Q1, Q2, and Q5: heavy week, overlapping deadlines, and keeping up with quizzes, projects, and readings.
+Check sleep. Do not tell them to study more hours.
 
-Q5. How difficult is it to keep up with quizzes, projects, and readings this week?
-When this is elevated, mix the three types instead of pretending they are one pile. Quiz: short self-test. Project: one milestone. Reading: one chapter or one lecture. If they cannot keep up even after that, asking the teacher or adviser is a planning step.
+8. ADVICE WHEN WORKLOAD IS MODERATE
+One list from Q1, then one next piece of the soonest due item from Q2.
 
-3. TIME MANAGEMENT AND LEARNING
-A 2026 meta-analysis of 31 studies (13,506 participants) found a moderate positive link between time management and college learning outcomes. Time management here means ordering quizzes, projects, and readings, not filling every hour.
+9. ADVICE WHEN WORKLOAD LOOKS OKAY
+One kind sentence only. Focus advice on the harder parts of next week.
 
-4. PERSONALIZATION RULES
-If WORKLOAD is high:
-- Lead with Q1–Q2 and Q5 (heavy week, overlapping deadlines, keeping up with quizzes/projects/readings).
-- Check sleep. Do not recommend more study hours.
-
-If WORKLOAD is moderate:
-- One list plus one next piece of the soonest due item.
-
-If WORKLOAD is low:
-- One sentence only. Focus on other elevated factors.
-
-5. INSTITUTION-SPECIFIC POLICY
-Do not invent school rules, unit loads, or extension policies.
-
-6. SOURCES
-Liu, Ma, & Jia (2026), time management and college learning outcomes.
-Source: https://pubmed.ncbi.nlm.nih.gov/41969889/
-
-Wei et al. (2026), time management disposition and academic procrastination.
-Source: https://pubmed.ncbi.nlm.nih.gov/42025615/
-
-7. STUDENT-FACING GUIDANCE
-Write like a caring adviser. Use "you." Use simple, basic words. Short sentences. Do not diagnose. Do not start every tip with "If you."
+10. STUDENT-FACING GUIDANCE
+Write like a caring adviser. Use "you." Use simple, basic words. Short sentences. Do not diagnose.
+Match advice to the Academic Workload questions the student answered. Do not start every tip with "If you."
 
 HOW THIS MAY FEEL
-- This week's schoolwork can feel heavier than the hours you actually have.
-- When due dates pile up on the same days, it can feel like five unfinished files are open at once.
-- Homework that takes longer than you thought can make you feel behind even when you are working.
-- Quizzes, projects, and readings can blend into one pile that never gets smaller.
+- Q1: Your current academic workload this week can feel heavier than the hours you actually have.
+- Q2: Overlapping deadlines can make the load hard to manage, like five unfinished files at once.
+- Q3: Assignments that require more time than you expected can make you feel behind even when you are working.
+- Q4: The volume of academic requirements can feel pressuring.
+- Q5: It can be hard to keep up with quizzes, projects, and readings this week.
 
-THINGS YOU CAN TRY THIS WEEK
-- Put every quiz, project, and reading on one page with due dates, then circle what is due first.
-- Do the soonest item, then a small piece of the bigger project — not five files at the same time.
-- Split a long assignment into outline, draft, check, and submit, and use the next hour for only one of those steps.
-- Keep only what is required this week. Close extra tabs so the list looks smaller.
-- Give quizzes, projects, and readings their own short blocks instead of mixing them all night.
-- Leave space for sleep and a meal. A packed day makes small delays feel much worse.
-- Tell a teacher or adviser early if two big items fall on the same day. Asking is part of handling the load, not a failure.
+THINGS YOU CAN TRY NEXT WEEK
+- Q1: Put every quiz, project, and reading on one page with due dates, then circle what is due first. Leave space for sleep and a meal.
+- Q2: Do the soonest item, then a small piece of the bigger project — not five files at the same time. Tell a teacher early if two big items fall on the same day.
+- Q3: Split a long assignment into outline, draft, check, and submit, and use the next hour for only one of those steps.
+- Q4: Keep only what is required next week. Close extra tabs so the list looks smaller.
+- Q5: Give quizzes, projects, and readings their own short blocks instead of mixing them all night.
 
-8. RETRIEVAL KEYWORDS
-academic workload, how heavy is your current academic workload, overlapping deadlines, assignments require more time, volume of academic requirements, keep up with quizzes projects and readings, homework, workload this week, time management, procrastination
+11. RETRIEVAL KEYWORDS
+Academic Workload, Definitely Disagree Disagree Neutral Agree Definitely Agree, how heavy is your current academic workload this week, overlapping deadlines make your workload hard to manage, assignments require more time than you expected, pressured by the volume of academic requirements, keep up with quizzes projects and readings this week, homework, due dates, advice

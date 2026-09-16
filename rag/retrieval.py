@@ -80,12 +80,17 @@ def build_retrieval_query(
         parts.append("generally manageable academic demands")
 
     return (
-        "College student experiencing "
+        "College student weekly monitoring questionnaires. "
         + ", ".join(parts)
-        + f". MFBI {mfbi_score:.2f}, predicted burnout-related risk {risk_level}. "
-        "Provide evidence-based strategies for managing these factors and "
-        "preventing worsening burnout-related risk. Include study-rest balance, "
-        "workload planning, and when to contact school support."
+        + f". Next-week predicted score {mfbi_score:.2f}, predicted burnout-related risk {risk_level}. "
+        "Match simple student advice to the form questions: "
+        "PSS-10 (upset unexpectedly, unable to control important things, nervous and stressed, "
+        "could not cope, difficulties piling up), "
+        "Academic Workload (how heavy this week, overlapping deadlines, assignments taking more time, "
+        "volume of requirements, keep up with quizzes projects and readings), "
+        "Study Time (hours studied, assignments and projects, reviewing lessons, focused sessions), "
+        "Sleep Hours (hours slept per night, consistent schedule, rested upon waking, "
+        "lack of sleep affecting academics)."
     )
 
 

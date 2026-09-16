@@ -63,6 +63,8 @@ class RecommendationRequest(BaseModel):
     risk_level: Optional[str] = None
     prediction_model: Optional[str] = None
     selected_model: Optional[str] = None
+    next_week_score: Optional[float] = Field(default=None, ge=0, le=1)
+    next_week_risk: Optional[str] = None
 
     def resolved_scores(self) -> dict[str, float]:
         stress = self.stress_score if self.stress_score is not None else self.stress_level

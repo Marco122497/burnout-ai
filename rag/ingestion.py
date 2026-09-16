@@ -19,29 +19,29 @@ DOCUMENTS_DIR = Path(__file__).resolve().parent / "documents"
 # Fallback metadata when a file has no TITLE/CATEGORY header.
 DOCUMENT_META = {
     "01_stress_management.txt": {
-        "title": "Psychological Stress Guidance for College Students",
+        "title": "Advice for a worried, tense week",
         "category": "Stress",
-        "source": "Cohen et al. (1983); Lazarus & Folkman (1984); Amanvermez et al. (2022)",
+        "source": "Student well-being advice for PSS-10 stress",
     },
     "02_academic_workload.txt": {
-        "title": "Academic Workload Management",
+        "title": "Advice for a heavy classwork week",
         "category": "Academic Workload",
-        "source": "Liu, Ma, & Jia (2026); Wei et al. (2026)",
+        "source": "Student well-being advice for academic workload",
     },
     "03_sleep_management.txt": {
-        "title": "Sleep and Study-Rest Balance",
+        "title": "Advice for short or restless sleep",
         "category": "Sleep",
-        "source": "CDC (2024); Gardani et al. (2022)",
+        "source": "Student well-being advice for sleep and rest",
     },
     "04_study_time_and_learning.txt": {
-        "title": "Study Time and Effective Learning",
+        "title": "Advice for long study hours",
         "category": "Study Time",
-        "source": "McDermott (2021); Toppino & Pagano (2021); Liu, Ma, & Jia (2026)",
+        "source": "Student well-being advice for study time",
     },
     "05_student_support_and_referral.txt": {
-        "title": "Student Support, Guidance, and Referral",
+        "title": "Advice for asking a real person for help",
         "category": "Student Support",
-        "source": "Worsley, Pennington, & Corcoran (2022)",
+        "source": "Student well-being advice for school support",
     },
     "06_system_rag_rules.txt": {
         "title": "RAG System Rules for Academic Burnout Early Warning",

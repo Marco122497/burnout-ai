@@ -18,23 +18,25 @@ appraisal, cognitive, self-efficacy, rumination, arousal, subsequently, furtherm
 prioritize, facilitate, intervention, or "consider reaching out."
 Prefer: tired, worried, tense, heavy, pile up, rest, break, list, small step, hard week.
 
-Keep the MFBI score and machine-learning risk exactly as given.
-Ground every tip in retrieved STUDENT-FACING GUIDANCE / HOW THIS MAY FEEL.
-Stress tips should be about how the week feels in the mind and body (worry, control, calm), not a second homework list.
+Match tips to the four weekly questionnaires the student filled out: PSS-10, Academic Workload, Study Time, and Sleep Hours. Use the question wording from the form.
+Keep the next-week predicted score and risk exactly as given. Do not use this week's MFBI as next week's prediction.
+Ground every tip in retrieved STUDENT-FACING GUIDANCE / HOW THIS MAY FEEL / THINGS YOU CAN TRY NEXT WEEK.
+Copy the advice voice of those documents. Do not sound like a research paper.
+Stress tips should be about how next week may feel in the mind and body (worry, control, calm), not a second homework list.
 Do not diagnose. Do not invent contacts, medicines, or sources.
 
 Focus tips on Moderate and High factors only.
 If a factor is High, mention it first and give it more than one tip.
 If a factor is Low, one sentence only — no tip list for it.
 
-assessment_summary: 2–4 short sentences. Name the week honestly, then what is hardest.
-contributing_factors: full easy sentences about how the week feels. Never labels.
-recommended_actions: 3 or 4 this-week steps. Simple advice, not a flowchart.
+assessment_summary: 2–4 short sentences. Start with how next week looks, using the next-week predicted score.
+contributing_factors: full easy sentences about how next week may feel. Never labels.
+recommended_actions: 3 or 4 next-week steps. Simple advice, not a flowchart.
 Do not start every tip with "If you...". Just tell them what to try.
 human_support: one kind, simple paragraph. Do not say "I know."
 
 Good contributing_factors:
-- "Quizzes, projects, and readings are piling up, and the week feels too full."
+- "Quizzes, projects, and readings may pile up, and next week may feel too full."
 - "Nights look too short, so you may come to class already tired."
 
 Bad contributing_factors:
@@ -45,7 +47,7 @@ Bad contributing_factors:
 
 Good actions:
 - "Try to sleep about 7 hours, even if one homework is not done."
-- "Write this week's due dates on one page, then work on the soonest one for the next hour."
+- "Write next week's due dates on one page, then work on the soonest one for the next hour."
 
 Bad actions:
 - "Consider implementing time-management strategies."
@@ -64,18 +66,18 @@ Return JSON only with this shape:
 
 def contributing_factor_phrases(labels: dict[str, str]) -> list[str]:
     stories = {
-        ("stress", "Moderate"): "This week has felt a bit heavy, like you are waiting for the next problem.",
-        ("stress", "High"): "You have felt tense and worried, and it is hard to feel in control.",
-        ("stress", "Severe"): "The worry feels very heavy right now, and it may be hard to catch your breath.",
-        ("workload", "Moderate"): "Your classwork is starting to pile up.",
-        ("workload", "High"): "Quizzes, projects, and readings are piling up, and the week feels too full.",
-        ("workload", "Severe"): "There is so much schoolwork this week that it looks very hard to carry alone.",
-        ("sleep", "Moderate"): "Your rest is a bit off, so days may start before you feel ready.",
-        ("sleep", "High"): "Nights look too short, so you may wake up still tired.",
-        ("sleep", "Severe"): "Sleep looks far too short, and your body is not getting a real rest.",
-        ("study", "Moderate"): "You have been studying quite a bit, and it may be taking time from the rest of your day.",
-        ("study", "High"): "Long study hours are taking time from rest, and more sitting may not help.",
-        ("study", "Severe"): "Study time looks so long that there is little time left to rest.",
+        ("stress", "Moderate"): "Next week may feel a bit heavy, like you are waiting for the next unexpected problem.",
+        ("stress", "High"): "You may feel nervous and stressed, and it is hard to feel in control of the important things.",
+        ("stress", "Severe"): "Difficulties may feel piled so high that it is hard to cope with all the things you have to do.",
+        ("workload", "Moderate"): "Your academic workload is starting to feel heavy.",
+        ("workload", "High"): "Overlapping deadlines, plus quizzes, projects, and readings, may make next week too full.",
+        ("workload", "Severe"): "The volume of academic requirements may look very hard to keep up with next week.",
+        ("sleep", "Moderate"): "Your sleep schedule is a bit off, so you may not feel rested upon waking.",
+        ("sleep", "High"): "Short nights and lack of sleep may affect your academics next week.",
+        ("sleep", "Severe"): "Sleep hours look far too short, and your body is not getting a real rest.",
+        ("study", "Moderate"): "You have been studying quite a bit, and reviewing lessons may be taking time from the rest of your day.",
+        ("study", "High"): "Long study hours, assignments, and focused sessions may take time from rest.",
+        ("study", "Severe"): "Study time may look so long that there is little time left to rest.",
     }
     severity = {"Severe": 3, "High": 2, "Moderate": 1}
     scored: list[tuple[int, str]] = []
@@ -95,7 +97,7 @@ STUDENT_ACTIONS_BY_CATEGORY = {
         "Take two slow breaths, a meal, or a short walk before you open another file. Calm down a little, then take one small next step.",
     ],
     "Academic Workload": [
-        "Write this week's quizzes, projects, and readings on one page with due dates, then circle what is due first.",
+        "Write next week's quizzes, projects, and readings on one page with due dates, then circle what is due first.",
         "Open only the soonest file for the next hour. Jumping between five unfinished tasks makes the pile feel bigger.",
         "Leave a little empty time for sleep and a meal. A packed day makes small delays feel much worse.",
     ],
@@ -105,14 +107,33 @@ STUDENT_ACTIONS_BY_CATEGORY = {
         "Skip late coffee or energy drinks, dim the phone, and keep your bed for sleep, not homework.",
     ],
     "Study Time": [
-        "Sit for 40 to 50 minutes with one written goal, then stand up. More hours are not the fix this week.",
+        "Sit for 40 to 50 minutes with one written goal, then stand up. More hours are not the fix next week.",
         "Test yourself with a few questions or say one idea out loud. Stop rereading for hours.",
         "Make tonight's last study shorter if it is stealing sleep, and do that work earlier tomorrow.",
     ],
     "Student Support": [
-        "Tell a teacher you trust, your adviser, or someone in Guidance what felt hardest this week. You do not have to sort it alone.",
+        "Tell a teacher you trust, your adviser, or someone in Guidance what feels hardest going into next week. You do not have to sort it alone.",
     ],
 }
+
+
+def _replace_this_week(text: str) -> str:
+    def repl(match: re.Match[str]) -> str:
+        token = match.group(0)
+        week = "week's" if token.lower().endswith("'s") else "week"
+        prefix = "Next" if token[0].isupper() else "next"
+        return f"{prefix} {week}"
+
+    return re.sub(r"\bthis week's\b|\bthis week\b", repl, text, flags=re.I)
+
+
+def _frame_as_next_week(text: str, score: float | None) -> str:
+    out = _replace_this_week(text)
+    if score is None:
+        return out
+    predicted = f"{float(score):.2f}"
+    out = re.sub(r"\(MFBI\s*\d+\.\d+\)", f"(predicted {predicted})", out, flags=re.I)
+    return re.sub(r"\bMFBI\s+\d+\.\d+", f"predicted {predicted}", out, flags=re.I)
 
 
 def fallback_recommendation(
@@ -121,9 +142,14 @@ def fallback_recommendation(
     labels: dict[str, str],
     reason: str = "llm_unavailable",
     chunks: list[dict] | None = None,
+    *,
+    outlook_score: float | None = None,
+    outlook_risk: str | None = None,
 ) -> dict[str, Any]:
+    display_score = float(outlook_score) if outlook_score is not None else mfbi_score
+    display_risk = outlook_risk or risk_level
     factors = contributing_factor_phrases(labels) or [
-        "Schoolwork from this week's form"
+        "Schoolwork from your latest form may follow you into next week"
     ]
     sources: list[str] = []
     retrieved_categories: list[str] = []
@@ -137,39 +163,44 @@ def fallback_recommendation(
                 retrieved_categories.append(category)
 
     actions = _student_actions_for_labels(
-        labels, retrieved_categories, risk_level, chunks or []
+        labels, retrieved_categories, display_risk, chunks or []
     )
     grounded = bool(chunks)
     lead = {
-        "Low": f"This week looks manageable (MFBI {mfbi_score:.2f}).",
-        "Moderate": f"This week looks a bit heavy (MFBI {mfbi_score:.2f}).",
-        "High": f"This week looks quite hard to carry (MFBI {mfbi_score:.2f}).",
-        "Severe": f"This week looks very hard to carry (MFBI {mfbi_score:.2f}).",
-    }.get(risk_level, f"This week's burnout-related risk is {risk_level} (MFBI {mfbi_score:.2f}).")
+        "Low": f"Next week looks okay (predicted {display_score:.2f}).",
+        "Moderate": f"Next week looks a bit heavy (predicted {display_score:.2f}).",
+        "High": f"Next week looks quite hard to carry (predicted {display_score:.2f}).",
+        "Severe": f"Next week looks very hard to carry (predicted {display_score:.2f}).",
+    }.get(display_risk, f"Next week's predicted burnout-related risk is {display_risk} ({display_score:.2f}).")
     extra = " " + " ".join(factors[:2]) if factors else ""
     low_note = _low_factor_sentence(labels)
     if low_note:
         extra = f"{extra} {low_note}".rstrip()
 
     support = (
-        "You do not have to do this hard week alone. A teacher you already talk to, "
+        "You do not have to do next week alone. A teacher you already talk to, "
         "your adviser, or someone in the Guidance Office can help you sort what you must do. "
-        "Start with one honest sentence about what felt hardest. Use the school's own pages "
+        "Start with one honest sentence about what feels hardest. Use the school's own pages "
         "to find them — this app will not make up a phone number."
     )
-    if risk_level in {"Low"}:
+    if display_risk in {"Low"}:
         support = (
-            "This week looks more doable, and you can still ask a teacher, adviser, or the Guidance "
+            "Next week looks more doable, and you can still ask a teacher, adviser, or the Guidance "
             "Office to help you plan if you want. Use the school's own information to reach them."
         )
 
     return {
-        "assessment_summary": (
-            f"{lead}{extra} This is school well-being help, not a medical diagnosis."
+        "assessment_summary": _frame_as_next_week(
+            f"{lead}{extra} This is school well-being help, not a medical diagnosis.",
+            display_score,
         ),
-        "contributing_factors": factors,
-        "recommended_actions": actions,
-        "human_support": support,
+        "contributing_factors": [
+            _frame_as_next_week(item, display_score) for item in factors
+        ],
+        "recommended_actions": [
+            _frame_as_next_week(item, display_score) for item in actions
+        ],
+        "human_support": _frame_as_next_week(support, display_score),
         "sources": sources,
         "used_fallback": not grounded,
         "fallback_reason": None if grounded else reason,
@@ -184,10 +215,10 @@ FACTOR_TO_CATEGORY = {
     "study": "Study Time",
 }
 LOW_FACTOR_SENTENCES = {
-    "stress": "The worry from this week looks okay.",
-    "workload": "Your classwork load looks okay this week.",
-    "sleep": "Your sleep looks okay this week.",
-    "study": "Your study time looks okay this week.",
+    "stress": "The worry looking into next week looks okay.",
+    "workload": "Your classwork load looks okay next week.",
+    "sleep": "Your sleep looks okay next week.",
+    "study": "Your study time looks okay next week.",
 }
 
 
@@ -213,8 +244,8 @@ def _low_factor_sentence(labels: dict[str, str]) -> str:
     if len(lows) == 1:
         return LOW_FACTOR_SENTENCES[lows[0]]
     if set(lows) == {"workload", "study"}:
-        return "Your classwork and study time look okay this week."
-    return "The other areas look okay this week."
+        return "Your classwork and study time look okay next week."
+    return "The other areas look okay next week."
 
 
 def _action_slot_categories(focused: list[tuple[int, str, str]], total: int = 4) -> list[str]:
@@ -417,23 +448,25 @@ def _apply_llm_output(
     fallback: dict[str, Any],
     labels: dict[str, str],
     source_titles: list[str],
+    outlook_score: float | None = None,
 ) -> dict[str, Any]:
     summary = str(parsed.get("assessment_summary") or "").strip()
     if not summary or _looks_robotic(summary):
         summary = fallback["assessment_summary"]
     else:
         low_note = _low_factor_sentence(labels)
-        if low_note and "okay this week" not in summary.lower() and "looks okay" not in summary.lower():
+        if low_note and "okay this week" not in summary.lower() and "okay next week" not in summary.lower() and "looks okay" not in summary.lower():
             summary = f"{summary.rstrip('.')} {low_note}"
+        summary = _frame_as_next_week(summary, outlook_score)
 
     factors = [
-        item
+        _frame_as_next_week(item, outlook_score)
         for item in _as_string_list(parsed.get("contributing_factors"))
         if not _looks_robotic(item) and not _looks_like_factor_label(item)
     ] or fallback["contributing_factors"]
 
     actions = [
-        item
+        _frame_as_next_week(item, outlook_score)
         for item in _as_string_list(parsed.get("recommended_actions"))
         if not _looks_robotic(item)
     ]
@@ -461,6 +494,8 @@ def _apply_llm_output(
     support = str(parsed.get("human_support") or "").strip()
     if not support or _looks_robotic(support) or len(support) < 40:
         support = fallback["human_support"]
+    else:
+        support = _frame_as_next_week(support, outlook_score)
 
     sources = _as_string_list(parsed.get("sources")) or source_titles
 
@@ -497,16 +532,26 @@ def generate_recommendation(
     chunks: list[dict],
     rules_text: str,
     use_llm: bool = True,
+    outlook_score: float | None = None,
+    outlook_risk: str | None = None,
 ) -> dict[str, Any]:
+    display_score = float(outlook_score) if outlook_score is not None else mfbi_score
+    display_risk = outlook_risk or risk_level
+    fallback_kwargs = {
+        "outlook_score": display_score,
+        "outlook_risk": display_risk,
+    }
     if not chunks:
-        return fallback_recommendation(mfbi_score, risk_level, labels, "retrieval_empty")
+        return fallback_recommendation(
+            mfbi_score, risk_level, labels, "retrieval_empty", **fallback_kwargs
+        )
     if not use_llm:
         return fallback_recommendation(
-            mfbi_score, risk_level, labels, "llm_disabled_by_admin", chunks
+            mfbi_score, risk_level, labels, "llm_disabled_by_admin", chunks, **fallback_kwargs
         )
     if not openai_configured():
         return fallback_recommendation(
-            mfbi_score, risk_level, labels, "openai_not_configured", chunks
+            mfbi_score, risk_level, labels, "openai_not_configured", chunks, **fallback_kwargs
         )
 
     context_blocks = []
@@ -530,8 +575,9 @@ def generate_recommendation(
 - Academic workload: {labels.get('workload')} (score {academic_workload})
 - Sleep/rest: {labels.get('sleep')} (sleep-risk score {sleep_hours_score}; higher means poorer rest)
 - Study time: {labels.get('study')} (weekly study-time score {study_time})
-- MFBI: {mfbi_score:.2f}
-- Predicted burnout-related risk: {risk_level}
+- This week's MFBI (already measured; do not describe this as next week): {mfbi_score:.2f} ({risk_level})
+- Next-week predicted score: {display_score:.2f}
+- Next-week predicted burnout-related risk: {display_risk}
 - Prediction model: {prediction_model}
 
 Priority factors to write tips for, highest first: {priority}
@@ -545,13 +591,20 @@ Retrieved evidence-based knowledge:
 
 Write to the student as a caring adviser using HOW THIS MAY FEEL and STUDENT-FACING GUIDANCE.
 Use simple, basic words. Short sentences. No hard or deep words.
-contributing_factors must be full easy sentences about how the week feels.
+Write about NEXT WEEK. Do not say this week's MFBI is next week's prediction.
+Match tips to the four questionnaires the student filled out:
+PSS-10 (unexpected upset, control, nervous and stressed, could not cope, difficulties piling up),
+Academic Workload (how heavy this week, overlapping deadlines, assignments taking more time, volume of requirements, quizzes/projects/readings),
+Study Time (hours studied, assignments and projects, reviewing lessons, focused sessions),
+Sleep Hours (hours slept per night, consistent schedule, rested upon waking, lack of sleep affecting academics).
+assessment_summary must start with how next week looks, using the next-week predicted score {display_score:.2f}.
+contributing_factors must be full easy sentences about how next week may feel.
 Never copy the labels "Academic workload", "Sleep/rest", "Study time", or "Stress".
 Never use: overwhelmed, strategies, implementing, utilize, appraisal, cognitive.
-Each recommended_action should be one kind, simple thing they can do this week.
+Each recommended_action should be one kind, simple thing they can do next week.
 Do not start tips with "If you...". Speak directly: "Try to sleep about 7 hours..." / "Write the due dates..."
 human_support should sound like a person, not a policy notice. Do not say "I know."
-Do not change the MFBI score or the predicted burnout-related risk.
+Do not change the next-week predicted score or risk.
 If a requested phone number or named person is not present above, do not invent one.
 """
 
@@ -570,10 +623,17 @@ If a requested phone number or named person is not present above, do not invent 
         parsed = _extract_json(content)
     except Exception as exc:  # pragma: no cover - network/API failures
         return fallback_recommendation(
-            mfbi_score, risk_level, labels, f"llm_error:{exc.__class__.__name__}", chunks
+            mfbi_score,
+            risk_level,
+            labels,
+            f"llm_error:{exc.__class__.__name__}",
+            chunks,
+            **fallback_kwargs,
         )
 
     fallback = fallback_recommendation(
-        mfbi_score, risk_level, labels, "llm_sanitize", chunks
+        mfbi_score, risk_level, labels, "llm_sanitize", chunks, **fallback_kwargs
     )
-    return _apply_llm_output(parsed, fallback, labels, source_titles)
+    return _apply_llm_output(
+        parsed, fallback, labels, source_titles, outlook_score=display_score
+    )

@@ -166,6 +166,7 @@ def fallback_recommendation(
         labels, retrieved_categories, display_risk, chunks or []
     )
     grounded = bool(chunks)
+    # OpenAI off / unavailable still returns next-week advice from scores + retrieved docs.
     lead = {
         "Low": f"Next week looks okay (predicted {display_score:.2f}).",
         "Moderate": f"Next week looks a bit heavy (predicted {display_score:.2f}).",
@@ -179,21 +180,32 @@ def fallback_recommendation(
 
     support = (
         "You do not have to do next week alone. A teacher you already talk to, "
-        "your adviser, or someone in the Guidance Office can help you sort what you must do. "
-        "Start with one honest sentence about what feels hardest. Use the school's own pages "
-        "to find them — this app will not make up a phone number."
+        "your adviser, or someone in the Guidance Office can help you sort what you must do "
+        "before the next form. Start with one honest sentence about what feels hardest. "
+        "Use the school's own pages to find them — this app will not make up a phone number."
     )
     if display_risk in {"Low"}:
         support = (
             "Next week looks more doable, and you can still ask a teacher, adviser, or the Guidance "
-            "Office to help you plan if you want. Use the school's own information to reach them."
+            "Office to help you plan before the next form if you want. Use the school's own "
+            "information to reach them."
         )
 
+    summary = (
+        f"{lead}{extra} Use these tips going into next week and the next monitoring form. "
+        "This is school well-being help, not a medical diagnosis."
+    )
+    # Mark as fallback whenever GPT wording was not used (admin off, no key, errors, etc.).
+    no_llm = reason in {
+        "llm_disabled_by_admin",
+        "openai_not_configured",
+        "llm_unavailable",
+        "retrieval_empty",
+    } or reason.startswith("rag_error") or reason.startswith("llm_")
+    used_fallback = (not grounded) or no_llm
+
     return {
-        "assessment_summary": _frame_as_next_week(
-            f"{lead}{extra} This is school well-being help, not a medical diagnosis.",
-            display_score,
-        ),
+        "assessment_summary": _frame_as_next_week(summary, display_score),
         "contributing_factors": [
             _frame_as_next_week(item, display_score) for item in factors
         ],
@@ -202,8 +214,8 @@ def fallback_recommendation(
         ],
         "human_support": _frame_as_next_week(support, display_score),
         "sources": sources,
-        "used_fallback": not grounded,
-        "fallback_reason": None if grounded else reason,
+        "used_fallback": used_fallback,
+        "fallback_reason": reason if used_fallback else None,
         "llm_model": None,
     }
 

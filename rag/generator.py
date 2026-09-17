@@ -181,14 +181,12 @@ def fallback_recommendation(
     support = (
         "You do not have to do next week alone. A teacher you already talk to, "
         "your adviser, or someone in the Guidance Office can help you sort what you must do "
-        "before the next form. Start with one honest sentence about what feels hardest. "
-        "Use the school's own pages to find them — this app will not make up a phone number."
+        "before the next form. Start with one honest sentence about what feels hardest."
     )
     if display_risk in {"Low"}:
         support = (
             "Next week looks more doable, and you can still ask a teacher, adviser, or the Guidance "
-            "Office to help you plan before the next form if you want. Use the school's own "
-            "information to reach them."
+            "Office to help you plan before the next form if you want."
         )
 
     summary = (
@@ -330,6 +328,10 @@ def _extract_student_facing_by_category(chunks: list[dict]) -> dict[str, list[st
         "do not diagnose",
         "the system",
         "recommend ",
+        "match advice",
+        "do not start every tip",
+        "use the school's own pages",
+        "this app will not make up",
     )
     by_category: dict[str, list[str]] = {}
     for chunk in chunks:

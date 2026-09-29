@@ -50,8 +50,10 @@ Good actions:
 - "Write next week's due dates on one page, then work on the soonest one for the next hour."
 
 Bad actions:
+- "Q1: Try to sleep about 7 hours..."
 - "Consider implementing time-management strategies."
 - "If these feelings continue, consider reaching out."
+Never start a tip with Q1, Q2, ST1, or any questionnaire number. Those labels are for retrieval only.
 
 Return JSON only with this shape:
 {
@@ -115,6 +117,30 @@ STUDENT_ACTIONS_BY_CATEGORY = {
         "Tell a teacher you trust, your adviser, or someone in Guidance what feels hardest going into next week. You do not have to sort it alone.",
     ],
 }
+
+
+_QUESTIONNAIRE_LABEL = re.compile(
+    r"^(?:Q(?:uestion)?\s*\d+|ST\d+|PSS-?\d+)\s*[:.)\-]\s*",
+    re.I,
+)
+_QUESTIONNAIRE_BULLET = re.compile(
+    r"(?m)^(\s*[-*]\s*)(?:Q(?:uestion)?\s*\d+|ST\d+|PSS-?\d+)\s*[:.)\-]\s*",
+    re.I,
+)
+
+
+def _strip_questionnaire_label(text: str) -> str:
+    """Drop Q1:/Q2: prefixes so students never see questionnaire item numbers."""
+    previous = None
+    cleaned = text.strip()
+    while previous != cleaned:
+        previous = cleaned
+        cleaned = _QUESTIONNAIRE_LABEL.sub("", cleaned).strip()
+    return cleaned
+
+
+def _strip_questionnaire_labels_in_text(text: str) -> str:
+    return _QUESTIONNAIRE_BULLET.sub(r"\1", text)
 
 
 def _replace_this_week(text: str) -> str:
@@ -346,7 +372,7 @@ def _extract_student_facing_by_category(chunks: list[dict]) -> dict[str, list[st
         body = content[idx + len(marker) :]
         in_actions = True
         for raw in body.splitlines():
-            line = raw.strip().lstrip("-*").strip()
+            line = _strip_questionnaire_label(raw.strip().lstrip("-*").strip())
             heading = line.upper()
             if re.match(r"^\d+\.", line) or heading.startswith("RETRIEVAL KEYWORDS"):
                 break
@@ -439,7 +465,11 @@ def _as_string_list(value: Any) -> list[str]:
         value = [value]
     if not isinstance(value, list):
         return []
-    return [str(item).strip() for item in value if str(item).strip()]
+    return [
+        _strip_questionnaire_label(str(item))
+        for item in value
+        if _strip_questionnaire_label(str(item))
+    ]
 
 
 PRIORITY_ACTION_HINTS = {
@@ -577,7 +607,7 @@ def generate_recommendation(
         context_blocks.append(
             f"Category: {chunk.get('category')}\n"
             f"Title: {title}\n"
-            f"{chunk.get('content')}"
+            f"{_strip_questionnaire_labels_in_text(str(chunk.get('content') or ''))}"
         )
 
     focused = _focused_factors(labels)
@@ -616,6 +646,7 @@ contributing_factors must be full easy sentences about how next week may feel.
 Never copy the labels "Academic workload", "Sleep/rest", "Study time", or "Stress".
 Never use: overwhelmed, strategies, implementing, utilize, appraisal, cognitive.
 Each recommended_action should be one kind, simple thing they can do next week.
+Do not start tips with "Q1:", "Q2:", or any questionnaire number. Drop those labels if they appear in the knowledge text.
 Do not start tips with "If you...". Speak directly: "Try to sleep about 7 hours..." / "Write the due dates..."
 human_support should sound like a person, not a policy notice. Do not say "I know."
 Do not change the next-week predicted score or risk.

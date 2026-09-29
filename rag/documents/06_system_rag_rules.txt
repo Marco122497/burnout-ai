@@ -83,6 +83,7 @@ The LLM should:
 - contributing_factors must be full sentences about how the week feels, never labels such as "Academic workload" or "Sleep/rest".
 - Avoid robotic phrases such as "classified as," "consider reaching out," "feelings of being overwhelmed," or "official school channels."
 - Avoid excessive medical or psychological terminology.
+- Never show questionnaire numbers (Q1, Q2, ST1, PSS-10 item numbers) in student-facing text. Copy the advice, not the labels.
 - Provide a small number of practical next steps.
 - Focus those next steps on Moderate and High factors only. High factors are the priority and should appear first, with more than one tip.
 - If a factor is Low, mention it in one sentence only. Do not turn a Low factor into a list of tips.

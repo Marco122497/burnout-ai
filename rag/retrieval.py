@@ -7,8 +7,9 @@ It only finds relevant chunks after MFBI + ML have already run.
 
 from __future__ import annotations
 
+import re
+
 from mfbi.calculator import classify_mfbi_score, pss_stress_label
-from rag.embeddings import embed_query
 
 from app.database import supabase
 
@@ -107,28 +108,39 @@ def _unique_chunks(rows: list[dict]) -> list[dict]:
     return unique
 
 
-def _search(embedding: list[float], match_count: int = 8, threshold: float = 0.18) -> list[dict]:
-    response = supabase.rpc(
-        "match_rag_documents",
-        {
-            "query_embedding": embedding,
-            "match_threshold": threshold,
-            "match_count": match_count,
-        },
-    ).execute()
+def _terms(text: str) -> set[str]:
+    return set(re.findall(r"[a-z]{4,}", text.lower()))
+
+
+def _score(query: str, content: str) -> float:
+    query_terms = _terms(query)
+    content_terms = _terms(content)
+    if not query_terms or not content_terms:
+        return 0.0
+    return len(query_terms & content_terms) / len(query_terms)
+
+
+def _load_rows(categories: list[str] | None = None) -> list[dict]:
+    query = supabase.table("rag_documents").select(
+        "id, title, category, content, source, chunk_number"
+    )
+    if categories:
+        query = query.in_("category", categories)
+    response = query.order("chunk_number").execute()
     return list(response.data or [])
 
 
-def _search_category(embedding: list[float], category: str, match_count: int = 2) -> list[dict]:
-    response = supabase.rpc(
-        "match_rag_documents_by_category",
-        {
-            "query_embedding": embedding,
-            "filter_category": category,
-            "match_count": match_count,
-        },
-    ).execute()
-    return list(response.data or [])
+def _rank(rows: list[dict], query: str, limit: int) -> list[dict]:
+    ranked = []
+    for row in rows:
+        ranked.append(
+            {
+                **row,
+                "similarity": _score(query, str(row.get("content") or "")),
+            }
+        )
+    ranked.sort(key=lambda item: float(item.get("similarity") or 0), reverse=True)
+    return ranked[:limit]
 
 
 def retrieve_chunks(
@@ -148,9 +160,6 @@ def retrieve_chunks(
         mfbi_score,
         risk_level,
     )
-    embedding = embed_query(query)
-    rows = _search(embedding, match_count=max(top_k, 8))
-
     labels = factor_labels(
         stress_score, academic_workload, sleep_hours_score, study_time
     )
@@ -162,14 +171,13 @@ def retrieve_chunks(
     if not elevated:
         elevated = list(labels.keys())
 
-    for factor in elevated:
-        category = CATEGORY_BY_FACTOR[factor]
-        rows.extend(_search_category(embedding, category, match_count=2))
-
+    categories = [CATEGORY_BY_FACTOR[factor] for factor in elevated]
     if risk_level in {"High", "Severe"} or any(
         labels[factor] in {"High", "Severe"} for factor in labels
     ):
-        rows.extend(_search_category(embedding, "Student Support", match_count=1))
+        categories.append("Student Support")
+
+    rows = _rank(_load_rows(categories), query, max(top_k, 8))
 
     ranked = sorted(rows, key=lambda item: float(item.get("similarity") or 0), reverse=True)
     filtered = [
@@ -215,8 +223,7 @@ def format_context(chunks: list[dict]) -> str:
 
 
 def retrieve_for_test_query(question: str, match_count: int = 5) -> list[dict]:
-    embedding = embed_query(question)
-    return _search(embedding, match_count=match_count, threshold=0.15)
+    return _rank(_load_rows(), question, match_count)
 
 
 if __name__ == "__main__":

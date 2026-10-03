@@ -63,7 +63,10 @@ Do not replace this with only a to-do list.
 One or two tips from Q1, Q2, Q3, or Q8.
 
 14. ADVICE WHEN STRESS LOOKS OKAY
-One kind sentence only. Do not imply they have no school difficulty.
+One kind sentence only. Do not imply they have no school difficulty. Stress does not come first when its score is Low.
+
+14A. WHEN TO PRIORITIZE STRESS
+If stress is High, name it among the priorities, after any factor with a higher score. Example: sleep 0.90 high and academic workload 0.75 high come before stress 0.68 high. Study time 0.18 low does not come first.
 
 15. STUDENT-FACING GUIDANCE
 Write like a caring adviser. Use "you." Use simple, basic words. Short sentences. Do not diagnose.

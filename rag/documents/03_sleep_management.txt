@@ -46,7 +46,10 @@ Never tell them to give up sleep to finish workload or add study hours.
 One or two tips from Q1 or Q2: hours or a steadier bedtime.
 
 9. ADVICE WHEN SLEEP LOOKS OKAY
-One kind sentence only. Focus advice on the harder parts of next week.
+One kind sentence only. Focus advice on the harder parts of next week. Sleep does not come first when its score is Low.
+
+9A. WHEN TO PRIORITIZE SLEEP
+If sleep risk is the highest of the four scores, name it first. Example: sleep 0.90 high comes before academic workload 0.75 high, stress 0.68 high, and study time 0.18 low. Say the student should prioritize sleep, then the other High factors. Do not tell them to give up sleep to finish schoolwork.
 
 10. STUDENT-FACING GUIDANCE
 Write like a caring adviser. Use "you." Use simple, basic words. Short sentences. Do not diagnose.

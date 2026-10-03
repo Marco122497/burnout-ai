@@ -109,3 +109,6 @@ AI_API_URL=https://burnout-ai-1.onrender.com
 For local uvicorn instead: `AI_API_URL=http://127.0.0.1:8000`.
 
 `BURNOUT_AI_URL` is also accepted as an alias.
+
+
+git push origin HEAD:main

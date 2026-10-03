@@ -162,6 +162,46 @@ def _frame_as_next_week(text: str, score: float | None) -> str:
     return re.sub(r"\bMFBI\s+\d+\.\d+", f"predicted {predicted}", out, flags=re.I)
 
 
+def _score_band(score: float) -> str:
+    if score <= 0.39:
+        return "low"
+    if score <= 0.69:
+        return "moderate"
+    return "high"
+
+
+def _outlook_lead(current_score: float, next_score: float, next_risk: str) -> str:
+    current = f"{float(current_score):.2f}"
+    nxt = f"{float(next_score):.2f}"
+    delta = round(float(next_score) - float(current_score), 2)
+    current_band = _score_band(float(current_score))
+    next_band = (next_risk or _score_band(float(next_score))).lower()
+    if abs(delta) < 0.02:
+        return (
+            f"Next week stays about the same as this week ({current}) "
+            f"and is still {next_band}."
+        )
+    if current_band == next_band and delta < 0:
+        return (
+            f"Next week is a bit lower than this week, from {current} to {nxt}, "
+            f"but it is still {next_band}."
+        )
+    if current_band == next_band and delta > 0:
+        return (
+            f"Next week is a bit higher than this week, from {current} to {nxt}, "
+            f"but it is still {next_band}."
+        )
+    if delta < 0:
+        return (
+            f"Next week is lower than this week, from {current_band} {current} "
+            f"to {next_band} {nxt}."
+        )
+    return (
+        f"Next week is higher than this week, from {current_band} {current} "
+        f"to {next_band} {nxt}."
+    )
+
+
 def fallback_recommendation(
     mfbi_score: float,
     risk_level: str,
@@ -193,12 +233,7 @@ def fallback_recommendation(
     )
     grounded = bool(chunks)
     # OpenAI off / unavailable still returns next-week advice from scores + retrieved docs.
-    lead = {
-        "Low": f"Next week looks okay (predicted {display_score:.2f}).",
-        "Moderate": f"Next week looks a bit heavy (predicted {display_score:.2f}).",
-        "High": f"Next week looks quite hard to carry (predicted {display_score:.2f}).",
-        "Severe": f"Next week looks very hard to carry (predicted {display_score:.2f}).",
-    }.get(display_risk, f"Next week's predicted burnout-related risk is {display_risk} ({display_score:.2f}).")
+    lead = _outlook_lead(mfbi_score, display_score, display_risk)
     extra = " " + " ".join(factors[:2]) if factors else ""
     low_note = _low_factor_sentence(labels)
     if low_note:
@@ -641,7 +676,10 @@ PSS-10 (unexpected upset, control, nervous and stressed, could not cope, difficu
 Academic Workload (how heavy this week, overlapping deadlines, assignments taking more time, volume of requirements, quizzes/projects/readings),
 Study Time (hours studied, assignments and projects, reviewing lessons, focused sessions),
 Sleep Hours (hours slept per night, consistent schedule, rested upon waking, lack of sleep affecting academics).
-assessment_summary must start with how next week looks, using the next-week predicted score {display_score:.2f}.
+assessment_summary must start with how next week compares with this week's MFBI {mfbi_score:.2f}.
+If the next-week score {display_score:.2f} is a little lower but the risk band is still {display_risk}, say it is a bit lower and still {display_risk.lower()}.
+If it is a little higher but the band is unchanged, say it is a bit higher and still {display_risk.lower()}.
+Do not describe this week's MFBI as the next-week prediction.
 contributing_factors must be full easy sentences about how next week may feel.
 Never copy the labels "Academic workload", "Sleep/rest", "Study time", or "Stress".
 Never use: overwhelmed, strategies, implementing, utilize, appraisal, cognitive.

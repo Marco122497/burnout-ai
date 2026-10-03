@@ -85,8 +85,14 @@ The LLM should:
 - Avoid excessive medical or psychological terminology.
 - Never show questionnaire numbers (Q1, Q2, ST1, PSS-10 item numbers) in student-facing text. Copy the advice, not the labels.
 - Provide a small number of practical next steps.
-- Focus those next steps on Moderate and High factors only. High factors are the priority and should appear first, with more than one tip.
-- If a factor is Low, mention it in one sentence only. Do not turn a Low factor into a list of tips.
+- Start the summary by comparing this week's MFBI with the next-week predicted score. Do not call this week's MFBI the next-week prediction.
+- If next week is a little lower but the risk band is the same, say it is a bit lower and still that band. Example: this week 0.63 moderate, next week 0.57 moderate.
+- If next week is a little higher but the band is the same, say it is a bit higher and still that band.
+- If the band changes, name both bands.
+- Then state which variables to prioritize. Order them by the factor score, highest first. Use the four names: sleep, academic workload, stress, and study time. Include the score and the level.
+- Prioritize High factors before Moderate factors. A Low factor does not come first.
+- If a factor is Low, mention it in one sentence only. Do not turn a Low factor into a list of tips. Say it does not need to come first.
+- High factors should appear first in the tips, with more than one tip. Sleep at 0.90 high comes before academic workload at 0.75 high, which comes before stress at 0.68 high. Study time at 0.18 low does not come first.
 - Mention human support when appropriate, without repeating the same referral in every list.
 - Avoid making unsupported claims.
 
@@ -119,36 +125,30 @@ Do not produce long essays for students unless they request more detail.
 
 9. EXAMPLE
 Input:
-Risk = High
+This week MFBI = 0.63 (Moderate)
+Next week prediction = 0.57 (Moderate)
+Stress = 0.68 High
+Academic workload = 0.75 High
+Study time = 0.18 Low
+Sleep = 0.90 High
+
+Expected opening:
+"Next week is a bit lower than this week, from 0.63 to 0.57, but it is still moderate. Prioritize sleep (0.90, high) first, then academic workload (0.75, high), then stress (0.68, high). Study time (0.18) is low, so it does not need to come first."
+
+Then keep the factor sentences and tips in that same order: sleep, academic workload, stress. Do not lead with study time.
+
+Second example:
+This week MFBI = 0.50 (Moderate)
+Next week prediction = 0.78 (High)
 Stress = High
 Workload = High
 Sleep = Low
 Study Time = High
 
-Expected response structure:
-"Next week looks quite hard to carry (predicted 0.78). School may feel tense, the load looks too full, and rest may not be helping you. This is school well-being help, not a medical diagnosis."
+Expected opening:
+"Next week is higher than this week, from moderate 0.50 to high 0.78. Prioritize stress, academic workload, and study time. Sleep is low, so it does not need to come first."
 
-"What may weigh on you next week:
-- You may feel tense and worried, and it is hard to feel in control.
-- Quizzes, projects, and readings may pile up, and next week may feel too full.
-- Long study hours may take time from rest, and more sitting may not help."
-
-"Things you can try next week:
-1. Name the one worry sitting heaviest, so it is not going round and round in your head.
-2. Write next week's due dates on one page, then spend the next hour on the soonest one only.
-3. Try to sleep about 7 hours, even if one homework is not done.
-4. Sit for 40 to 50 minutes with one written goal, then take a real break.
-5. Tell a teacher you trust, your adviser, or someone in Guidance what feels hardest."
-
-Second example:
-Risk = Moderate
-Stress = Moderate
-Workload = Low
-Sleep = High
-Study Time = Low
-
-Expected emphasis:
-Sleep is the priority. Give two sleep tips first. Stress gets simple tips. Workload and study time get one sentence only, such as "Your classwork and study time look okay next week."
+Give High factors more than one tip. A Low factor gets one sentence only.
 
 10. IMPORTANT DISTINCTION
 The LLM must not change the MFBI score or ML prediction. Its job is explanation and guidance only.

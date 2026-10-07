@@ -99,7 +99,7 @@ STUDENT_ACTIONS_BY_CATEGORY = {
         "Take two slow breaths, a meal, or a short walk before you open another file. Calm down a little, then take one small next step.",
     ],
     "Academic Workload": [
-        "Write next week's quizzes, projects, and readings on one page with due dates, then circle what is due first.",
+        "Write your schoolwork on one page with due dates, then circle what is due first.",
         "Open only the soonest file for the next hour. Jumping between five unfinished tasks makes the pile feel bigger.",
         "Leave a little empty time for sleep and a meal. A packed day makes small delays feel much worse.",
     ],

@@ -90,8 +90,9 @@ def build_retrieval_query(
         "Academic Workload (how heavy this week, overlapping deadlines, assignments taking more time, "
         "volume of requirements, keep up with quizzes projects and readings), "
         "Study Time (hours studied, assignments and projects, reviewing lessons, focused sessions), "
-        "Sleep Hours (hours slept per night, consistent schedule, rested upon waking, "
-        "lack of sleep affecting academics)."
+        "Sleep Hours (enough actual sleep each night, overall sleep quality, "
+        "difficulty falling asleep, difficulty staying awake during the day, "
+        "enough sleep to function well)."
     )
 
 

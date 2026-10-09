@@ -46,7 +46,7 @@ Bad contributing_factors:
 - "classified as High risk"
 
 Good actions:
-- "Try to sleep about 7 hours, even if one homework is not done."
+- "Keep a bedtime that gives you enough sleep, even if one homework is not done."
 - "Write next week's due dates on one page, then work on the soonest one for the next hour."
 
 Bad actions:
@@ -74,9 +74,9 @@ def contributing_factor_phrases(labels: dict[str, str]) -> list[str]:
         ("workload", "Moderate"): "Your academic workload is starting to feel heavy.",
         ("workload", "High"): "Overlapping deadlines, plus quizzes, projects, and readings, may make next week too full.",
         ("workload", "Severe"): "The volume of academic requirements may look very hard to keep up with next week.",
-        ("sleep", "Moderate"): "Your sleep schedule is a bit off, so you may not feel rested upon waking.",
-        ("sleep", "High"): "Short nights and lack of sleep may affect your academics next week.",
-        ("sleep", "Severe"): "Sleep hours look far too short, and your body is not getting a real rest.",
+        ("sleep", "Moderate"): "You may not have gotten enough sleep, so the day can start tired.",
+        ("sleep", "High"): "Trouble falling asleep, or not enough sleep to function in the day, may show up next week.",
+        ("sleep", "Severe"): "Sleep may feel too short and too hard to get, so staying awake for class and activities is harder.",
         ("study", "Moderate"): "You have been studying quite a bit, and reviewing lessons may be taking time from the rest of your day.",
         ("study", "High"): "Long study hours, assignments, and focused sessions may take time from rest.",
         ("study", "Severe"): "Study time may look so long that there is little time left to rest.",
@@ -104,9 +104,9 @@ STUDENT_ACTIONS_BY_CATEGORY = {
         "Leave a little empty time for sleep and a meal. A packed day makes small delays feel much worse.",
     ],
     "Sleep": [
-        "Try to sleep about 7 hours and keep a bedtime you can keep, even if one homework is not done.",
-        "Move one study block earlier so you are not working in bed after midnight.",
-        "Skip late coffee or energy drinks, dim the phone, and keep your bed for sleep, not homework.",
+        "Keep a bedtime that gives you enough sleep, even if one homework is not done.",
+        "Stop schoolwork before bed, dim the phone, and keep the bed for sleep so it is easier to fall asleep.",
+        "If you are sleepy during class or activities, move one study block earlier instead of working late.",
     ],
     "Study Time": [
         "Sit for 40 to 50 minutes with one written goal, then stand up. More hours are not the fix next week.",
@@ -675,7 +675,7 @@ Match tips to the four questionnaires the student filled out:
 PSS-10 (unexpected upset, control, nervous and stressed, could not cope, difficulties piling up),
 Academic Workload (how heavy this week, overlapping deadlines, assignments taking more time, volume of requirements, quizzes/projects/readings),
 Study Time (hours studied, assignments and projects, reviewing lessons, focused sessions),
-Sleep Hours (hours slept per night, consistent schedule, rested upon waking, lack of sleep affecting academics).
+Sleep Hours (enough actual sleep each night, overall sleep quality, difficulty falling asleep, difficulty staying awake during the day, enough sleep to function well).
 assessment_summary must start with how next week compares with this week's MFBI {mfbi_score:.2f}.
 If the next-week score {display_score:.2f} is a little lower but the risk band is still {display_risk}, say it is a bit lower and still {display_risk.lower()}.
 If it is a little higher but the band is unchanged, say it is a bit higher and still {display_risk.lower()}.
@@ -685,7 +685,7 @@ Never copy the labels "Academic workload", "Sleep/rest", "Study time", or "Stres
 Never use: overwhelmed, strategies, implementing, utilize, appraisal, cognitive.
 Each recommended_action should be one kind, simple thing they can do next week.
 Do not start tips with "Q1:", "Q2:", or any questionnaire number. Drop those labels if they appear in the knowledge text.
-Do not start tips with "If you...". Speak directly: "Try to sleep about 7 hours..." / "Write the due dates..."
+Do not start tips with "If you...". Speak directly: "Keep a bedtime that gives you enough sleep..." / "Write the due dates..."
 human_support should sound like a person, not a policy notice. Do not say "I know."
 Do not change the next-week predicted score or risk.
 If a requested phone number or named person is not present above, do not invent one.

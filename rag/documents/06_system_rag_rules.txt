@@ -60,11 +60,12 @@ Study Time:
 3. Hours reviewing lessons this week
 4. Hours in focused study sessions this week
 
-Sleep Hours:
-1. On average, how many hours did you sleep per night this week?
-2. How consistent was your sleep schedule this week?
-3. How rested did you feel upon waking?
-4. How often did lack of sleep affect your academics this week?
+Sleep Hours — Strongly Disagree to Strongly Agree:
+1. During the past week, I obtained enough actual sleep each night.
+2. During the past week, I considered my overall sleep quality to be good.
+3. During the past week, I had difficulty falling asleep at night.
+4. During the past week, I had difficulty staying awake while doing activities during the day.
+5. During the past week, I had difficulty getting enough sleep to function well during the day.
 
 Do not retrieve unrelated topics merely to make the answer longer.
 

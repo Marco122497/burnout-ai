@@ -6,44 +6,43 @@ PURPOSE: Advice tied to the Sleep Hours questionnaire items in weekly monitoring
 Variable: Sleep
 Questionnaire: Sleep Hours
 The form asks how you slept this week. Higher sleep risk means poorer rest. This is wellness advice, not a medical diagnosis of insomnia.
-Common answer styles on the form:
-- Hours slept: less than 5 hours, 5–6, 6–7, 7–8, more than 8
-- Consistency or rest: from very inconsistent / not rested to very consistent / fully rested
-- How often lack of sleep hurt school: Never to Very often
-- Some forms use Strongly Disagree to Strongly Agree for sleep statements
-Most adults need at least 7 hours of sleep.
+Answer style: Strongly Disagree to Strongly Agree.
+Questions 1 and 2 are positive. Disagreeing means sleep was not enough or did not feel good, so sleep risk goes up.
+Questions 3, 4, and 5 are negative. Agreeing means sleep was harder, so those items are reverse scored and sleep risk goes up.
+Most adults need enough sleep to function the next day, often about 7 hours.
 
-2. Q1. On average, how many hours did you sleep per night this week?
-Choices on many forms: 1 = less than 5 hours, 2 = 5–6 hours, 3 = 6–7 hours, 4 = 7–8 hours, 5 = more than 8 hours.
-How this may feel: Short nights can leave you coming to class already tired, even when you are trying.
-Advice for next week: Try to sleep about 7 hours and keep a bedtime you can keep, even if one homework is not done. Do not recommend an all-nighter. Tired studying usually costs more than it gives back.
+2. Q1. During the past week, I obtained enough actual sleep each night.
+Choices: 1 = Strongly Disagree … 5 = Strongly Agree. Disagreeing raises sleep risk.
+How this may feel: Nights that were not long enough can leave you coming to class already tired, even when you are trying.
+Advice for next week: Keep a bedtime that gives you enough sleep, even if one homework is not done. Do not recommend an all-nighter. Tired studying usually costs more than it gives back.
 
-3. Q2. How consistent was your sleep schedule this week?
-Choices on many forms: 1 = Very inconsistent … 5 = Very consistent.
-How this may feel: Sleep and wake times that keep changing make mornings feel rushed and evenings feel too long.
-Advice for next week: Keep sleep and wake time closer to the same each day, even after a short night. Sleeping very late can make the next night worse. Move one study block earlier so bedtime can stay closer to normal.
+3. Q2. During the past week, I considered my overall sleep quality to be good.
+Choices: 1 = Strongly Disagree … 5 = Strongly Agree. Disagreeing raises sleep risk.
+How this may feel: Sleep that did not feel good can make the next day start before your body is ready.
+Advice for next week: Skip late coffee or energy drinks, dim the phone, and keep your bed for sleep, not homework. A short wind-down beats another chapter after midnight.
 
-4. Q3. How rested did you feel upon waking?
-Choices on many forms: 1 = Not rested … 5 = Fully rested.
-How this may feel: Waking still tired often means the day starts before your body is ready.
-Advice for next week: Skip late coffee or energy drinks, dim the phone, and keep your bed for sleep, not homework. Set a stop time for schoolwork. A short wind-down beats another chapter after midnight.
+4. Q3. During the past week, I had difficulty falling asleep at night.
+Choices: 1 = Strongly Disagree … 5 = Strongly Agree. Agreeing raises sleep risk.
+How this may feel: Lying awake makes the night feel long, and the morning comes too soon.
+Advice for next week: Stop schoolwork before bed. If you cannot fall asleep, get up briefly, then go back when you feel sleepy. Do not study in bed.
 
-5. Q4. How often did lack of sleep affect your academics this week?
-Choices on many forms: 1 = Never … 5 = Very often. Agreeing that lack of sleep hurt school raises sleep risk.
-How this may feel: When lack of sleep hurts classwork, studying later usually makes the next day worse.
-Advice for next week: Treat rest as part of studying. Shorten the latest study session. Use a focused block earlier in the day. If sleep keeps harming school after you try this, ask a teacher, adviser, or a real health person at school. Do not invent medicines.
+5. Q4. During the past week, I had difficulty staying awake while doing activities during the day.
+Choices: 1 = Strongly Disagree … 5 = Strongly Agree. Agreeing raises sleep risk.
+How this may feel: Fighting sleep in class or while studying means the night did not give you enough rest.
+Advice for next week: Move one study block earlier. Do not add a late session to catch up. A short daytime rest is not a substitute for enough sleep at night.
 
-6. OTHER SLEEP WORDING ON THE FORM
-If the form says you had difficulty sleeping, trouble sleeping, or could not sleep: keep a bedtime you can keep, get up briefly if you cannot fall asleep, and do not study in bed.
-If the form says you slept enough, felt rested, or kept a regular schedule: keep the bedtime that is working, including on busy school nights.
+6. Q5. During the past week, I had difficulty getting enough sleep to function well during the day.
+Choices: 1 = Strongly Disagree … 5 = Strongly Agree. Agreeing raises sleep risk.
+How this may feel: When sleep is not enough to function, studying later usually makes the next day worse.
+Advice for next week: Treat rest as part of studying. Shorten the latest study session. If you still cannot function well after you protect sleep, ask a teacher, adviser, or a real health person at school. Do not invent medicines.
 
 7. ADVICE WHEN SLEEP RISK IS HIGH
-Mention Q1 and Q2 first (hours and schedule), then Q3 and Q4 (not rested, academics affected).
+Mention not enough sleep and poor sleep quality first, then trouble falling asleep, staying awake in the day, and not functioning well.
 Give more than one sleep tip. Do not only say "sleep more."
 Never tell them to give up sleep to finish workload or add study hours.
 
 8. ADVICE WHEN SLEEP RISK IS MODERATE
-One or two tips from Q1 or Q2: hours or a steadier bedtime.
+One or two tips: enough sleep at night, or an easier time falling asleep.
 
 9. ADVICE WHEN SLEEP LOOKS OKAY
 One kind sentence only. Focus advice on the harder parts of next week. Sleep does not come first when its score is Low.
@@ -56,17 +55,18 @@ Write like a caring adviser. Use "you." Use simple, basic words. Short sentences
 Match advice to the Sleep Hours questions the student answered. Do not start every tip with "If you."
 
 HOW THIS MAY FEEL
-- Short nights (under about 7 hours) can leave you coming to class already tired.
-- An inconsistent sleep schedule makes mornings feel rushed and evenings feel too long.
-- Not feeling rested upon waking means the day starts before your body is ready.
-- When lack of sleep affects your academics, studying later usually makes the next day worse.
+- Not getting enough actual sleep can leave you coming to class already tired.
+- Sleep that did not feel good means the day starts before your body is ready.
+- Difficulty falling asleep makes the night feel long.
+- Difficulty staying awake during the day means the night did not give you enough rest.
+- Not enough sleep to function well means studying later usually makes the next day worse.
 
 THINGS YOU CAN TRY NEXT WEEK
-- Try to sleep about 7 hours and keep a bedtime you can keep, even if one homework is not done.
-- Keep sleep and wake time closer to the same each day, even after a short night. Sleeping very late can make the next night worse.
+- Keep a bedtime that gives you enough sleep, even if one homework is not done.
 - Skip late coffee or energy drinks, dim the phone, and keep your bed for sleep, not homework.
-- Move one study block earlier and stop working in time to slow down. Rest is part of doing well in class, not a break from school.
-- Write tomorrow's first small task on paper, then close the laptop so your mind can stop going round and round.
+- Stop schoolwork before bed. If you cannot fall asleep, get up briefly, then go back when you feel sleepy.
+- If you are sleepy during class or activities, move one study block earlier instead of working late.
+- Shorten the latest study session so you can function the next day. Rest is part of doing well in class, not a break from school.
 
 11. RETRIEVAL KEYWORDS
-Sleep Hours, how many hours did you sleep per night this week, less than 5 hours, 5–6 hours, 6–7 hours, 7–8 hours, more than 8 hours, how consistent was your sleep schedule this week, how rested did you feel upon waking, how often did lack of sleep affect your academics this week, difficulty sleeping, trouble sleeping, slept enough, regular schedule, Strongly Disagree Strongly Agree, bedtime, 7 hours, advice
+Sleep Hours, enough actual sleep each night, overall sleep quality, difficulty falling asleep, difficulty staying awake, activities during the day, enough sleep to function well, Strongly Disagree, Strongly Agree, bedtime, advice

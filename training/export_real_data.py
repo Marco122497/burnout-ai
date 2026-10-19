@@ -38,23 +38,37 @@ COLUMNS = [
 ]
 
 
-def export_rows() -> pd.DataFrame:
+PAGE_SIZE = 1000
+
+
+def _fetch_all_monitoring() -> list[dict]:
+    """Page through weekly_monitoring — PostgREST caps each response at 1000 rows."""
     from app.database import supabase
 
-    response = (
-        supabase.table("weekly_monitoring")
-        .select(
-            "student_id, term_id, week_number, stress_score, "
-            "academic_workload_score, study_time_score, sleep_hours_score, "
-            "mfbi_results(mfbi_score, burnout_risk_level)"
+    data: list[dict] = []
+    start = 0
+    while True:
+        response = (
+            supabase.table("weekly_monitoring")
+            .select(
+                "monitoring_id, student_id, term_id, week_number, stress_score, "
+                "academic_workload_score, study_time_score, sleep_hours_score, "
+                "mfbi_results(mfbi_score, burnout_risk_level)"
+            )
+            .order("monitoring_id")
+            .range(start, start + PAGE_SIZE - 1)
+            .execute()
         )
-        .order("student_id")
-        .order("week_number")
-        .execute()
-    )
+        page = response.data or []
+        data.extend(page)
+        if len(page) < PAGE_SIZE:
+            return data
+        start += PAGE_SIZE
 
+
+def export_rows() -> pd.DataFrame:
     rows: list[dict] = []
-    for row in response.data or []:
+    for row in _fetch_all_monitoring():
         mfbi = row.get("mfbi_results")
         if isinstance(mfbi, list):
             mfbi = mfbi[0] if mfbi else None
@@ -76,7 +90,10 @@ def export_rows() -> pd.DataFrame:
             }
         )
 
-    return pd.DataFrame(rows, columns=COLUMNS)
+    df = pd.DataFrame(rows, columns=COLUMNS)
+    return df.sort_values(["student_id", "term_id", "week_number"]).reset_index(
+        drop=True
+    )
 
 
 def main() -> None:

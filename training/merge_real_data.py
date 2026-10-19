@@ -131,7 +131,9 @@ def _build_next_week_rows(real: pd.DataFrame) -> pd.DataFrame:
 def _replace_real_rows(existing: pd.DataFrame) -> pd.DataFrame:
     if "source" not in existing.columns:
         return existing
-    return existing[existing["source"] != "real"].copy()
+    # Drop balance rows too: balance_datasets.py regenerates them from the new
+    # base, otherwise synthetic rows compound on every retrain.
+    return existing[~existing["source"].isin(["real", "synthetic_balance"])].copy()
 
 
 def merge() -> dict:

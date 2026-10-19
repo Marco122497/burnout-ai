@@ -103,21 +103,14 @@ def health():
     ready = models_ready()
     openai_ok = False
     llm_model = None
+    llm_enabled_by_admin = True
     try:
         from rag.embeddings import LLM_MODEL, openai_configured
 
         openai_ok = openai_configured()
         llm_model = LLM_MODEL if openai_ok else None
-        llm_enabled_by_admin = True
-        try:
-            from rag.settings import openai_llm_enabled
-
-            llm_enabled_by_admin = openai_llm_enabled()
-        except Exception:
-            llm_enabled_by_admin = True
     except Exception:
         openai_ok = False
-        llm_enabled_by_admin = True
     return {
         "status": "ok" if ready else "degraded",
         "models_ready": ready,

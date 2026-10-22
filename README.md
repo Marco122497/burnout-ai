@@ -81,7 +81,9 @@ npm run ai
 npm run train
 ```
 
-Trains same-week and next-week Decision Tree + Random Forest models, writes pickles to `models/`, and saves evaluation metrics to `models/metrics.json`.
+Trains same-week and next-week Decision Tree + Random Forest models on real monitoring rows, writes pickles to `models/`, and saves evaluation metrics to `models/metrics.json`.
+
+Next-week pairs are students with both Week 1 and Week 2. Do not run `training/balance_datasets.py` for the published models: that script copies minority rows and those copies are not real students.
 
 ## API
 
@@ -109,6 +111,3 @@ AI_API_URL=https://burnout-ai-1.onrender.com
 For local uvicorn instead: `AI_API_URL=http://127.0.0.1:8000`.
 
 `BURNOUT_AI_URL` is also accepted as an alias.
-
-
-git push origin HEAD:main

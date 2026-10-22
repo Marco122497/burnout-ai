@@ -74,100 +74,33 @@ def _metrics(y_true, y_pred, labels=RISK_ORDER) -> dict:
     }
 
 
-def _holdout_only(X: pd.DataFrame, y: pd.Series) -> dict:
-    """Score a stratified holdout without replacing the saved production models.
-
-    Week 2 labels are mostly Moderate. Balanced class weights make the model
-    over-call Low and High and drop accuracy below a majority-class guess, so
-    this holdout follows the real label mix.
-    """
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
-    decision_tree = DecisionTreeClassifier(max_depth=8, random_state=42)
-    random_forest = RandomForestClassifier(
-        n_estimators=200,
-        random_state=42,
-        n_jobs=-1,
-    )
-    decision_tree.fit(X_train, y_train)
-    random_forest.fit(X_train, y_train)
-    return {
-        "pairs": int(len(X)),
-        "holdout_rows": int(len(X_test)),
-        "decision_tree": _metrics(y_test, decision_tree.predict(X_test)),
-        "random_forest": _metrics(y_test, random_forest.predict(X_test)),
-    }
+def _real_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop synthetic balance copies when a source column is present."""
+    if "source" not in df.columns:
+        return df
+    source = df["source"].astype(str)
+    return df[source.eq("real") | source.str.startswith("real")].copy()
 
 
-def _week1_week2_holdout() -> dict | None:
-    """Real Week 1 inputs labeled by that student's Week 2 risk. No synthetic rows."""
-    real_path = DATASET_DIR / "real_weekly_monitoring.csv"
-    if not real_path.exists():
-        return None
-
-    real = pd.read_csv(real_path)
-    # Trends are derived. The export has the four scores and MFBI only.
-    needed = [
-        "student_id",
-        "term_id",
-        "week_number",
-        *SAME_WEEK_FEATURES,
-        "mfbi_score",
-        LABEL,
-    ]
-    if any(col not in real.columns for col in needed):
-        return None
-
-    real = real.dropna(subset=needed).copy()
-    real = real[real[LABEL].isin(RISK_ORDER)]
-    real["week_number"] = pd.to_numeric(real["week_number"], errors="coerce")
-    real = real.dropna(subset=["week_number"])
-    real = real.drop_duplicates(
-        subset=["student_id", "term_id", "week_number"], keep="last"
-    )
-
-    week1 = real[real["week_number"] == 1].set_index(["student_id", "term_id"])
-    week2 = real[real["week_number"] == 2].set_index(["student_id", "term_id"])
-    pairs = week1.join(week2, how="inner", lsuffix="_w1", rsuffix="_w2")
-    if pairs.empty:
-        return None
-
-    feature_cols = [*SAME_WEEK_FEATURES, "mfbi_score"]
-    frame = pd.DataFrame(
-        {
-            "stress_score": pairs["stress_score_w1"],
-            "academic_workload_score": pairs["academic_workload_score_w1"],
-            "study_time_score": pairs["study_time_score_w1"],
-            "sleep_hours_score": pairs["sleep_hours_score_w1"],
-            "mfbi_score": pairs["mfbi_score_w1"],
-            LABEL: pairs[f"{LABEL}_w2"],
-        }
-    )
-    frame = frame.dropna(subset=feature_cols + [LABEL])
-    frame = frame[frame[LABEL].isin(RISK_ORDER)]
-    counts = frame[LABEL].value_counts()
-    if frame.empty or counts.min() < 2:
-        return None
-
-    holdout = _holdout_only(frame[feature_cols], frame[LABEL])
-    holdout["real_records"] = int(len(real))
-    return holdout
-
-
-def _train_pair(X: pd.DataFrame, y: pd.Series, name: str, feature_names: list[str]):
+def _train_pair(
+    X: pd.DataFrame,
+    y: pd.Series,
+    name: str,
+    feature_names: list[str],
+    class_weight: str | None = "balanced",
+):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
 
     decision_tree = DecisionTreeClassifier(
-        max_depth=8, random_state=42, class_weight="balanced"
+        max_depth=8, random_state=42, class_weight=class_weight
     )
     random_forest = RandomForestClassifier(
         n_estimators=200,
         random_state=42,
         n_jobs=-1,
-        class_weight="balanced",
+        class_weight=class_weight,
     )
 
     decision_tree.fit(X_train, y_train)
@@ -200,6 +133,7 @@ def _train_pair(X: pd.DataFrame, y: pd.Series, name: str, feature_names: list[st
 
     return {
         "samples": int(len(X)),
+        "holdout_rows": int(len(X_test)),
         "features": feature_names,
         "decision_tree": dt_metrics,
         "random_forest": {
@@ -218,8 +152,8 @@ def main():
     if not next_week_path.exists():
         raise FileNotFoundError(f"Missing dataset: {next_week_path}")
 
-    same_df = pd.read_csv(same_week_path)
-    next_df = pd.read_csv(next_week_path)
+    same_df = _real_rows(pd.read_csv(same_week_path))
+    next_df = _real_rows(pd.read_csv(next_week_path))
 
     for col in SAME_WEEK_FEATURES + [LABEL]:
         if col not in same_df.columns:
@@ -237,29 +171,44 @@ def main():
     same_df = same_df[same_df[LABEL].isin(RISK_ORDER)]
     next_df = next_df[next_df[LABEL].isin(RISK_ORDER)]
 
+    same_week = _train_pair(
+        same_df[SAME_WEEK_FEATURES],
+        same_df[LABEL],
+        "same_week",
+        SAME_WEEK_FEATURES,
+    )
+    # Real Week 2 labels are mostly Moderate. Balanced class weights over-call
+    # Low and High, so the saved next-week model follows the real label mix.
+    next_week = _train_pair(
+        next_df[NEXT_WEEK_FEATURES],
+        next_df[LABEL],
+        "next_week",
+        NEXT_WEEK_FEATURES,
+        class_weight=None,
+    )
     evaluation = {
         "generated_by": "burnout-ai/training/train.py",
         "label": LABEL,
         "classes": RISK_ORDER,
-        "same_week": _train_pair(
-            same_df[SAME_WEEK_FEATURES],
-            same_df[LABEL],
-            "same_week",
-            SAME_WEEK_FEATURES,
-        ),
-        "next_week": _train_pair(
-            next_df[NEXT_WEEK_FEATURES],
-            next_df[LABEL],
-            "next_week",
-            NEXT_WEEK_FEATURES,
-        ),
-        "week1_week2_holdout": _week1_week2_holdout(),
+        "same_week": same_week,
+        "next_week": next_week,
+        "week1_week2_holdout": {
+            "pairs": next_week["samples"],
+            "holdout_rows": next_week["holdout_rows"],
+            "real_records": int(len(same_df)),
+            "decision_tree": next_week["decision_tree"],
+            "random_forest": {
+                key: value
+                for key, value in next_week["random_forest"].items()
+                if key != "feature_importance"
+            },
+        },
         "notes": {
-            "same_week": "Predicts current-week burnout risk from four questionnaire scores.",
+            "same_week": "Predicts current-week burnout risk from four questionnaire scores. Real monitoring rows only.",
             "next_week": (
-                "Predicts next-week burnout risk from scores, week-over-week trends, "
-                "and MFBI. Dataset contains next-week labels only — not two-week-ahead "
-                "labels. Week-2 outlook in the API is a trend-based projection."
+                "Predicts Week 2 risk from real Week 1 scores, trends, and MFBI. "
+                "No synthetic rows. Week-2 outlook in the API is still a trend-based projection, "
+                "not a trained two-week-ahead model."
             ),
         },
     }

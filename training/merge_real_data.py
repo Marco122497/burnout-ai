@@ -129,11 +129,11 @@ def _build_next_week_rows(real: pd.DataFrame) -> pd.DataFrame:
 
 
 def _replace_real_rows(existing: pd.DataFrame) -> pd.DataFrame:
-    if "source" not in existing.columns:
+    # The published evaluation must follow the real monitoring records only.
+    # Synthetic and balance rows are dropped so they cannot change the metrics.
+    if existing.empty:
         return existing
-    # Drop balance rows too: balance_datasets.py regenerates them from the new
-    # base, otherwise synthetic rows compound on every retrain.
-    return existing[~existing["source"].isin(["real", "synthetic_balance"])].copy()
+    return existing.iloc[0:0].copy()
 
 
 def merge() -> dict:

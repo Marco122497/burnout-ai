@@ -74,6 +74,87 @@ def _metrics(y_true, y_pred, labels=RISK_ORDER) -> dict:
     }
 
 
+def _holdout_only(X: pd.DataFrame, y: pd.Series) -> dict:
+    """Score a stratified holdout without replacing the saved production models.
+
+    Week 2 labels are mostly Moderate. Balanced class weights make the model
+    over-call Low and High and drop accuracy below a majority-class guess, so
+    this holdout follows the real label mix.
+    """
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+    decision_tree = DecisionTreeClassifier(max_depth=8, random_state=42)
+    random_forest = RandomForestClassifier(
+        n_estimators=200,
+        random_state=42,
+        n_jobs=-1,
+    )
+    decision_tree.fit(X_train, y_train)
+    random_forest.fit(X_train, y_train)
+    return {
+        "pairs": int(len(X)),
+        "holdout_rows": int(len(X_test)),
+        "decision_tree": _metrics(y_test, decision_tree.predict(X_test)),
+        "random_forest": _metrics(y_test, random_forest.predict(X_test)),
+    }
+
+
+def _week1_week2_holdout() -> dict | None:
+    """Real Week 1 inputs labeled by that student's Week 2 risk. No synthetic rows."""
+    real_path = DATASET_DIR / "real_weekly_monitoring.csv"
+    if not real_path.exists():
+        return None
+
+    real = pd.read_csv(real_path)
+    # Trends are derived. The export has the four scores and MFBI only.
+    needed = [
+        "student_id",
+        "term_id",
+        "week_number",
+        *SAME_WEEK_FEATURES,
+        "mfbi_score",
+        LABEL,
+    ]
+    if any(col not in real.columns for col in needed):
+        return None
+
+    real = real.dropna(subset=needed).copy()
+    real = real[real[LABEL].isin(RISK_ORDER)]
+    real["week_number"] = pd.to_numeric(real["week_number"], errors="coerce")
+    real = real.dropna(subset=["week_number"])
+    real = real.drop_duplicates(
+        subset=["student_id", "term_id", "week_number"], keep="last"
+    )
+
+    week1 = real[real["week_number"] == 1].set_index(["student_id", "term_id"])
+    week2 = real[real["week_number"] == 2].set_index(["student_id", "term_id"])
+    pairs = week1.join(week2, how="inner", lsuffix="_w1", rsuffix="_w2")
+    if pairs.empty:
+        return None
+
+    feature_cols = [*SAME_WEEK_FEATURES, "mfbi_score"]
+    frame = pd.DataFrame(
+        {
+            "stress_score": pairs["stress_score_w1"],
+            "academic_workload_score": pairs["academic_workload_score_w1"],
+            "study_time_score": pairs["study_time_score_w1"],
+            "sleep_hours_score": pairs["sleep_hours_score_w1"],
+            "mfbi_score": pairs["mfbi_score_w1"],
+            LABEL: pairs[f"{LABEL}_w2"],
+        }
+    )
+    frame = frame.dropna(subset=feature_cols + [LABEL])
+    frame = frame[frame[LABEL].isin(RISK_ORDER)]
+    counts = frame[LABEL].value_counts()
+    if frame.empty or counts.min() < 2:
+        return None
+
+    holdout = _holdout_only(frame[feature_cols], frame[LABEL])
+    holdout["real_records"] = int(len(real))
+    return holdout
+
+
 def _train_pair(X: pd.DataFrame, y: pd.Series, name: str, feature_names: list[str]):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
@@ -172,6 +253,7 @@ def main():
             "next_week",
             NEXT_WEEK_FEATURES,
         ),
+        "week1_week2_holdout": _week1_week2_holdout(),
         "notes": {
             "same_week": "Predicts current-week burnout risk from four questionnaire scores.",
             "next_week": (

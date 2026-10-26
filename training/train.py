@@ -82,6 +82,14 @@ def _real_rows(df: pd.DataFrame) -> pd.DataFrame:
     return df[source.eq("real") | source.str.startswith("real")].copy()
 
 
+def _can_holdout(y: pd.Series) -> bool:
+    """A stratified 20% split needs at least two rows in every class."""
+    if len(y) < 5:
+        return False
+    counts = y.value_counts()
+    return bool(len(counts) >= 2 and int(counts.min()) >= 2)
+
+
 def _train_pair(
     X: pd.DataFrame,
     y: pd.Series,
@@ -177,22 +185,37 @@ def main():
         "same_week",
         SAME_WEEK_FEATURES,
     )
-    # Real Week 2 labels are mostly Moderate. Balanced class weights over-call
-    # Low and High, so the saved next-week model follows the real label mix.
-    next_week = _train_pair(
-        next_df[NEXT_WEEK_FEATURES],
-        next_df[LABEL],
-        "next_week",
-        NEXT_WEEK_FEATURES,
-        class_weight=None,
-    )
+    # Week 1 alone has no next-week label. Train that model only when
+    # Week 1 to Week 2 pairs exist.
+    next_week = None
+    if _can_holdout(next_df[LABEL]):
+        next_week = _train_pair(
+            next_df[NEXT_WEEK_FEATURES],
+            next_df[LABEL],
+            "next_week",
+            NEXT_WEEK_FEATURES,
+            class_weight=None,
+        )
+    else:
+        for name in (
+            "next_week_decision_tree.pkl",
+            "next_week_random_forest.pkl",
+            "next_week_features.pkl",
+        ):
+            path = MODELS_DIR / name
+            if path.exists():
+                path.unlink()
+        print("\n=== next_week ===")
+        print("Skipped: Week 1 to Week 2 pairs are not available yet.")
     evaluation = {
         "generated_by": "burnout-ai/training/train.py",
         "label": LABEL,
         "classes": RISK_ORDER,
         "same_week": same_week,
         "next_week": next_week,
-        "week1_week2_holdout": {
+        "week1_week2_holdout": None
+        if next_week is None
+        else {
             "pairs": next_week["samples"],
             "holdout_rows": next_week["holdout_rows"],
             "real_records": int(len(same_df)),

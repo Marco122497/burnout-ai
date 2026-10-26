@@ -5,13 +5,21 @@ import pandas as pd
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
 
-SAME_WEEK_FEATURES = joblib.load(MODELS_DIR / "same_week_features.pkl")
-NEXT_WEEK_FEATURES = joblib.load(MODELS_DIR / "next_week_features.pkl")
 
-same_week_decision_tree = joblib.load(MODELS_DIR / "same_week_decision_tree.pkl")
-same_week_random_forest = joblib.load(MODELS_DIR / "same_week_random_forest.pkl")
-next_week_decision_tree = joblib.load(MODELS_DIR / "next_week_decision_tree.pkl")
-next_week_random_forest = joblib.load(MODELS_DIR / "next_week_random_forest.pkl")
+def _load(filename: str):
+    path = MODELS_DIR / filename
+    if not path.exists():
+        return None
+    return joblib.load(path)
+
+
+SAME_WEEK_FEATURES = _load("same_week_features.pkl")
+NEXT_WEEK_FEATURES = _load("next_week_features.pkl")
+
+same_week_decision_tree = _load("same_week_decision_tree.pkl")
+same_week_random_forest = _load("same_week_random_forest.pkl")
+next_week_decision_tree = _load("next_week_decision_tree.pkl")
+next_week_random_forest = _load("next_week_random_forest.pkl")
 
 
 def _confidence(model, frame: pd.DataFrame) -> float:
@@ -65,6 +73,12 @@ def _run_pair(decision_tree, random_forest, features: list[str], values: dict):
 
 
 def predict_same_week(features: dict) -> dict:
+    if (
+        same_week_decision_tree is None
+        or same_week_random_forest is None
+        or SAME_WEEK_FEATURES is None
+    ):
+        raise RuntimeError("Same-week model files are missing")
     result = _run_pair(
         same_week_decision_tree,
         same_week_random_forest,
@@ -80,6 +94,8 @@ def predict_same_week(features: dict) -> dict:
 
 
 def predict_next_week(features: dict) -> dict:
+    if not next_week_ready():
+        raise RuntimeError("Next-week model files are missing")
     result = _run_pair(
         next_week_decision_tree,
         next_week_random_forest,
@@ -99,6 +115,12 @@ def models_ready() -> bool:
         "same_week_decision_tree.pkl",
         "same_week_random_forest.pkl",
         "same_week_features.pkl",
+    ]
+    return all((MODELS_DIR / name).exists() for name in required)
+
+
+def next_week_ready() -> bool:
+    required = [
         "next_week_decision_tree.pkl",
         "next_week_random_forest.pkl",
         "next_week_features.pkl",

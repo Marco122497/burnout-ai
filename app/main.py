@@ -4,7 +4,12 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Query
 
 from app.data_service import build_features_from_history, get_student_history
-from app.predictor import models_ready, predict_next_week, predict_same_week
+from app.predictor import (
+    models_ready,
+    next_week_ready,
+    predict_next_week,
+    predict_same_week,
+)
 from app.schemas import EarlyWarningRequest, PredictionRequest, RecommendationRequest
 from mfbi.calculator import compute_mfbi
 from services.early_warning import (
@@ -153,7 +158,7 @@ def predict(request: PredictionRequest):
     try:
         same_week = _enrich(predict_same_week(features), features)
         next_week = None
-        if _can_run_next_week(features):
+        if _can_run_next_week(features) and next_week_ready():
             next_week = _enrich(predict_next_week(features), features)
 
         if mode == "next_week":
@@ -211,7 +216,7 @@ def predict_early_warning(request: EarlyWarningRequest):
     next_week = None
     week2 = None
 
-    if _can_run_next_week(features):
+    if _can_run_next_week(features) and next_week_ready():
         next_week = _enrich(predict_next_week(features), features)
         week2 = project_week2(
             next_week_risk=next_week["risk_level"],

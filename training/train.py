@@ -190,7 +190,7 @@ def _train_all_pairs(
         "holdout_rows": 0,
         "features": feature_names,
         "note": (
-            "Trained on every real Week 1 to Week 2 pair. "
+            "Trained on every real consecutive-week pair. "
             "Too few pairs for a stratified 20% hold-out, so there is no test matrix."
         ),
     }
@@ -261,7 +261,7 @@ def main():
             )
         )
         print("\n=== next_week ===")
-        print("Skipped: Week 1 to Week 2 pairs are not available yet.")
+        print("Skipped: consecutive-week pairs are not available yet.")
         print(
             "Kept the existing next-week model files."
             if kept
@@ -289,8 +289,9 @@ def main():
         "notes": {
             "same_week": "Predicts current-week burnout risk from four questionnaire scores. Real monitoring rows only.",
             "next_week": (
-                "Predicts Week 2 risk from real Week 1 scores, trends, and MFBI. "
-                "No synthetic rows. Week-2 outlook in the API is still a trend-based projection, "
+                "Predicts the next week's risk from the current week's scores, trends, and MFBI. "
+                "Pairs are real consecutive weeks: Week 1 to Week 2, and Week 2 to Week 3. "
+                "No synthetic rows. The API week-2 outlook is still a trend-based projection, "
                 "not a trained two-week-ahead model."
             ),
         },

@@ -1,8 +1,8 @@
 """Merge real weekly monitoring rows into training CSVs.
 
 Reads dataset/real_weekly_monitoring.csv and syncs:
-- training_dataset.csv (same-week rows for Week 1 and Week 2 only)
-- next_week_dataset.csv (Week 1 to Week 2 pairs with trends)
+- training_dataset.csv (same-week rows for Weeks 1, 2, and 3)
+- next_week_dataset.csv (consecutive pairs: Week 1 to Week 2, and Week 2 to Week 3)
 
 Usage (from burnout-ai/):
   py training/merge_real_data.py
@@ -72,7 +72,7 @@ def _load_real() -> pd.DataFrame:
     real = real.dropna(subset=required).copy()
     real = real[real["burnout_risk_level"].isin(RISK_ORDER)].copy()
     real["week_number"] = pd.to_numeric(real["week_number"], errors="coerce")
-    real = real[real["week_number"].isin([1, 2])].copy()
+    real = real[real["week_number"].isin([1, 2, 3])].copy()
     real["source"] = "real"
     return real
 

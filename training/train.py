@@ -197,16 +197,23 @@ def main():
             class_weight=None,
         )
     else:
-        for name in (
-            "next_week_decision_tree.pkl",
-            "next_week_random_forest.pkl",
-            "next_week_features.pkl",
-        ):
-            path = MODELS_DIR / name
-            if path.exists():
-                path.unlink()
+        # Do not delete a next-week model trained on an earlier Week 2 set.
+        # A new pair file replaces it on the next successful train.
+        kept = all(
+            (MODELS_DIR / name).exists()
+            for name in (
+                "next_week_decision_tree.pkl",
+                "next_week_random_forest.pkl",
+                "next_week_features.pkl",
+            )
+        )
         print("\n=== next_week ===")
         print("Skipped: Week 1 to Week 2 pairs are not available yet.")
+        print(
+            "Kept the existing next-week model files."
+            if kept
+            else "No next-week model files are on disk."
+        )
     evaluation = {
         "generated_by": "burnout-ai/training/train.py",
         "label": LABEL,

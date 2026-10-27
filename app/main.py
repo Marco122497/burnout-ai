@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException, Query
 from app.data_service import build_features_from_history, get_student_history
 from app.predictor import (
     models_ready,
-    next_week_unavailable_reason,
+    next_week_ready,
     predict_next_week,
     predict_same_week,
 )
@@ -22,22 +22,26 @@ app = FastAPI(title="Academic Burnout AI")
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
 
 
-TREND_KEYS = ("stress_trend", "workload_trend", "study_trend", "sleep_trend")
-
-
 def _features_from_request(request: PredictionRequest | EarlyWarningRequest) -> dict:
     if request.features is not None:
         payload = request.features.model_dump()
-        has_prior_week = payload.get("has_prior_week")
-        if has_prior_week is None:
-            has_prior_week = all(payload.get(key) is not None for key in TREND_KEYS)
-        features = {**payload, "has_prior_week": bool(has_prior_week)}
-        # Training uses 0 trends when there is no real previous week, so the
-        # same rule applies here. A made-up prior week is never a trend.
-        for key in TREND_KEYS:
-            value = payload.get(key)
-            features[key] = float(value) if has_prior_week and value is not None else 0.0
-        return features
+        has_trends = all(
+            payload.get(key) is not None
+            for key in (
+                "stress_trend",
+                "workload_trend",
+                "study_trend",
+                "sleep_trend",
+            )
+        )
+        return {
+            **payload,
+            "stress_trend": payload.get("stress_trend") if payload.get("stress_trend") is not None else 0.0,
+            "workload_trend": payload.get("workload_trend") if payload.get("workload_trend") is not None else 0.0,
+            "study_trend": payload.get("study_trend") if payload.get("study_trend") is not None else 0.0,
+            "sleep_trend": payload.get("sleep_trend") if payload.get("sleep_trend") is not None else 0.0,
+            "has_prior_week": has_trends,
+        }
 
     history = get_student_history(request.student_id)
     if not history:
@@ -68,7 +72,10 @@ def _history_from_request(request: PredictionRequest | EarlyWarningRequest):
 
 
 def _can_run_next_week(features: dict) -> bool:
-    return next_week_unavailable_reason(features) is None
+    return bool(
+        features.get("has_prior_week")
+        and features.get("mfbi_score") is not None
+    )
 
 
 def _enrich(prediction: dict, features: dict) -> dict:
@@ -151,14 +158,19 @@ def predict(request: PredictionRequest):
     try:
         same_week = _enrich(predict_same_week(features), features)
         next_week = None
-        if _can_run_next_week(features):
+        if _can_run_next_week(features) and next_week_ready():
             next_week = _enrich(predict_next_week(features), features)
 
         if mode == "next_week":
+            if features.get("mfbi_score") is None:
+                raise HTTPException(
+                    status_code=400,
+                    detail="next_week mode requires mfbi_score",
+                )
             if not next_week:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"next_week unavailable: {next_week_unavailable_reason(features)}",
+                    detail="next_week mode requires prior-week trends",
                 )
             prediction = next_week
         else:
@@ -203,9 +215,8 @@ def predict_early_warning(request: EarlyWarningRequest):
     same_week = _enrich(predict_same_week(features), features)
     next_week = None
     week2 = None
-    unavailable_reason = next_week_unavailable_reason(features)
 
-    if unavailable_reason is None:
+    if _can_run_next_week(features) and next_week_ready():
         next_week = _enrich(predict_next_week(features), features)
         week2 = project_week2(
             next_week_risk=next_week["risk_level"],
@@ -242,13 +253,6 @@ def predict_early_warning(request: EarlyWarningRequest):
             "week2_projection": week2,
             "warning_message": warning,
             "has_ml_next_week": next_week is not None,
-            "next_week_unavailable_reason": unavailable_reason,
-            "source_week": features.get("week_number"),
-            "target_week": (
-                int(features["week_number"]) + 1
-                if next_week is not None
-                else None
-            ),
         },
         # Convenience aliases matching dashboard needs
         "risk_level": same_week["risk_level"],

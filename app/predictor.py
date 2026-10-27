@@ -1,23 +1,9 @@
-import json
 from pathlib import Path
 
 import joblib
 import pandas as pd
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
-
-
-def _load_next_week_meta() -> dict | None:
-    path = MODELS_DIR / "next_week_meta.json"
-    if not path.exists():
-        return None
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
-
-
-NEXT_WEEK_META = _load_next_week_meta()
 
 
 def _load(filename: str):
@@ -108,20 +94,16 @@ def predict_same_week(features: dict) -> dict:
 
 
 def predict_next_week(features: dict) -> dict:
-    reason = next_week_unavailable_reason(features)
-    if reason:
-        raise RuntimeError(f"Next-week model cannot score this record: {reason}")
+    if not next_week_ready():
+        raise RuntimeError("Next-week model files are missing")
     result = _run_pair(
         next_week_decision_tree,
         next_week_random_forest,
         NEXT_WEEK_FEATURES,
         features,
     )
-    source_week = int(features["week_number"])
-    result["model_version"] = "burnout-ai-next-week-v2"
+    result["model_version"] = "burnout-ai-next-week-v1"
     result["horizon"] = "next_week"
-    result["source_week"] = source_week
-    result["target_week"] = source_week + 1
     result["remarks"] = (
         f"Next-week early detection; selected {result['selected_model']}"
     )
@@ -142,31 +124,8 @@ def next_week_ready() -> bool:
         "next_week_decision_tree.pkl",
         "next_week_random_forest.pkl",
         "next_week_features.pkl",
-        "next_week_meta.json",
     ]
-    return NEXT_WEEK_META is not None and all(
-        (MODELS_DIR / name).exists() for name in required
-    )
-
-
-def next_week_source_weeks() -> list[int]:
-    if not NEXT_WEEK_META:
-        return []
-    return [int(week) for week in NEXT_WEEK_META.get("source_weeks") or []]
-
-
-def next_week_unavailable_reason(features: dict) -> str | None:
-    """Why the trained next-week model cannot score this record, or None if it can."""
-    if not next_week_ready():
-        return "model_unavailable"
-    if features.get("mfbi_score") is None:
-        return "missing_mfbi"
-    week = features.get("week_number")
-    if week is None:
-        return "missing_week"
-    if int(week) not in next_week_source_weeks():
-        return "untrained_horizon"
-    return None
+    return all((MODELS_DIR / name).exists() for name in required)
 
 
 def predict_burnout(

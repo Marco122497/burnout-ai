@@ -9,12 +9,7 @@ from __future__ import annotations
 
 import re
 
-from mfbi.calculator import (
-    STUDY_TIME_SCORE_MAX,
-    clamp01,
-    classify_mfbi_score,
-    pss_stress_label,
-)
+from mfbi.calculator import classify_mfbi_score, pss_stress_label
 
 from app.database import supabase
 
@@ -53,9 +48,9 @@ def factor_labels(
 ) -> dict[str, str]:
     return {
         "stress": pss_stress_label(stress_score),
-        "workload": classify_mfbi_score(clamp01(academic_workload / 10.0)),
-        "sleep": classify_mfbi_score(clamp01(sleep_hours_score / 100.0)),
-        "study": classify_mfbi_score(clamp01(study_time / STUDY_TIME_SCORE_MAX)),
+        "workload": classify_mfbi_score(academic_workload / 10.0),
+        "sleep": classify_mfbi_score(sleep_hours_score / 100.0),
+        "study": classify_mfbi_score(study_time / 25.0),
     }
 
 

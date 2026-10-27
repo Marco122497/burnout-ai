@@ -230,10 +230,6 @@ def main():
         "same_week",
         SAME_WEEK_FEATURES,
     )
-    if "source_week_number" not in next_df.columns:
-        next_df["source_week_number"] = next_df["next_week_number"] - 1
-    source_weeks = sorted({int(week) for week in next_df["source_week_number"].dropna()})
-
     # Week 1 alone has no next-week label. Train that model only when
     # Week 1 to Week 2 pairs exist.
     next_week = None
@@ -271,19 +267,6 @@ def main():
             if kept
             else "No next-week model files are on disk."
         )
-
-    meta_path = MODELS_DIR / "next_week_meta.json"
-    if next_week is not None:
-        meta = {
-            "source_weeks": source_weeks,
-            "target_weeks": [week + 1 for week in source_weeks],
-            "pairs": next_week["samples"],
-            "trend_basis": "previous consecutive week; 0 when none",
-        }
-        meta_path.write_text(json.dumps(meta, indent=2), encoding="utf-8")
-        next_week["source_weeks"] = meta["source_weeks"]
-        next_week["target_weeks"] = meta["target_weeks"]
-
     evaluation = {
         "generated_by": "burnout-ai/training/train.py",
         "label": LABEL,

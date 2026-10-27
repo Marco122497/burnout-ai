@@ -12,6 +12,8 @@ Normalization (0–1), higher = greater burnout risk:
 
 from __future__ import annotations
 
+import math
+
 STUDY_TIME_SCORE_MAX = 25.0
 
 
@@ -19,12 +21,18 @@ def clamp01(value: float) -> float:
     return min(1.0, max(0.0, value))
 
 
+def round_half_up(value: float, digits: int) -> float:
+    """Match JavaScript Math.round for the non-negative MFBI scores."""
+    factor = 10**digits
+    return math.floor(value * factor + 0.5) / factor
+
+
 def round4(value: float) -> float:
-    return round(value * 10000) / 10000
+    return round_half_up(value, 4)
 
 
 def round_mfbi_score(score: float) -> float:
-    return round(score * 100) / 100
+    return round_half_up(score, 2)
 
 
 def classify_mfbi_score(score: float) -> str:

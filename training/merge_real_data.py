@@ -10,11 +10,16 @@ Usage (from burnout-ai/):
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from mfbi.calculator import classify_mfbi_score  # noqa: E402
 DATASET_DIR = ROOT / "dataset"
 REAL_PATH = DATASET_DIR / "real_weekly_monitoring.csv"
 TRAIN_PATH = DATASET_DIR / "training_dataset.csv"
@@ -45,6 +50,7 @@ NEXT_COLS = [
     "sleep_trend",
     "mfbi_score",
     "burnout_risk_level",
+    "source_week_number",
     "next_week_number",
 ]
 
@@ -70,14 +76,23 @@ def _load_real() -> pd.DataFrame:
         raise ValueError(f"real_weekly_monitoring.csv missing columns: {missing}")
 
     real = real.dropna(subset=required).copy()
-    real = real[real["burnout_risk_level"].isin(RISK_ORDER)].copy()
     real["week_number"] = pd.to_numeric(real["week_number"], errors="coerce")
     real = real[real["week_number"].isin([1, 2])].copy()
+    real["week_number"] = real["week_number"].astype(int)
+    # The label is always the band of the stored MFBI score.
+    real["burnout_risk_level"] = real["mfbi_score"].astype(float).map(classify_mfbi_score)
+    real = real[real["burnout_risk_level"].isin(RISK_ORDER)].copy()
+    real = real.drop_duplicates(["student_id", "term_id", "week_number"], keep="last")
     real["source"] = "real"
     return real
 
 
 def _build_next_week_rows(real: pd.DataFrame) -> pd.DataFrame:
+    """One row per student and term: week N inputs, week N+1 MFBI band as the label.
+
+    Inputs come only from week N and the week before it. Nothing from week N+1
+    is used except the label.
+    """
     rows: list[dict] = []
 
     grouped = real.sort_values(["student_id", "term_id", "week_number"]).groupby(
@@ -85,18 +100,17 @@ def _build_next_week_rows(real: pd.DataFrame) -> pd.DataFrame:
     )
 
     for _, student_df in grouped:
-        weeks = student_df.reset_index(drop=True)
-        for i in range(len(weeks) - 1):
-            current = weeks.iloc[i]
-            nxt = weeks.iloc[i + 1]
-
-            # Only use directly consecutive weeks (e.g. 2 -> 3, not 2 -> 4).
-            if int(nxt["week_number"]) != int(current["week_number"]) + 1:
+        by_week = {int(row["week_number"]): row for _, row in student_df.iterrows()}
+        for week, current in by_week.items():
+            target = by_week.get(week + 1)
+            if target is None:
                 continue
+            prior = by_week.get(week - 1)
 
-            prev = weeks.iloc[i - 1] if i > 0 else None
-            if prev is not None and int(current["week_number"]) != int(prev["week_number"]) + 1:
-                prev = None
+            def trend(column: str) -> float:
+                if prior is None:
+                    return 0.0
+                return float(current[column]) - float(prior[column])
 
             rows.append(
                 {
@@ -105,25 +119,14 @@ def _build_next_week_rows(real: pd.DataFrame) -> pd.DataFrame:
                     "academic_workload_score": float(current["academic_workload_score"]),
                     "study_time_score": float(current["study_time_score"]),
                     "sleep_hours_score": float(current["sleep_hours_score"]),
-                    "stress_trend": float(current["stress_score"] - prev["stress_score"])
-                    if prev is not None
-                    else 0.0,
-                    "workload_trend": float(
-                        current["academic_workload_score"] - prev["academic_workload_score"]
-                    )
-                    if prev is not None
-                    else 0.0,
-                    "study_trend": float(current["study_time_score"] - prev["study_time_score"])
-                    if prev is not None
-                    else 0.0,
-                    "sleep_trend": float(
-                        current["sleep_hours_score"] - prev["sleep_hours_score"]
-                    )
-                    if prev is not None
-                    else 0.0,
+                    "stress_trend": trend("stress_score"),
+                    "workload_trend": trend("academic_workload_score"),
+                    "study_trend": trend("study_time_score"),
+                    "sleep_trend": trend("sleep_hours_score"),
                     "mfbi_score": float(current["mfbi_score"]),
-                    "burnout_risk_level": nxt["burnout_risk_level"],
-                    "next_week_number": int(nxt["week_number"]),
+                    "burnout_risk_level": classify_mfbi_score(float(target["mfbi_score"])),
+                    "source_week_number": week,
+                    "next_week_number": week + 1,
                 }
             )
 

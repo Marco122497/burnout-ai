@@ -51,7 +51,7 @@ def _fetch_all_monitoring() -> list[dict]:
         response = (
             supabase.table("weekly_monitoring")
             .select(
-                "monitoring_id, student_id, term_id, week_number, stress_score, "
+                "monitoring_id, student_id, term_id, week_number, status, stress_score, "
                 "academic_workload_score, study_time_score, sleep_hours_score, "
                 "mfbi_results(mfbi_score, burnout_risk_level)"
             )
@@ -69,6 +69,10 @@ def _fetch_all_monitoring() -> list[dict]:
 def export_rows() -> pd.DataFrame:
     rows: list[dict] = []
     for row in _fetch_all_monitoring():
+        if row.get("status") == "Draft":
+            continue
+        if row.get("week_number") is None or not row.get("student_id"):
+            continue
         mfbi = row.get("mfbi_results")
         if isinstance(mfbi, list):
             mfbi = mfbi[0] if mfbi else None
@@ -77,6 +81,7 @@ def export_rows() -> pd.DataFrame:
 
         rows.append(
             {
+                "monitoring_id": row["monitoring_id"],
                 "source": "real",
                 "student_id": row["student_id"],
                 "term_id": row["term_id"],
@@ -90,7 +95,13 @@ def export_rows() -> pd.DataFrame:
             }
         )
 
-    df = pd.DataFrame(rows, columns=COLUMNS)
+    df = pd.DataFrame(rows, columns=["monitoring_id", *COLUMNS])
+    # One record per student, term, and week: the latest submission wins.
+    df = (
+        df.sort_values("monitoring_id")
+        .drop_duplicates(["student_id", "term_id", "week_number"], keep="last")
+        .drop(columns=["monitoring_id"])
+    )
     return df.sort_values(["student_id", "term_id", "week_number"]).reset_index(
         drop=True
     )

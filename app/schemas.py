@@ -13,6 +13,11 @@ class FeaturePayload(BaseModel):
     workload_trend: Optional[float] = None
     study_trend: Optional[float] = None
     sleep_trend: Optional[float] = None
+    # Monitoring week these scores belong to. The next-week model only scores
+    # the source weeks it was trained on.
+    week_number: Optional[int] = Field(default=None, ge=1)
+    # True only when the trends come from the student's real previous week.
+    has_prior_week: Optional[bool] = None
 
 
 class PredictionRequest(BaseModel):

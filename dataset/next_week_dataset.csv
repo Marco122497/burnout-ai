@@ -1,1 +1,9 @@
 source,stress_score,academic_workload_score,study_time_score,sleep_hours_score,stress_trend,workload_trend,study_trend,sleep_trend,mfbi_score,burnout_risk_level,next_week_number
+real,21.0,5.0,9.63,45.0,0.0,0.0,0.0,0.0,0.4651,Moderate,2
+real,10.0,3.13,10.0,30.0,0.0,0.0,0.0,0.0,0.3157,Low,2
+real,15.0,3.13,12.13,30.0,0.0,0.0,0.0,0.0,0.3683,Low,2
+real,40.0,10.0,15.88,100.0,0.0,0.0,0.0,0.0,0.9088,Moderate,2
+real,9.0,3.13,10.0,25.0,0.0,0.0,0.0,0.0,0.297,High,2
+real,20.0,4.38,18.38,50.0,0.0,0.0,0.0,0.0,0.5433,High,2
+real,37.0,8.75,15.88,95.0,0.0,0.0,0.0,0.0,0.8463,Moderate,2
+real,18.0,4.38,9.63,50.0,0.0,0.0,0.0,0.0,0.4433,Low,2
